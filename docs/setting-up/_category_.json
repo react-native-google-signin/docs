@@ -1,0 +1,9 @@
+{
+  "label": "Setting up",
+  "position": 20,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn how to install and configure the package for different platforms"
+  }
+}

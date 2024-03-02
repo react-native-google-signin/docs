@@ -1,0 +1,65 @@
+---
+sidebar_position: 2
+---
+
+# Web setup guide
+
+On the web, there is one extra step necessary to use the library: to load the Google Client Library and make it available in the browser **before** calling any of the APIs exposed by this package.
+
+:::tip
+Please note that Web support is only available to sponsors️. [It takes just a few clicks to get access](/docs/install.mdx#accessing-the-private-package-for-sponsors) ❤️.
+:::
+
+There are different ways to load the client script. Some of them are:
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+  <TabItem value="Next.js" label="Next.js">
+
+```tsx
+import Script from 'next/script';
+
+<Script
+  src="https://accounts.google.com/gsi/client"
+  strategy="lazyOnload"
+  onLoad={() => {
+    // present the one-tap popup
+  }}
+/>;
+```
+  </TabItem>
+
+  <TabItem value="html" label="Simple html">
+
+ [See here](https://developers.google.com/identity/gsi/web/guides/client-library)
+  </TabItem>
+
+  <TabItem value="useEffect" label="useEffect">
+```tsx
+useEffect(() => {
+  const scriptTag = document.createElement('script');
+  scriptTag.src = 'https://accounts.google.com/gsi/client';
+  scriptTag.async = true;
+  scriptTag.onload = () => {
+    setLoaded(true);
+  };
+  scriptTag.onerror = () => {
+    console.error('Failed to load Google One-tap script');
+  };
+
+document.body.appendChild(scriptTag);
+}, []);
+
+```
+
+  </TabItem>
+
+</Tabs>
+
+After the script is loaded, you can call the functions for signing in and render the `WebGoogleSigninButton`.
+
+If you call any of the One-tap functions before the client library is loaded, such calls will reject with the [`PLAY_SERVICES_NOT_AVAILABLE` error code](../errors).
+
+You can read the official docs for loading the Client Library [here](https://developers.google.com/identity/gsi/web/guides/client-library).

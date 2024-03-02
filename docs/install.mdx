@@ -1,0 +1,95 @@
+---
+sidebar_position: 1
+---
+
+# Installation
+
+There are two ways to consume the package:
+
+### Sponsor-Only Version
+
+Available exclusively to GitHub sponsors, this version offers:
+
+✅ One-tap sign-in support for [Android](https://developers.google.com/identity/android-credential-manager) and [Web](https://developers.google.com/identity/gsi/web/guides/features), fully compatible (same API) with iOS
+
+✅ Support for the [React Native New Architecture](https://reactnative.dev/docs/new-architecture-intro)
+
+✅ Enhanced API functionalities: synchronous methods and more, plus bugfixes.
+
+✅ Comprehensive documentation available on this site.
+
+Your sponsorship enables continued maintenance and development of the module. Thank you for supporting this project! ❤️
+
+### Public Version
+
+Available on the public npm registry, this version does not include the features, updates and bugfixes found in the sponsor-only version.
+
+Please note that this documentation site covers the sponsor-only version. If you're using the public version, please refer to this [readme](https://github.com/react-native-google-signin/google-signin/blob/master/README.md#project-setup-and-initialization).
+
+
+## Accessing the private package for sponsors
+
+[Upon sponsoring](https://github.com/sponsors/vonovak) (please use specifically the tiers that mention this project!), you will get [immediate access \*](#invitation-note) to the private package and to the private repo with the sources and examples.
+
+Three steps are needed to access the sponsored package, which is hosted on [GitHub npm packages registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry).
+
+1. [Become a sponsor](https://github.com/sponsors/vonovak) and accept private repository [invitation *](#invitation-note) - it takes just a few clicks.
+
+2. [Obtain here](https://github.com/settings/tokens) a Personal Access Token with `packages:read` permission.
+
+3. Set up your package manager so that it fetches the package from the GH packages registry. In this example, we're using an `NPM_TOKEN_GOOGLE_SIGN_IN` environment variable.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+  <TabItem value="classic" label="npm / yarn v1">
+    create a `.npmrc` file in your project root with the following content:
+
+```
+//npm.pkg.github.com/:_authToken=${NPM_TOKEN_GOOGLE_SIGN_IN}
+
+@react-native-google-signin:registry=https://npm.pkg.github.com/
+```
+
+  </TabItem>
+
+  <TabItem value="yarn v3+" label="yarn v3+">
+    create a `.yarnrc.yml` file in your project root with the following content:
+
+```yml
+npmScopes:
+  react-native-google-signin:
+    npmRegistryServer: https://npm.pkg.github.com
+    npmAuthToken: '${NPM_TOKEN_GOOGLE_SIGN_IN}'
+```
+
+  </TabItem>
+
+</Tabs>
+
+If you use another package manager ([such as bun](https://bun.sh/docs/install/registries)), please refer to its documentation on how to set up a custom registry.
+
+## Requirements
+
+The package requires React Native 0.60 or higher.
+
+If you're using the [New Architecture](https://reactnative.dev/docs/new-architecture-intro), you need to be on React Native 0.72 or higher.
+
+## Installing
+
+```bash
+yarn add @react-native-google-signin/google-signin
+```
+
+There are several guides to follow now:
+
+- [Expo guide](setting-up/expo) for native mobile apps built with Expo
+- [Web guide](setting-up/web) if you want to use the package on the Web
+- If you're not using Expo but plain React Native, follow [Android guide](setting-up/android) and [iOS guide](setting-up/ios)
+
+---
+
+##### Invitation Note
+
+As a sponsor, you will be added automatically if you sponsor from a personal account. If you sponsor from an organization account, please let me know and I'll add you manually. This is because of how [GitHub handles this case](https://docs.github.com/en/sponsors/receiving-sponsorships-through-github-sponsors/managing-your-sponsorship-tiers#about-adding-repositories-to-a-sponsorship-tier).
