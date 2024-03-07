@@ -145,5 +145,5 @@ One-tap UI may not always be available: This happens if user has [opted out](htt
 `WebGoogleSigninButton` serves as a fallback. Tapping it will open the regular Google Sign-In dialog. When user signs in, the `onSuccess` callback will be called.
 
 :::info
-The reason the `WebGoogleOneTapSignIn.signIn` api is callback-based rather than promise-based is that it's possible to get into an "error" state (when one-tap is not available) and then get a successful sign in from the button flow. Because of how the Google Sign In for Web SDK is done, modeling this is not possible with a promise-based api.
+The reason the `WebGoogleOneTapSignIn.signIn` api is callback-based rather than promise-based is that it's possible to get into an "error" state (when one-tap is not available) and then get a successful sign in from the button flow. Because of how the Google Sign In for Web SDK is done, modeling this with a promise-based api is not possible.
 :::

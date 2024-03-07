@@ -1,6 +1,9 @@
 # GoogleSigninButton
 
-This is the sign in button that you can use in native apps. It renders `null` when used on the web.
+This is the sign in button that you can use in native apps. It renders `null` when used on the Web.
+
+The reason why you might want to use this native button is that it's localized out of the box, so the label will be translated to the currently active language automatically (if your localization is set up correcly - doing that is out of the scope for this guide).
+You may _not_ want to use it because it's not very "visually attractive" - but you are free to design your own button.
 
 ![signin button](/img/signin-button.png)
 
