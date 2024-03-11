@@ -44,6 +44,7 @@ import {
 // Somewhere in your code
 signIn = async () => {
   try {
+    await GoogleSignin.hasPlayServices();
     const userInfo = await GoogleOneTapSignIn.signIn({
       webClientId: config.webClientId,
       iosClientId: config.iosClientId, // only needed if you're not using Firebase config file
@@ -61,6 +62,9 @@ signIn = async () => {
           break;
         case statusCodes.ONE_TAP_START_FAILED:
           // Android and Web only, you probably have hit rate limiting. You can still call the original Google Sign In API in this case.
+          break;
+        case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
+          // Android-only: play services not available or outdated
           break;
         default:
         // something else happened
