@@ -32,7 +32,7 @@ Because only one `openURL` method can be defined, if you have multiple listeners
 
 - Open `AppDelegate.m`
 - Add an import: `#import <GoogleSignIn/GoogleSignIn.h>`
-- Add a method to respond to the URL scheme. This is just an example of a method that you can add at the bottom of your file if you're using both `FBSDKApplicationDelegate` and `RNGoogleSignin` :
+- Add a method to respond to the URL scheme. This is just an example of a method that you can add at the bottom of your file if you're using both `FBSDKApplicationDelegate` and `GIDSignIn` :
 
 ```objc
 // AppDelegate.m
