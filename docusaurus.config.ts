@@ -69,6 +69,13 @@ const config: Config = {
 				excludeRoutes: ["/docs/license"],
 			},
 		],
+		[
+			'@docusaurus/plugin-ideal-image',
+			{
+				quality: 80,
+				disableInDev: false,
+			},
+		],
 		// [
 		//   'docusaurus-preset-shiki-twoslash',
 		//   {
