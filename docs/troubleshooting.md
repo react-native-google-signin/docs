@@ -111,4 +111,6 @@ When adding a new oauth client, google asks you to add your package name. In som
 
 ### On iOS the app crashes when tapping Sign In button
 
-You're most likely missing `Url Schemes` configuration. How to do it: ![configure URL schemes](/img/add-url-scheme-ios.png)
+Along with "Your app is missing support for the following URL schemes" error in console.
+
+You're missing `Url Schemes` configuration. How to do it: ![configure URL schemes](/img/add-url-scheme-ios.png)

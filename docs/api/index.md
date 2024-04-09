@@ -95,8 +95,9 @@ On the web, don't call `signIn` / `createAccount` and use the `WebGoogleOneTapSi
 
 | Name            | Type                                                                                                |
 | :-------------- | :-------------------------------------------------------------------------------------------------- |
-| `createAccount` | (`params`: [`OneTapSignInParams`](#onetapsigninparams)) => `Promise`\<[`OneTapUser`](#onetapuser)\> |
 | `signIn`        | (`params`: [`OneTapSignInParams`](#onetapsigninparams)) => `Promise`\<[`OneTapUser`](#onetapuser)\> |
+| `presentExplicitSignIn` | (`params`: [`OneTapSignInParams`](#onetapsigninparams)) => `Promise`\<[`OneTapUser`](#onetapuser)\> |
+| `createAccount` | (`params`: [`OneTapSignInParams`](#onetapsigninparams)) => `Promise`\<[`OneTapUser`](#onetapuser)\> |
 | `signOut`       | (`emailOrUniqueId`: `string`) => `Promise`\<`null`\>                                                |
 
 ---
