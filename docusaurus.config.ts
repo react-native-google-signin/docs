@@ -97,6 +97,12 @@ const config: Config = {
 
 	themeConfig: {
 		// Replace with your project's social card
+		announcementBar: {
+			id: 'announcementBar',
+			content:
+				'Bridgeless mode is now available to sponsors!',
+			isCloseable: true,
+		},
 		image: "img/docusaurus-social-card.jpg",
 		navbar: {
 			title: "RN Google Sign In",
