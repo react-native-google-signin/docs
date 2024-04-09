@@ -100,7 +100,7 @@ const config: Config = {
 		announcementBar: {
 			id: 'announcementBar',
 			content:
-				'Bridgeless mode is now available to sponsors!',
+				'<a target="_blank" href="https://github.com/react-native-google-signin/google-signin/issues/1259">Bridgeless mode</a> support is now available to sponsors!',
 			isCloseable: true,
 		},
 		image: "img/docusaurus-social-card.jpg",
