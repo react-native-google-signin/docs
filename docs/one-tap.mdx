@@ -35,7 +35,7 @@ signature: (`params`: [`OneTapSignInParams`](api#onetapsigninparams)) => `Promis
 
 Attempts to sign in user automatically as explained [here](<https://developers.google.com/android/reference/com/google/android/gms/auth/api/identity/BeginSignInRequest.Builder#setAutoSelectEnabled(boolean)>). On the web, this call rejects - please [read below](#web-support) for web support.
 
-Returns a `Promise` that resolves with an object containing the user data or rejects in case of error. If there is no user that previously signed in, the promise will reject with [`NO_SAVED_CREDENTIAL_FOUND`](http://localhost:3000/docs/errors#one-tap-specific-errors) error. In that case, you can call [`createAccount`](one-tap#createaccount) to start a flow to create a new account. You don't need to call `signIn` as a response to a user action - you can call it when your app starts or when suitable.
+Returns a `Promise` that resolves with an object containing the user data or rejects in case of error. If there is no user that previously signed in, the promise will reject with [`NO_SAVED_CREDENTIAL_FOUND`](errors#status-codes-specific-to-one-tap-sign-in) error. In that case, you can call [`createAccount`](one-tap#createaccount) to start a flow to create a new account. You don't need to call `signIn` as a response to a user action - you can call it when your app starts or when suitable.
 
 <details>
     <summary>UI screenshot</summary>
@@ -89,7 +89,7 @@ signIn = async () => {
 
 signature: (`params`: [`OneTapSignInParams`](api#onetapsigninparams)) => `Promise`\<[`OneTapUser`](api#onetapuser)\>
 
-Starts a flow to create a user account. It offers a list of user accounts to choose from (When multiple Google accounts are logged in on the device). Also, it can be used if `signIn` rejects with `NO_SAVED_CREDENTIAL_FOUND` error, as shown in the code snippet above. You don't need to call `createAccount` as a response to a user action - you can call it when your app starts or when suitable.
+Starts a flow to create a user account. It offers a list of user accounts to choose from (When multiple Google accounts are logged in on the device). Also, it can be used if `signIn` rejects with [`NO_SAVED_CREDENTIAL_FOUND`](errors#status-codes-specific-to-one-tap-sign-in) error, as shown in the code snippet above. You don't need to call `createAccount` as a response to a user action - you can call it when your app starts or when suitable.
 
 Returns a `Promise` that resolves with an object containing the user data or rejects in case of error. On the web, this call rejects - please [read below](#web-support) for web support.
 
@@ -109,7 +109,7 @@ await GoogleOneTapSignIn.createAccount({
 
 signature: (`params`: [`OneTapSignInParams`](api#onetapsigninparams)) => `Promise`\<[`OneTapUser`](api#onetapuser)\>
 
-Presents the sign in dialog explicitly. This is useful when the user has hit rate limiting (`ONE_TAP_START_FAILED`) and the one-tap flow is thus not available, or if both `signIn` and `createAccount` reject with `NO_SAVED_CREDENTIAL_FOUND` error - which happens (in the unlikely case) when no Google account is present on the device. This will prompt the user to add a Google account.
+Presents the sign in dialog explicitly. This is useful when the user has hit rate limiting ([`ONE_TAP_START_FAILED`](errors#status-codes-specific-to-one-tap-sign-in)) and the one-tap flow is thus not available, or if both `signIn` and `createAccount` reject with `NO_SAVED_CREDENTIAL_FOUND` error - which happens (in the unlikely case) when no Google account is present on the device. This will prompt the user to add a Google account.
 
 Call this method only as a reaction to when user taps a "sign in with Google" button.
 
