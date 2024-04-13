@@ -4,7 +4,7 @@ sidebar_position: 40
 
 # Original Google sign in
 
-This module exposes the [Google Sign-In for Android (legacy)](https://developers.google.com/identity/sign-in/android/start-integrating) and [Google Sign-In for iOS](https://developers.google.com/identity/sign-in/ios/start) SDKs.
+This module exposes the [Google Sign-In for Android (legacy)](https://web.archive.org/web/20240308064911/https://developers.google.com/identity/sign-in/android/start-integrating) and [Google Sign-In for iOS](https://developers.google.com/identity/sign-in/ios/start) SDKs.
 
 :::info
 Please note this documentation is for the latest version of the module which is [only available to sponsors ❤️](install). If you're not a sponsor, read the [docs here](https://github.com/react-native-google-signin/google-signin).
