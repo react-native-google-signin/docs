@@ -18,3 +18,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# https://github.com/yarnpkg/berry/issues/454#issuecomment-530312089
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+
+.idea
