@@ -11,7 +11,7 @@ TypeScript helper to check if the passed parameter is an instance of `Error` whi
 `isErrorWithCode` can be used to avoid `as` casting when you want to access the `code` property on errors returned by the module.
 
 :::tip
-Please note this functionality is only available to sponsors️. [It takes just a few clicks to get access](install#accessing-the-private-package-for-sponsors) ❤️.
+This functionality is only available to sponsors️. [It takes just a few clicks to get access](install#accessing-the-private-package-for-sponsors) ❤️.
 :::
 
 ```ts
