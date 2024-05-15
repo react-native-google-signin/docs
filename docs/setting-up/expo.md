@@ -8,7 +8,7 @@ sidebar_position: 1
 
 :::warning
 
-This package cannot be used in the "Expo Go" app because [it requires custom native code](https://docs.expo.io/workflow/customizing/). However, you can add custom native code to expo by following the guide below.
+This package cannot be used in the "Expo Go" app because [it requires custom native code](https://docs.expo.io/workflow/customizing/). However, you can add custom native code to Expo by following the guide below.
 
 Read Expo's ["Adding custom native code"](https://docs.expo.io/workflow/customizing/) guide for detailed information.
 
@@ -24,7 +24,7 @@ With Expo SDK 50, minimum iOS version was bumped to 13.4. If unsure, please cons
 npx expo install @react-native-google-signin/google-signin
 ```
 
-After installing this npm package, add the provided [config plugin](https://docs.expo.io/guides/config-plugins/) to the [`plugins`](https://docs.expo.io/versions/latest/config/app/#plugins) array of your `app.json` or `app.config.js`.
+After installing the npm package, add the [config plugin](https://docs.expo.io/guides/config-plugins/) (read more details below) to the [`plugins`](https://docs.expo.io/versions/latest/config/app/#plugins) array of your `app.json` or `app.config.js`.
 
 #### Expo without Firebase
 
