@@ -43,12 +43,13 @@ signature: (`params`: [`OneTapSignInParams`](api#onetapsigninparams)) => `Promis
 
 Returns a `Promise` that resolves with an object containing the user data or rejects in case of error. If there is no user that previously signed in, the promise will reject with [`NO_SAVED_CREDENTIAL_FOUND`](errors#status-codes-specific-to-one-tap-sign-in) error. In that case, you can call [`createAccount`](one-tap#createaccount) to start a flow to create a new account. You don't need to call `signIn` as a response to a user action - you can call it when your app starts or when suitable.
 
+
 <details>
   <summary>UI screenshot</summary>
-  <Image
-    img={require("/img/onetap/signing-in.png")}
-    style={{ maxWidth: 400 }}
-  />
+|                                                                                      Android                                                                                      |             iOS              |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------: |
+| No UI, no user interaction the first time. If user has signed up previously, they will see this: <br/> <img src={'/img/onetap/signing-in-android.png'} style={{maxWidth: 400}} /> | (no UI, no user interaction) |
+
 </details>
 
 ```ts
@@ -114,10 +115,11 @@ Returns a `Promise` that resolves with an object containing the user data or rej
 
 <details>
   <summary>UI screenshot</summary>
-  <Image
-    img={require("/img/onetap/signing-up.png")}
-    style={{ maxWidth: 400 }}
-  />
+
+|                                  Android                                   |                                  iOS                                   |
+| :------------------------------------------------------------------------: | :--------------------------------------------------------------------: |
+| <img src={'/img/onetap/signing-up-android.png'} style={{maxWidth: 400}} /> | <img src={'/img/onetap/signing-up-ios.png'} style={{maxWidth: 400}} /> |
+
 </details>
 
 ```ts
@@ -143,7 +145,11 @@ Call this method only as a reaction to when user taps a "sign in with Google" bu
 
 <details>
   <summary>UI screenshot</summary>
-  <Image img={require("/img/onetap/explicit.png")} style={{ maxWidth: 400 }} />
+
+|                                 Android                                  |                                  iOS                                   |
+| :----------------------------------------------------------------------: | :--------------------------------------------------------------------: |
+| <img src={'/img/onetap/explicit-android.png'} style={{maxWidth: 400}} /> | <img src={'/img/onetap/signing-up-ios.png'} style={{maxWidth: 400}} /> |
+
 </details>
 
 ```ts
@@ -182,6 +188,14 @@ Use this on Android to obtain server-side access (offline access) to the user's 
 | Web      | Not implemented yet - please [read below](#web-support) for web support.                                                                                                                                                                   |
 
 > There are minor differences between the Android and iOS implementations stemming from the underlying Google SDKs. For example, iOS will return all granted scopes, while Android may only return the requested scopes.
+
+<details>
+    <summary>UI screenshot</summary>
+    |                                  Android                                  |                                  iOS                                   |
+    | :-----------------------------------------------------------------------: | :--------------------------------------------------------------------: |
+    | <img src={'/img/onetap/authorize-android.jpg'} style={{maxWidth: 400}} /> | <img src={'/img/onetap/add-scopes-ios.png'} style={{maxWidth: 400}} /> |
+
+</details>
 
 ## Web support
 
