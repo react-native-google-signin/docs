@@ -2,46 +2,53 @@
 sidebar_position: 30
 sidebar_class_name: sponsor-heart
 ---
-import Image from '@theme/IdealImage';
 
+import Image from "@theme/IdealImage";
 
 # One-tap Google sign in
 
 This is the easiest and recommended way to implement Google Sign In. It is a sign in flow that (on Android) requires very little user interaction, thus increasing conversions. This api is available on Android, iOS and Web (with a little extra work [described below](#web-support)).
 
-On Android, it is built on top of the [Credential Manager](https://developers.google.com/identity/android-credential-manager).
+- On Android, it is built on top of the [Credential Manager](https://developers.google.com/identity/android-credential-manager).
 
-On the Web, it covers both the [One-tap](https://developers.google.com/identity/gsi/web/guides/offerings#one_tap) flow and the [Google Sign-In button](https://developers.google.com/identity/gsi/web/guides/offerings#sign_in_with_google_button).
+- On iOS, the provided API is a wrapper of the [iOS Google Sign In SDK](https://developers.google.com/identity/sign-in/ios/start-integrating), same as the [Original Google Sign In](original). This is so that you can use the same API for both Android and iOS.
 
-On iOS, the provided API is a wrapper of the [iOS Google Sign In SDK](https://developers.google.com/identity/sign-in/ios/start-integrating), same as the [Original Google Sign In](original). This is so that you can use the same API for both Android and iOS.
+- On the Web, it covers both the [One-tap](https://developers.google.com/identity/gsi/web/guides/offerings#one_tap) flow and the [Google Sign-In button](https://developers.google.com/identity/gsi/web/guides/offerings#sign_in_with_google_button).
 
 :::tip
 The functionality covered in this page is only available to sponsors️. [It takes just a few clicks to get access](install#accessing-the-private-package-for-sponsors) ❤️.
 
-This module is being actively developed, and new features are added regularly. Since the first release in July 2023, there has been more than 1 release per month on average (last updated in April 2024).
+This module is being actively developed, and new features are added regularly. Since the first release in July 2023, there has been more than 1 release per month on average (last updated in May 2024).
 :::
 
-Note that on iOS and Android, you can combine the one-tap methods with those one from the [Original Google Sign In](original). To do that, use the One-tap sign in to sign in the user. Then call `signInSilently()` and then (for example) `getCurrentUser()` to get the current user's information.
+Note that on iOS and Android, you can combine the one-tap methods with those one from the [Original Google Sign In](original). To do that, use the One-tap sign in to sign in the user. Then call `signInSilently()` and then (for example) `getCurrentUser()` to get the current user's information. However, this shouldn't be necessary because this module should cover all your needs. Please open an issue if that's not the case.
 
-```ts
+```ts title="example of importing the module"
 import {
   GoogleOneTapSignIn,
   statusCodes,
   type OneTapUser,
-} from '@react-native-google-signin/google-signin';
+} from "@react-native-google-signin/google-signin";
 ```
 
 ### `signIn`
 
 signature: (`params`: [`OneTapSignInParams`](api#onetapsigninparams)) => `Promise`\<[`OneTapUser`](api#onetapuser)\>
 
-Attempts to sign in user automatically as explained [here](<https://developers.google.com/android/reference/com/google/android/gms/auth/api/identity/BeginSignInRequest.Builder#setAutoSelectEnabled(boolean)>). On the web, this call rejects - please [read below](#web-support) for web support.
+| Platform | Behavior                                                                                                                                                                                                                                                    |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android  | Attempts to sign in user automatically. [Docs](<https://developers.google.com/identity/android-credential-manager/android/reference/kotlin/com/google/android/libraries/identity/googleid/GetGoogleIdOption.Builder#setAutoSelectEnabled(kotlin.Boolean)>). |
+| iOS      | Attempts to restore a previous user sign-in without interaction. [Docs](https://developers.google.com/identity/sign-in/ios/reference/Classes/GIDSignIn#-restoreprevioussigninwithcompletion:).                                                              |
+| Web      | This call rejects - please [read below](#web-support) for web support.                                                                                                                                                                                      |
 
 Returns a `Promise` that resolves with an object containing the user data or rejects in case of error. If there is no user that previously signed in, the promise will reject with [`NO_SAVED_CREDENTIAL_FOUND`](errors#status-codes-specific-to-one-tap-sign-in) error. In that case, you can call [`createAccount`](one-tap#createaccount) to start a flow to create a new account. You don't need to call `signIn` as a response to a user action - you can call it when your app starts or when suitable.
 
 <details>
-    <summary>UI screenshot</summary>
-    <Image img={require('/img/onetap/signing-in.png')} style={{maxWidth: 400}} />
+  <summary>UI screenshot</summary>
+  <Image
+    img={require("/img/onetap/signing-in.png")}
+    style={{ maxWidth: 400 }}
+  />
 </details>
 
 ```ts
@@ -49,8 +56,8 @@ import {
   GoogleOneTapSignIn,
   statusCodes,
   isErrorWithCode,
-  GoogleSignin
-} from '@react-native-google-signin/google-signin';
+  GoogleSignin,
+} from "@react-native-google-signin/google-signin";
 
 // Somewhere in your code
 const signIn = async () => {
@@ -59,7 +66,7 @@ const signIn = async () => {
     const userInfo = await GoogleOneTapSignIn.signIn({
       webClientId: config.webClientId,
       iosClientId: config.iosClientId, // only needed if you're not using the Firebase config file
-      nonce: 'your_nonce',
+      nonce: "your_nonce",
     });
     setState({ userInfo });
   } catch (error) {
@@ -93,21 +100,30 @@ const signIn = async () => {
 
 signature: (`params`: [`OneTapSignInParams`](api#onetapsigninparams)) => `Promise`\<[`OneTapUser`](api#onetapuser)\>
 
-Starts a flow to sign in with your app for the first time (to create a user account). It offers a list of user accounts to choose from (multiple Google accounts can be logged in on the device).
+| Platform | Behavior                                                                                                                                                                                                                                                                                            |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android  | Starts a flow to sign in with your app for the first time (to create a user account). It offers a list of user accounts to choose from (multiple Google accounts can be logged in on the device).                                                                                                   |
+| iOS      | Starts an interactive sign-in flow on iOS. [Docs](https://developers.google.com/identity/sign-in/ios/reference/Classes/GIDSignIn#-signinwithpresentingviewcontroller:hint:completion:). It offers a list of user accounts to choose from (multiple Google accounts can be logged in on the device). |
+| Web      | This call rejects - please [read below](#web-support) for web support.                                                                                                                                                                                                                              |
 
-It should be used if `signIn` rejects with [`NO_SAVED_CREDENTIAL_FOUND`](errors#status-codes-specific-to-one-tap-sign-in) error, as shown in the code snippet above. You don't need to call `createAccount` as a response to a user action - you can call it when your app starts or when suitable.
+You don't need to call `createAccount` as a response to a user action - you can call it some time after your app starts (the way the dialog is presented on iOS might be inconvenient to users) or when suitable.
 
-Returns a `Promise` that resolves with an object containing the user data or rejects in case of error. On the web, this call rejects - please [read below](#web-support) for web support.
+Use `createAccount` if `signIn` rejected with [`NO_SAVED_CREDENTIAL_FOUND`](errors#status-codes-specific-to-one-tap-sign-in) error, as shown in the code snippet above.
+
+Returns a `Promise` that resolves with an object containing the user data or rejects in case of error.
 
 <details>
-    <summary>UI screenshot</summary>
-    <Image img={require('/img/onetap/signing-up.png')} style={{maxWidth: 400}} />
+  <summary>UI screenshot</summary>
+  <Image
+    img={require("/img/onetap/signing-up.png")}
+    style={{ maxWidth: 400 }}
+  />
 </details>
 
 ```ts
 await GoogleOneTapSignIn.createAccount({
   webClientId: config.webClientId,
-  nonce: 'your_nonce',
+  nonce: "your_nonce",
 });
 ```
 
@@ -117,21 +133,23 @@ await GoogleOneTapSignIn.createAccount({
 
 signature: (`params`: [`OneTapSignInParams`](api#onetapsigninparams)) => `Promise`\<[`OneTapUser`](api#onetapuser)\>
 
-Presents the sign in dialog explicitly. This is useful when the user has hit rate limiting ([`ONE_TAP_START_FAILED`](errors#status-codes-specific-to-one-tap-sign-in)) and the one-tap flow is thus not available, or if both `signIn` and `createAccount` reject with `NO_SAVED_CREDENTIAL_FOUND` error - which happens (in the unlikely case) when no Google account is present on the device. This will prompt the user to add a Google account.
+| Platform | Behavior                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android  | Presents the sign in dialog explicitly. This is useful when the user has hit rate limiting ([`ONE_TAP_START_FAILED`](errors#status-codes-specific-to-one-tap-sign-in)) and the one-tap flow is thus not available, or if both `signIn` and `createAccount` reject with `NO_SAVED_CREDENTIAL_FOUND` error - which happens on Android (in the unlikely case) when no Google account is present on the device. This will prompt the user to add a Google account. |
+| iOS      | Starts an interactive sign-in flow on iOS, same as `createAccount`.                                                                                                                                                                                                                                                                                                                                                                                            |
+| Web      | This call rejects - please [read below](#web-support) for web support.                                                                                                                                                                                                                                                                                                                                                                                         |
 
 Call this method only as a reaction to when user taps a "sign in with Google" button.
 
-On the web, this call rejects - please use the Sign in button instead. [Read below](#web-support) for web support.
-
 <details>
-    <summary>UI screenshot</summary>
-    <Image img={require('/img/onetap/explicit.png')} style={{maxWidth: 400}} />
+  <summary>UI screenshot</summary>
+  <Image img={require("/img/onetap/explicit.png")} style={{ maxWidth: 400 }} />
 </details>
 
 ```ts
 await GoogleOneTapSignIn.presentExplicitSignIn({
   webClientId: config.webClientId,
-  nonce: 'your_nonce',
+  nonce: "your_nonce",
 });
 ```
 
@@ -146,6 +164,24 @@ Returns a Promise that resolves with `null` or rejects in case of error.
 ```ts
 await GoogleOneTapSignIn.signOut(user.id);
 ```
+
+### `requestAuthorization`
+
+✨since v15.0.0
+
+signature: (`params`: [`RequestAuthorizationParams`](api#requestauthorizationparams)) => `Promise`\<[`AuthorizationResponse`](api#authorizationresponse)\>
+
+The underlying Android SDK separates authentication and authorization. This method is used to request extra authorization from the user.
+
+Use this on Android to obtain server-side access (offline access) to the user's data or for requesting an access token that has access to additional scopes (The default requested scopes are `email` and `profile`.).
+
+| Platform | Behavior                                                                                                                                                                                                                                   |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Android  | Presents a modal that asks user for additional access to their Google account. Uses [AuthorizationRequest.Builder](https://developers.google.com/android/reference/com/google/android/gms/auth/api/identity/AuthorizationRequest.Builder). |
+| iOS      | Calls [`addScopes`](./original.md#addscopes). If you need server-side access, specify `offlineAccess: true` in `createAccount`.                                                                                                            |
+| Web      | Not implemented yet - please [read below](#web-support) for web support.                                                                                                                                                                   |
+
+> There are minor differences between the Android and iOS implementations stemming from the underlying Google SDKs. For example, iOS will return all granted scopes, while Android may only return the requested scopes.
 
 ## Web support
 
@@ -163,7 +199,7 @@ You should display the One Tap UI on page load or other window events, instead o
 
 ```ts
 useEffect(() => {
-  if (Platform.OS === 'web') {
+  if (Platform.OS === "web") {
     WebGoogleOneTapSignIn.signIn(
       {
         webClientId: config.webClientId,
@@ -193,5 +229,5 @@ One-tap UI may not always be available: This happens if user has [opted out](htt
 `WebGoogleSigninButton` serves as a fallback. Tapping it will open the regular Google Sign-In dialog. When user signs in, the `onSuccess` callback will be called.
 
 :::info
-The reason the `WebGoogleOneTapSignIn.signIn` api is callback-based rather than promise-based is that it's possible to get into an "error" state (when one-tap is not available) and later get a successful sign in from the button flow. Because of how the Google Sign In for Web SDK is done, modeling this with a promise-based api is not possible.
+The reason the `WebGoogleOneTapSignIn.signIn` api is callback-based rather than promise-based is that it's possible to get into an "error" state (when one-tap is not available) and later get a successful sign in from the button flow. Because of how the Google Sign In for Web SDK is done, modeling this with a promise-based api is not possible. In a future release, there will be a single function that supports both the Promise and callback-based usage.
 :::

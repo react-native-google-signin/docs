@@ -34,7 +34,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Supports the New Architecture, and most of the features of the native
+        Supports the New Architecture (including bridgeless mode), and most of the features of the native
         SDKs. Open an issue if something's missing!
       </>
     ),
