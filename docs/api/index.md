@@ -39,10 +39,11 @@ error is NativeModuleError
 
 Ƭ **OneTapSignInParams**: `Object`
 
-| Name          | Type     | Description                                                             |
-| ------------- | -------- | ----------------------------------------------------------------------- |
-| `webClientId` | `string` | The web client ID obtained from Google Cloud console.                   |
-| `nonce?`      | `string` | Optional. random string used by the ID token to prevent replay attacks. |
+| Name          | Type      | Description                                                                                                                  |
+| ------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `webClientId` | `string`  | The web client ID obtained from Google Cloud console.                                                                        |
+| `nonce?`      | `string`  | Optional. random string used by the ID token to prevent replay attacks.                                                      |
+| `autoSignIn?` | `boolean` | Optional. If true, enables [auto sign-in](https://developers.google.com/identity/gsi/web/guides/automatic-sign-in-sign-out). |
 
 The following are available for iOS. To obtain extended authorization on Android, call `requestAuthorization`.
 
@@ -79,12 +80,12 @@ The following are available for the Web. [Read the value descriptions here](http
 
 #### Type declaration
 
-| Name                                      | Type                                                                  | Description                                                                                                                                                                   |
-| :---------------------------------------- | :-------------------------------------------------------------------- |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `scopes`                                  | `string`[]                                                            | The Google API scopes to request access to. You can use `["email", "profile"]` as the default value.                                                                          |
-| `accountName?`                            | `string`                                                              | Specifies an account on the device that should be used.                                                                                                                       |
-| `hostedDomain?`                           | `string`                                                              | Specifies a hosted domain restriction. By setting this, authorization will be restricted to accounts of the user in the specified domain.                                     |
-| `offlineAccess?`                          | \{ `forceCodeForRefreshToken?`: `boolean` ; `webClientId`: `string` } | Add this for offline access. The serverAuthCode will be returned in the response.                                                                                             |
+| Name                         | Type                                                                  | Description                                                                                                                                                                   |
+| :--------------------------- | :-------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `scopes`                     | `string`[]                                                            | The Google API scopes to request access to. You can use `["email", "profile"]` as the default value.                                                                          |
+| `accountName?`               | `string`                                                              | Specifies an account on the device that should be used.                                                                                                                       |
+| `hostedDomain?`              | `string`                                                              | Specifies a hosted domain restriction. By setting this, authorization will be restricted to accounts of the user in the specified domain.                                     |
+| `offlineAccess?`             | \{ `forceCodeForRefreshToken?`: `boolean` ; `webClientId`: `string` } | Add this for offline access. The serverAuthCode will be returned in the response.                                                                                             |
 | `.forceCodeForRefreshToken?` | `boolean`                                                             | If true, the granted code can be exchanged for an access token and a refresh token. Only use true if your server has suffered some failure and lost the user's refresh token. |
 | `.webClientId`               | `string`                                                              | Web client ID from Developer Console.                                                                                                                                         |
 
