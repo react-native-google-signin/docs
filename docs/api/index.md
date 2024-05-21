@@ -1,7 +1,7 @@
 ---
-id: 'index'
-title: 'Module API'
-sidebar_label: 'Reference'
+id: "index"
+title: "Module API"
+sidebar_label: "Reference"
 custom_edit_url: null
 displayed_sidebar: apiSidebar
 ---
@@ -39,15 +39,24 @@ error is NativeModuleError
 
 Ƭ **OneTapSignInParams**: `Object`
 
-| Name                          | Type      | Description                                                                                                                                                                                                                           |
-| ----------------------------- | --------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `webClientId`                 | `string`  | The web client ID obtained from Google Cloud console.                                                                                                                                                                                 |
-| `iosClientId?`                | `string`  | The iOS client ID obtained from Google Cloud console. Provide this if you're not using the config file from Firebase.                                                                                                                 |
-| `nonce?`                      | `string`  | Optional. random string used by the ID token to prevent replay attacks.                                                                                                                                                               |
-| `autoSignIn?`                 | `boolean` | Optional. If true, enables [auto sign-in](https://developers.google.com/identity/gsi/web/guides/automatic-sign-in-sign-out).                                                                                                                                                                                          |
-| `filterByAuthorizedAccounts?` | `boolean` | Optional. [Filters by authorized accounts](<https://developers.google.com/android/reference/com/google/android/gms/auth/api/identity/BeginSignInRequest.GoogleIdTokenRequestOptions.Builder#setFilterByAuthorizedAccounts(boolean)>). |
+| Name          | Type      | Description                                                                                                                  |
+| ------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `webClientId` | `string`  | The web client ID obtained from Google Cloud console.                                                                        |
+| `nonce?`      | `string`  | Optional. random string used by the ID token to prevent replay attacks.                                                      |
+| `autoSignIn?` | `boolean` | Optional. If true, enables [auto sign-in](https://developers.google.com/identity/gsi/web/guides/automatic-sign-in-sign-out). |
 
-The following are available on the Web. [Read the value descriptions here](https://developers.google.com/identity/gsi/web/reference/js-reference).
+The following are available for iOS. To obtain extended authorization on Android, call `requestAuthorization`.
+
+| Name                      | Type       | Description                                                                                                                                                            |
+| ------------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `iosClientId?`            | `string`   | The iOS client ID obtained from Google Cloud console. Provide this if you're not using the config file from Firebase. Mutualy exclusive with `googleServicePlistPath`. |
+| `googleServicePlistPath?` | `string`   | If you want to specify a different bundle path name for the GoogleService-Info, e.g. 'GoogleService-Info-Staging'. Mutualy exclusive with `iosClientId`.               |
+| `scopes?`                 | `string[]` | The Google API scopes to request access to. Default is email and profile.                                                                                              |
+| `offlineAccess?`          | `boolean`  | Must be true if you wish to access user APIs on behalf of the user from your own server                                                                                |
+| `profileImageSize?`       | `number`   | The desired height (and width) of the profile image. Defaults to 120px                                                                                                 |
+| `openIdRealm?`            | `string`   | The OpenID2 realm of the home web server. This allows Google to include the user's OpenID Identifier in the OpenID Connect ID token.                                   |
+
+The following are available for the Web. [Read the value descriptions here](https://developers.google.com/identity/gsi/web/reference/js-reference).
 
 | Name                                  | Type                                | Description |
 | ------------------------------------- | ----------------------------------- | ----------- |
@@ -65,21 +74,52 @@ The following are available on the Web. [Read the value descriptions here](https
 
 ---
 
+### RequestAuthorizationParams
+
+Ƭ **RequestAuthorizationParams**: `Object`
+
+#### Type declaration
+
+| Name                         | Type                                                                  | Description                                                                                                                                                                   |
+| :--------------------------- | :-------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `scopes`                     | `string`[]                                                            | The Google API scopes to request access to. You can use `["email", "profile"]` as the default value.                                                                          |
+| `accountName?`               | `string`                                                              | Specifies an account on the device that should be used.                                                                                                                       |
+| `hostedDomain?`              | `string`                                                              | Specifies a hosted domain restriction. By setting this, authorization will be restricted to accounts of the user in the specified domain.                                     |
+| `offlineAccess?`             | \{ `forceCodeForRefreshToken?`: `boolean` ; `webClientId`: `string` } | Add this for offline access. The serverAuthCode will be returned in the response.                                                                                             |
+| `.forceCodeForRefreshToken?` | `boolean`                                                             | If true, the granted code can be exchanged for an access token and a refresh token. Only use true if your server has suffered some failure and lost the user's refresh token. |
+| `.webClientId`               | `string`                                                              | Web client ID from Developer Console.                                                                                                                                         |
+
+---
+
+### AuthorizationResponse
+
+Ƭ **AuthorizationResponse**: `null` \| \{ `accessToken`: `string` ; `grantedScopes`: `string`[] ; `serverAuthCode`: `string` \| `null` }
+
+An object that contains an access token that has access to the `grantedScopes`.
+On Android, it contains also the `serverAuthCode` if `offlineAccess` was requested.
+
+`serverAuthCode` is always `null` on iOS. You would get it by calling `createAccount()` with `offlineAccess: true` on iOS.
+
+Is `null` on iOS in case no user is signed in yet.
+
+---
+
 ### OneTapUser
 
 Ƭ **OneTapUser**: `Object`
 
-| Name               | Type                                                                                                                                       | Description                                                           |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------- |
-| `user`             |                                                                                                                                            | The signed-in user object.                                            |
-| `user.id`          | `string`                                                                                                                                   | The unique identifier of the user.                                    |
-| `user.email`       | `string` \| `null`                                                                                                                         | The email of the user, if available.                                  |
-| `user.name`        | `string` \| `null`                                                                                                                         | The full name of the user, if available.                              |
-| `user.givenName`   | `string` \| `null`                                                                                                                         | The given name (first name) of the user, if available.                |
-| `user.familyName`  | `string` \| `null`                                                                                                                         | The family name (last name) of the user, if available.                |
-| `user.photo`       | `string` \| `null`                                                                                                                         | The URL to the user's photo, if available.                            |
-| `idToken`          | `string`                                                                                                                                   | The ID token for the user.                                            |
-| `credentialOrigin` | `"auto"` \| `"user"` \| `"user_1tap"` \| `"user_2tap"` \| `"btn"` \| `"btn_confirm"` \| `"btn_add_session"` \| `"btn_confirm_add_session"` | The origin of the credential selection. Always 'user' in native apps. |
+| Name               | Type                                                                                                                                       | Description                                                                                                                                                          |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `user`             |                                                                                                                                            | The signed-in user object.                                                                                                                                           |
+| `user.id`          | `string`                                                                                                                                   | The unique identifier of the user.                                                                                                                                   |
+| `user.email`       | `string` \| `null`                                                                                                                         | The email of the user, if available.                                                                                                                                 |
+| `user.name`        | `string` \| `null`                                                                                                                         | The full name of the user, if available.                                                                                                                             |
+| `user.givenName`   | `string` \| `null`                                                                                                                         | The given name (first name) of the user, if available.                                                                                                               |
+| `user.familyName`  | `string` \| `null`                                                                                                                         | The family name (last name) of the user, if available.                                                                                                               |
+| `user.photo`       | `string` \| `null`                                                                                                                         | The URL to the user's photo, if available.                                                                                                                           |
+| `idToken`          | `string`                                                                                                                                   | The ID token for the user.                                                                                                                                           |
+| `credentialOrigin` | `"auto"` \| `"user"` \| `"user_1tap"` \| `"user_2tap"` \| `"btn"` \| `"btn_confirm"` \| `"btn_add_session"` \| `"btn_confirm_add_session"` | The origin of the credential selection. Always 'user' in native apps.                                                                                                |
+| `serverAuthCode`   | `string` \| `null`                                                                                                                         | Only present on iOS. Not null only if a valid webClientId and offlineAccess: true was specified in configure(). Call requestAuthorization() to obtain it on Android. |
 
 ---
 
@@ -93,12 +133,13 @@ On the web, don't call `signIn` / `createAccount` and use the `WebGoogleOneTapSi
 
 #### Type declaration
 
-| Name            | Type                                                                                                |
-| :-------------- | :-------------------------------------------------------------------------------------------------- |
-| `signIn`        | (`params`: [`OneTapSignInParams`](#onetapsigninparams)) => `Promise`\<[`OneTapUser`](#onetapuser)\> |
-| `presentExplicitSignIn` | (`params`: [`OneTapSignInParams`](#onetapsigninparams)) => `Promise`\<[`OneTapUser`](#onetapuser)\> |
-| `createAccount` | (`params`: [`OneTapSignInParams`](#onetapsigninparams)) => `Promise`\<[`OneTapUser`](#onetapuser)\> |
-| `signOut`       | (`emailOrUniqueId`: `string`) => `Promise`\<`null`\>                                                |
+| Name                    | Type                                                                                                                                       |
+| :---------------------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
+| `signIn`                | (`params`: [`OneTapSignInParams`](#onetapsigninparams)) => `Promise`\<[`OneTapUser`](#onetapuser)\>                                        |
+| `presentExplicitSignIn` | (`params`: [`OneTapSignInParams`](#onetapsigninparams)) => `Promise`\<[`OneTapUser`](#onetapuser)\>                                        |
+| `createAccount`         | (`params`: [`OneTapSignInParams`](#onetapsigninparams)) => `Promise`\<[`OneTapUser`](#onetapuser)\>                                        |
+| `requestAuthorization`  | (`options`: [`RequestAuthorizationParams`](#requestauthorizationparams)) => `Promise`\<[`AuthorizationResponse`](#authorizationresponse)\> |
+| `signOut`               | (`emailOrUniqueId`: `string`) => `Promise`\<`null`\>                                                                                       |
 
 ---
 
