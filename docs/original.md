@@ -6,10 +6,6 @@ sidebar_position: 40
 
 This module exposes the [Google Sign-In for Android (legacy)](https://web.archive.org/web/20240308064911/https://developers.google.com/identity/sign-in/android/start-integrating) and [Google Sign-In for iOS](https://developers.google.com/identity/sign-in/ios/start) SDKs.
 
-:::info
-Please note this documentation is for the latest version of the module which is [only available to sponsors ❤️](install). If you're not a sponsor, read the [docs here](https://github.com/react-native-google-signin/google-signin).
-:::
-
 ```ts
 import {
   GoogleSignin,
@@ -22,7 +18,7 @@ import {
 
 signature: (`options`: [`ConfigureParams`](api#configureparams)) => `void`
 
-It is mandatory to call this method before attempting to call `signIn()` and `signInSilently()`. This method is sync meaning you can call `signIn` / `signInSilently` right after it. In typical scenarios, `configure` needs to be called only once, after your app starts. In the native layer, this is a synchronous call. All parameters are optional.
+It is mandatory to call this method before attempting to call `signIn()` and `signInSilently()`. This method is sync meaning you can call `signIn` / `signInSilently` right after it. In typical scenarios, `configure` needs to be called only once, after your app starts. All parameters are optional.
 
 Example usage with default options: you'll get user email and basic profile info.
 
