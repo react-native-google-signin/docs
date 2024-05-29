@@ -4,7 +4,10 @@ sidebar_position: 40
 
 # Original Google sign in
 
-This module exposes the [Google Sign-In for Android (legacy)](https://web.archive.org/web/20240308064911/https://developers.google.com/identity/sign-in/android/start-integrating) and [Google Sign-In for iOS](https://developers.google.com/identity/sign-in/ios/start) SDKs.
+This module exposes 
+
+- [Google Sign-In for Android (legacy)](https://web.archive.org/web/20240308064911/https://developers.google.com/identity/sign-in/android/start-integrating) 
+- [Google Sign-In SDK](https://developers.google.com/identity/sign-in/ios/start) for iOS and macOS (react-native-macos support is only available to [sponsors](install#sponsor-only-version)).
 
 ```ts
 import {

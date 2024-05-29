@@ -12,11 +12,11 @@ With Expo SDK 50, minimum iOS version was bumped to 13.4. If unsure, please cons
 
 :::
 
-:::warning
+:::note
 
-This package cannot be used in ["Expo Go"](https://docs.expo.dev/workflow/overview/#development-builds) because it requires custom native code.
+This package cannot be used in ["Expo Go"](https://docs.expo.dev/workflow/overview/#expo-go-an-optional-tool-for-learning) because it requires custom native code.
 
-However, you can add custom native code to Expo through a [development build](https://docs.expo.dev/workflow/overview/#development-builds). That is the approach documented in this guide.
+However, you can add custom native code to Expo by using a [development build](https://docs.expo.dev/workflow/overview/#development-builds). That is the approach documented in this guide.
 
 :::
 
