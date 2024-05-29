@@ -6,17 +6,17 @@ sidebar_position: 1
 
 ### Prepare your Expo project
 
-:::warning
-
-This package cannot be used in the "Expo Go" app because [it requires custom native code](https://docs.expo.io/workflow/customizing/). However, you can add custom native code to Expo by following the guide below.
-
-Read Expo's ["Adding custom native code"](https://docs.expo.io/workflow/customizing/) guide for detailed information.
-
-:::
-
 :::info
 
 With Expo SDK 50, minimum iOS version was bumped to 13.4. If unsure, please consult release notes to determine the right version of this package to install.
+
+:::
+
+:::warning
+
+This package cannot be used in ["Expo Go"](https://docs.expo.dev/workflow/overview/#development-builds) because it requires custom native code.
+
+However, you can add custom native code to Expo through a [development build](https://docs.expo.dev/workflow/overview/#development-builds). That is the approach documented in this guide.
 
 :::
 

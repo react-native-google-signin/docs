@@ -5,7 +5,7 @@ sidebar_position: 4
 # iOS setup guide
 
 :::warning
-This applies to vanilla React Native apps, not Expo. If you use Expo, please follow [this guide](/setting-up/expo.md).
+If you use Expo, please follow [this guide](/setting-up/expo.md) instead. This guide applies to vanilla React Native apps only.
 :::
 
 ### 1. Link the native module
