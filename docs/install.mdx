@@ -10,27 +10,25 @@ There are two ways to consume the package:
 
 Available exclusively to GitHub sponsors, this version offers:
 
-✅ One-tap sign-in support for [Android](https://developers.google.com/identity/android-credential-manager) and [Web](https://developers.google.com/identity/gsi/web/guides/features), fully compatible (same API) with iOS
+✅ One-tap sign-in support for [Android](https://developers.google.com/identity/android-credential-manager) and [Web](https://developers.google.com/identity/gsi/web/guides/features), with an api compatibility layer for iOS and macOS (same apis across all platforms).
 
-✅ Support for the [React Native New Architecture](https://reactnative.dev/docs/new-architecture-intro), including the [bridgeless mode](https://github.com/reactwg/react-native-new-architecture/discussions/154).
-
-✅ Enhanced API functionalities: synchronous methods and more, plus minor bugfixes.
+✅ Support for macOS (using react-native-macOS).
 
 ✅ Comprehensive documentation available on this site.
 
-Your sponsorship enables continued maintenance and development of the module. Thank you for supporting this project! ❤️
+Your sponsorship enables continued maintenance and development of the module and contributions to [downstream SDKs](https://github.com/openid/AppAuth-iOS/pull/788). Thank you for supporting this project! ❤️
 
 ### Public Version
 
-Available on the public npm registry, this version does not include One-tap sign-in (= it uses the deprecated Google Sign-In for Android) and Web support found in the sponsor-only version.
+Available on the public npm registry, this version does not include One-tap sign-in (= it uses the deprecated Google Sign-In for Android), Web and macOS support found in the sponsor-only version.
 
 ## Accessing the private package for sponsors
 
-[Upon sponsoring](https://github.com/sponsors/vonovak) (please use specifically the tiers that mention this project!), you will get [immediate access \*](#invitation-note) to the private package and to the private repo with the sources and examples.
+[Upon sponsoring](https://github.com/sponsors/vonovak) (please use specifically the tiers that mention this project!), you will get access to the private package and to the private repo with the sources and examples.
 
-Three steps are needed to access the sponsored package, which is hosted on [GitHub npm packages registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry).
+Three steps are needed to access the sponsor package, which is hosted on [GitHub npm packages registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry).
 
-1. [Become a sponsor](https://github.com/sponsors/vonovak) and accept private repository [invitation *](#invitation-note) - it takes just a few clicks.
+1. [Become a sponsor](https://github.com/sponsors/vonovak) and accept private repository invitation - it takes just a few clicks.
 
 2. [Obtain here](https://github.com/settings/tokens) a Personal Access Token with `packages:read` permission.
 
@@ -85,8 +83,3 @@ There are several guides to follow now:
 - [Web guide](setting-up/web) if you want to use the package on the Web
 - If you're not using Expo but plain React Native, follow [Android guide](setting-up/android) and [iOS guide](setting-up/ios)
 
----
-
-##### Invitation Note
-
-As a sponsor, you will be added automatically if you sponsor from a personal account. If you sponsor from an organization account, please let me know and I'll add you manually. This is because of how [GitHub handles this case](https://docs.github.com/en/sponsors/receiving-sponsorships-through-github-sponsors/managing-your-sponsorship-tiers#about-adding-repositories-to-a-sponsorship-tier).
