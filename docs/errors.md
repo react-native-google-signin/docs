@@ -10,12 +10,11 @@ TypeScript helper to check if the passed parameter is an instance of `Error` whi
 
 `isErrorWithCode` can be used to avoid `as` casting when you want to access the `code` property on errors returned by the module.
 
-:::note
-`isErrorWithCode` is only available to sponsors️. [It takes just a few clicks to get access](install#accessing-the-private-package-for-sponsors) ❤️.
-:::
-
 ```ts
-import { isErrorWithCode, GoogleSignin } from '@react-native-google-signin/google-signin';
+import {
+  isErrorWithCode,
+  GoogleSignin,
+} from "@react-native-google-signin/google-signin";
 
 try {
   const userInfo = await GoogleSignin.signIn();
@@ -32,7 +31,7 @@ try {
 ### Status Codes
 
 ```ts
-import { statusCodes } from '@react-native-google-signin/google-signin';
+import { statusCodes } from "@react-native-google-signin/google-signin";
 ```
 
 Status codes are useful when determining which kind of error has occurred during the sign-in process. Under the hood, these constants are derived from native GoogleSignIn error codes and are platform-specific. Always compare `error.code` to `statusCodes.*` and do not rely on the raw value of `error.code`.

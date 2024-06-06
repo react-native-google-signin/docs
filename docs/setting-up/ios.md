@@ -8,15 +8,15 @@ sidebar_position: 4
 If you use Expo, please follow [this guide](/setting-up/expo.md) instead. This guide applies to vanilla React Native apps only.
 :::
 
-### 1. Link the native module
+### Link the native module
 
 - run `pod install` in `ios/` directory to install the module
 
-### 2. Google project configuration
+### Google project configuration
 
 - Follow [this](./get-config-file) guide to get the configuration information which you need for step 3.
 
-### 3. Xcode configuration
+### Xcode configuration
 
 - Configure URL types in the `Info` panel (see screenshot)
   - add a URL with scheme set to your `REVERSED_CLIENT_ID` (found inside `GoogleService-Info.plist` or Google Cloud console)
