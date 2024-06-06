@@ -10,15 +10,15 @@ There are two ways to consume the package:
 
 Available exclusively to GitHub sponsors, this version offers:
 
-✅ One-tap sign-in support for [Android](https://developers.google.com/identity/android-credential-manager) and [Web](https://developers.google.com/identity/gsi/web/guides/features), with an api compatibility layer for iOS and macOS (same apis across all platforms).
+✅ One-tap sign-in support for [Android](https://developers.google.com/identity/android-credential-manager) and [Web](https://developers.google.com/identity/gsi/web/guides/features), with an API compatibility layer for iOS and macOS.
 
 ✅ Support for macOS (using react-native-macOS).
 
-Your sponsorship enables continued maintenance and development of the module and contributions to [downstream SDKs](https://github.com/openid/AppAuth-iOS/pull/788). Thank you for supporting this project! ❤️
+Your sponsorship enables continued maintenance and development of the module and contributions to upstream SDKs [1](https://github.com/openid/AppAuth-iOS/pull/788), [2](https://github.com/google/GoogleSignIn-iOS/pull/402). Thank you for supporting this project! ❤️
 
 ### Public Version
 
-Available on the public npm registry, this version does not include One-tap sign-in (= it uses the deprecated Google Sign-In for Android), Web and macOS support found in the sponsor-only version.
+Available on the public npm registry, this version does not include One-tap sign-in (it uses the deprecated Google Sign-In for Android), Web and macOS support found in the sponsor-only version.
 
 ## Accessing the private package for sponsors
 
@@ -32,8 +32,8 @@ Three steps are needed to access the sponsor package, which is hosted on [GitHub
 
 3. Set up your package manager so that it fetches the package from the GH packages registry. In this example, we're using an `NPM_TOKEN_GOOGLE_SIGN_IN` environment variable.
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 <Tabs>
   <TabItem value="classic" label="npm / yarn v1">
@@ -54,7 +54,7 @@ import TabItem from '@theme/TabItem';
 npmScopes:
   react-native-google-signin:
     npmRegistryServer: https://npm.pkg.github.com
-    npmAuthToken: '${NPM_TOKEN_GOOGLE_SIGN_IN}'
+    npmAuthToken: "${NPM_TOKEN_GOOGLE_SIGN_IN}"
 ```
 
   </TabItem>
@@ -80,4 +80,3 @@ There are several guides to follow now:
 - [Expo guide](setting-up/expo) for native mobile apps built with Expo
 - [Web guide](setting-up/web) if you want to use the package on the Web
 - If you're not using Expo but plain React Native, follow [Android guide](setting-up/android) and [iOS guide](setting-up/ios)
-

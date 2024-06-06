@@ -8,7 +8,7 @@ sidebar_position: 1
 
 :::info
 
-With Expo SDK 50, minimum iOS version was bumped to 13.4. If unsure, please consult release notes to determine the right version of this package to install.
+With Expo SDK 50, minimum iOS version was bumped to 13.4. In case you get an error during pod install step, please consult release notes to determine the right version of this package to install.
 
 :::
 
@@ -16,7 +16,7 @@ With Expo SDK 50, minimum iOS version was bumped to 13.4. If unsure, please cons
 
 This package cannot be used in ["Expo Go"](https://docs.expo.dev/workflow/overview/#expo-go-an-optional-tool-for-learning) because it requires custom native code.
 
-However, you can add custom native code to Expo by using a [development build](https://docs.expo.dev/workflow/overview/#development-builds). That is the approach documented in this guide.
+However, you can add custom native code to Expo by using a [development build](https://docs.expo.dev/workflow/overview/#development-builds). That is the approach recommended by Expo for production apps, and is documented in this guide.
 
 :::
 
@@ -30,7 +30,7 @@ After installing the npm package, add the [config plugin](https://docs.expo.io/g
 
 If you're _not_ using Firebase, provide the `iosUrlScheme` option to the config plugin.
 
-To obtain `iosUrlScheme`, go to the [Google Cloud Console](https://console.cloud.google.com/apis/credentials) and copy the "iOS URL scheme" from your iOS client in the "OAuth 2.0 Client IDs" section. Note that the config plugin that works without Firebase is only [available to sponsors](../install.mdx#accessing-the-private-package-for-sponsors) of this module.
+To obtain `iosUrlScheme`, go to the [Google Cloud Console](https://console.cloud.google.com/apis/credentials) and copy the "iOS URL scheme" from your iOS client in the "OAuth 2.0 Client IDs" section.
 
 ```json title="app.json"
 {
@@ -67,7 +67,7 @@ With Firebase, [obtain the config file](./get-config-file) and place it into you
 
 ### Ensure compatibility
 
-If you're using the sponsor package:
+**If you're using the sponsor package:**
 
 If you're using Expo SDK >= 50, you're good to go.
 

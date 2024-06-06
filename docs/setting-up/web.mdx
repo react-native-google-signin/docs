@@ -12,14 +12,14 @@ Web support is only available to sponsors️. [It takes just a few clicks to get
 
 There are different ways to load the client script. Some of them are:
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 <Tabs>
   <TabItem value="Next.js" label="Next.js">
 
 ```tsx
-import Script from 'next/script';
+import Script from "next/script";
 
 <Script
   src="https://accounts.google.com/gsi/client"
@@ -29,14 +29,17 @@ import Script from 'next/script';
   }}
 />;
 ```
+
   </TabItem>
 
   <TabItem value="html" label="Simple html">
 
- [See here](https://developers.google.com/identity/gsi/web/guides/client-library)
+[See here](https://developers.google.com/identity/gsi/web/guides/client-library)
+
   </TabItem>
 
   <TabItem value="useEffect" label="useEffect">
+
 ```tsx
 useEffect(() => {
   const scriptTag = document.createElement('script');
