@@ -83,18 +83,6 @@ See ["Choose Dependency versions"](setting-up/android.md#choose-dependency-versi
 
 open `android/app/google-services.json` and replace `"api_key":[]` with `"api_key":[{ "current_key": "" }]`
 
-### Error code `12501`
-
-This is a permission error. Make sure the `certificate_hash` in `android/app/google-services.json` matches your certificate.
-
-To get your sha1-hash
-
-```
-keytool -exportcert -keystore ~/.android/debug.keystore -list -v
-```
-
-Also make sure the application id matches the one you enter on the cloud console.
-
 ### Troubleshooting for non-firebase users
 
 If you are not using firebase you can ignore all docs related to google services. You don't need a `google-services.json` or any `build.gradle` changes from these docs. Simply follow the instructions from [the official docs](https://developers.google.com/identity/sign-in/android/start-integrating). However, be aware of following common issues which can lead to a `DEVELOPER ERROR` or an `A non-recoverable sign in failure occurred` error.

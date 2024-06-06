@@ -67,7 +67,7 @@ With Firebase, [obtain the config file](./get-config-file) and place it into you
 
 ### Ensure compatibility
 
-**If you're using the sponsor package:**
+If you're using the sponsor package:
 
 If you're using Expo SDK >= 50, you're good to go.
 
