@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Expo setup
 
-### Prepare your Expo project
+## Prepare your Expo project
 
 :::info
 
@@ -26,7 +26,7 @@ npx expo install @react-native-google-signin/google-signin
 
 After installing the npm package, add the [config plugin](https://docs.expo.io/guides/config-plugins/) (read more details below) to the [`plugins`](https://docs.expo.io/versions/latest/config/app/#plugins) array of your `app.json` or `app.config.js`.
 
-#### Expo without Firebase
+### Expo without Firebase
 
 If you're _not_ using Firebase, provide the `iosUrlScheme` option to the config plugin.
 
@@ -47,7 +47,7 @@ To obtain `iosUrlScheme`, go to the [Google Cloud Console](https://console.cloud
 }
 ```
 
-#### Expo and Firebase
+### Expo and Firebase
 
 With Firebase, [obtain the config file](./get-config-file) and place it into your project. Then specify the path to the file:
 
