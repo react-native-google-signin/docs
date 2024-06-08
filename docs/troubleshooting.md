@@ -101,4 +101,8 @@ When adding a new oauth client, google asks you to add your package name. In som
 
 Along with "Your app is missing support for the following URL schemes" error in console.
 
-You're missing `Url Schemes` configuration. How to do it: ![configure URL schemes](/img/add-url-scheme-ios.png)
+Your `Url Schemes` configuration is incorrect.
+
+If you use Expo, make sure that the [config plugin](setting-up/expo#add-config-plugin) is configured correctly.
+
+In vanilla React Native projects, add URL type like this: ![configure URL schemes](/img/add-url-scheme-ios.png)

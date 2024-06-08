@@ -24,6 +24,8 @@ However, you can add custom native code to Expo by using a [development build](h
 npx expo install @react-native-google-signin/google-signin
 ```
 
+## Add config plugin
+
 After installing the npm package, add the [config plugin](https://docs.expo.io/guides/config-plugins/) (read more details below) to the [`plugins`](https://docs.expo.io/versions/latest/config/app/#plugins) array of your `app.json` or `app.config.js`.
 
 ### Expo without Firebase
@@ -65,7 +67,7 @@ With Firebase, [obtain the config file](./get-config-file) and place it into you
 }
 ```
 
-### Ensure compatibility
+## Ensure compatibility
 
 If you're using the sponsor package:
 
@@ -76,7 +78,7 @@ But if you're using Expo 49 or older, you need to either:
 - install version `12.1.0` of the package
 - or install version >= `13` AND specify `compileSdkVersion` 34 of your project using [Expo BuildProperties](https://docs.expo.dev/versions/latest/sdk/build-properties/#usage)
 
-### Rebuilding the app
+## Rebuild the app
 
 Then run the following to generate the native project directories.
 
