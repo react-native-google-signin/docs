@@ -50,6 +50,6 @@ See [example usage](original#signin).
 | Name                        | Description                                                                                                                                                                                                                                                             |
 | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ONE_TAP_START_FAILED`      | Thrown when the One-tap sign in UI cannot be presented. This would typically happen during the [cooldown period](https://developers.google.com/identity/gsi/web/guides/features#exponential_cooldown). You can still call the original Google Sign In API in this case. |
-| `NO_SAVED_CREDENTIAL_FOUND` | Thrown when no user signed in to your app yet. To recover from this error, proceed to calling [`createAccount`](one-tap#createaccount).                                                                                                                                 |
+| `NO_SAVED_CREDENTIAL_FOUND` | Android and Apple only (Web shows the one-tap UI instead). Thrown when no user signed in to your app yet. To recover from this error, proceed to calling [`createAccount`](one-tap#createaccount).                                                                      |
 
 See [example usage](one-tap#signin).
