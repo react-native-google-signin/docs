@@ -57,20 +57,20 @@ The following are available for iOS. To obtain extended authorization on Android
 
 The following are available for the Web. [Read the value descriptions here](https://developers.google.com/identity/gsi/web/reference/js-reference).
 
-| Name                                  | Type                                | Description                                                                            |
-| ------------------------------------- | ----------------------------------- | -------------------------------------------------------------------------------------- |
-| `skipPrompt?`                         | `boolean`                           | Do not show the one-tap UI. Signing in will happen by clicking `WebGoogleSigninButton` |
-| `login_uri?`                          | `string`                            |                                                                                        |
-| `native_callback?`                    | `() => void`                        |                                                                                        |
-| `cancel_on_tap_outside?`              | `boolean`                           |                                                                                        |
-| `prompt_parent_id?`                   | `string`                            |                                                                                        |
-| `context?`                            | `"signin"` \| `"signup"` \| `"use"` |                                                                                        |
-| `state_cookie_domain?`                | `string`                            |                                                                                        |
-| `ux_mode?`                            | `"popup"` \| `"redirect"`           |                                                                                        |
-| `allowed_parent_origin?`              | `string` \| `string[]`              |                                                                                        |
-| `intermediate_iframe_close_callback?` | `() => void`                        |                                                                                        |
-| `itp_support?`                        | `boolean`                           |                                                                                        |
-| `log_level?`                          | `"debug"` \| `"info"` \| `"warn"`   |                                                                                        |
+| Name                                  | Type                                | Description                                                                                 |
+| ------------------------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------- |
+| `skipPrompt?`                         | `boolean`                           | Do not show the one-tap prompt. Signing in will happen by clicking `WebGoogleSigninButton`. |
+| `login_uri?`                          | `string`                            |                                                                                             |
+| `native_callback?`                    | `() => void`                        |                                                                                             |
+| `cancel_on_tap_outside?`              | `boolean`                           |                                                                                             |
+| `prompt_parent_id?`                   | `string`                            |                                                                                             |
+| `context?`                            | `"signin"` \| `"signup"` \| `"use"` |                                                                                             |
+| `state_cookie_domain?`                | `string`                            |                                                                                             |
+| `ux_mode?`                            | `"popup"` \| `"redirect"`           |                                                                                             |
+| `allowed_parent_origin?`              | `string` \| `string[]`              |                                                                                             |
+| `intermediate_iframe_close_callback?` | `() => void`                        |                                                                                             |
+| `itp_support?`                        | `boolean`                           |                                                                                             |
+| `log_level?`                          | `"debug"` \| `"info"` \| `"warn"`   |                                                                                             |
 
 ---
 
