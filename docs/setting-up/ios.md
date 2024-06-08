@@ -14,7 +14,7 @@ If you use Expo, please follow [this guide](/setting-up/expo.md) instead. This g
 
 ### Google project configuration
 
-- Follow [this](./get-config-file) guide to get the configuration information which you need for step 3.
+- Follow [this](./get-config-file) guide to get the configuration information which you need for the next steps.
 
 ### Xcode configuration
 

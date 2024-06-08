@@ -39,18 +39,17 @@ error is NativeModuleError
 
 Ƭ **OneTapSignInParams**: `Object`
 
-| Name          | Type      | Description                                                                                                                  |
-| ------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `webClientId` | `string`  | The web client ID obtained from Google Cloud console.                                                                        |
-| `nonce?`      | `string`  | Optional. random string used by the ID token to prevent replay attacks.                                                      |
-| `autoSignIn?` | `boolean` | Optional. If true, enables [auto sign-in](https://developers.google.com/identity/gsi/web/guides/automatic-sign-in-sign-out). |
+| Name          | Type     | Description                                                                                      |
+| ------------- | -------- | ------------------------------------------------------------------------------------------------ |
+| `webClientId` | `string` | The web client ID obtained from Google Cloud console. Pass `autoDetect` to detect automatically. |
+| `nonce?`      | `string` | Optional. random string used by the ID token to prevent replay attacks.                          |
 
 The following are available for iOS. To obtain extended authorization on Android, call `requestAuthorization`.
 
 | Name                      | Type       | Description                                                                                                                                                            |
 | ------------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `iosClientId?`            | `string`   | The iOS client ID obtained from Google Cloud console. Provide this if you're not using the config file from Firebase. Mutualy exclusive with `googleServicePlistPath`. |
-| `googleServicePlistPath?` | `string`   | If you want to specify a different bundle path name for the GoogleService-Info, e.g. 'GoogleService-Info-Staging'. Mutualy exclusive with `iosClientId`.               |
+| `googleServicePlistPath?` | `string`   | If you want to specify a different bundle path name for the GoogleService-Info file, e.g. 'GoogleService-Info-Staging'. Mutually exclusive with `iosClientId`.         |
 | `scopes?`                 | `string[]` | The Google API scopes to request access to. Default is email and profile.                                                                                              |
 | `offlineAccess?`          | `boolean`  | Must be true if you wish to access user APIs on behalf of the user from your own server                                                                                |
 | `profileImageSize?`       | `number`   | The desired height (and width) of the profile image. Defaults to 120px                                                                                                 |
@@ -58,19 +57,20 @@ The following are available for iOS. To obtain extended authorization on Android
 
 The following are available for the Web. [Read the value descriptions here](https://developers.google.com/identity/gsi/web/reference/js-reference).
 
-| Name                                  | Type                                | Description |
-| ------------------------------------- | ----------------------------------- | ----------- |
-| `login_uri?`                          | `string`                            |             |
-| `native_callback?`                    | `() => void`                        |             |
-| `cancel_on_tap_outside?`              | `boolean`                           |             |
-| `prompt_parent_id?`                   | `string`                            |             |
-| `context?`                            | `"signin"` \| `"signup"` \| `"use"` |             |
-| `state_cookie_domain?`                | `string`                            |             |
-| `ux_mode?`                            | `"popup"` \| `"redirect"`           |             |
-| `allowed_parent_origin?`              | `string` \| `string[]`              |             |
-| `intermediate_iframe_close_callback?` | `() => void`                        |             |
-| `itp_support?`                        | `boolean`                           |             |
-| `log_level?`                          | `"debug"` \| `"info"` \| `"warn"`   |             |
+| Name                                  | Type                                | Description                                                                                 |
+| ------------------------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------- |
+| `skipPrompt?`                         | `boolean`                           | Do not show the one-tap prompt. Signing in will happen by clicking `WebGoogleSigninButton`. |
+| `login_uri?`                          | `string`                            |                                                                                             |
+| `native_callback?`                    | `() => void`                        |                                                                                             |
+| `cancel_on_tap_outside?`              | `boolean`                           |                                                                                             |
+| `prompt_parent_id?`                   | `string`                            |                                                                                             |
+| `context?`                            | `"signin"` \| `"signup"` \| `"use"` |                                                                                             |
+| `state_cookie_domain?`                | `string`                            |                                                                                             |
+| `ux_mode?`                            | `"popup"` \| `"redirect"`           |                                                                                             |
+| `allowed_parent_origin?`              | `string` \| `string[]`              |                                                                                             |
+| `intermediate_iframe_close_callback?` | `() => void`                        |                                                                                             |
+| `itp_support?`                        | `boolean`                           |                                                                                             |
+| `log_level?`                          | `"debug"` \| `"info"` \| `"warn"`   |                                                                                             |
 
 ---
 
@@ -127,9 +127,9 @@ Is `null` on iOS in case no user is signed in yet.
 
 • `Const` **GoogleOneTapSignIn**: `Object`
 
-The entry point of the One-tap Sign In API, exposed as `GoogleOneTapSignIn`. On Android, this module uses the [Android Credential Manager](https://developers.google.com/identity/android-credential-manager) under the hood.
+The entry point of the One-tap Sign In API, exposed as `GoogleOneTapSignIn`.
 
-On the web, don't call `signIn` / `createAccount` and use the `WebGoogleOneTapSignIn.signIn` instead. The `signOut` method is available on all platforms.
+On the Web, the signatures of `signIn`, `presentExplicitSignIn`, and `createAccount` are callback-based. Read more in the guide.
 
 #### Type declaration
 
@@ -141,31 +141,11 @@ On the web, don't call `signIn` / `createAccount` and use the `WebGoogleOneTapSi
 | `requestAuthorization`  | (`options`: [`RequestAuthorizationParams`](#requestauthorizationparams)) => `Promise`\<[`AuthorizationResponse`](#authorizationresponse)\> |
 | `signOut`               | (`emailOrUniqueId`: `string`) => `Promise`\<`null`\>                                                                                       |
 
----
-
-## Web One-tap sign in module
-
-This is a wrapper for the [Sign In with Google for Web](https://developers.google.com/identity/gsi/web), supporting both the [One-tap](https://developers.google.com/identity/gsi/web/guides/offerings#one_tap) flow and the [Google Sign-In button](https://developers.google.com/identity/gsi/web/guides/offerings#sign_in_with_google_button).
-
-### WebGoogleOneTapSignIn
-
-• `Const` **WebGoogleOneTapSignIn**: `Object`
-
-On the web, call `WebGoogleOneTapSignIn.signIn` on page load or other window events, not as a response to a user interaction.
-
-That sets up a listener for authentication events and calls the appropriate callbacks.
-
-On other platforms, it calls the `onError` callback with a `SIGN_IN_CANCELLED` error.
-
-#### Type declaration
-
-| Name     | Type                                                                                                                                    |
-| :------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
-| `signIn` | (`params`: [`OneTapSignInParams`](#onetapsigninparams), `callbacks`: [`WebOneTapSignInCallbacks`](#webonetapsignincallbacks)) => `void` |
-
 ### WebOneTapSignInCallbacks
 
 Ƭ **WebOneTapSignInCallbacks**: `Object`
+
+On the Web, the signatures of `signIn`, `presentExplicitSignIn`, and `createAccount` are not promise-based but callback-based. Read more in the guide.
 
 #### Type declaration
 
@@ -197,18 +177,18 @@ On other platforms, it calls the `onError` callback with a `SIGN_IN_CANCELLED` e
 
 #### Type declaration
 
-| Name                        | Type       | Description                                                                                                                                             |
-| :-------------------------- | :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `webClientId?`              | `string`   | Web client ID from Developer Console. Required to get the `idToken` on the user object, and for offline access.                                         |
-| `accountName?`              | `string`   | ANDROID ONLY. An account name that should be prioritized.                                                                                               |
-| `forceCodeForRefreshToken?` | `boolean`  | ANDROID ONLY. If true, the granted server auth code can be exchanged for an access token and a refresh token.                                           |
-| `hostedDomain?`             | `string`   | Specifies a hosted domain restriction                                                                                                                   |
-| `offlineAccess?`            | `boolean`  | Must be true if you wish to access user APIs on behalf of the user from your own server                                                                 |
-| `openIdRealm?`              | `string`   | iOS ONLY The OpenID2 realm of the home web server. This allows Google to include the user's OpenID Identifier in the OpenID Connect ID token.           |
-| `profileImageSize?`         | `number`   | iOS ONLY The desired height (and width) of the profile image. Defaults to 120px                                                                         |
-| `scopes?`                   | `string`[] | The Google API scopes to request access to. Default is email and profile.                                                                               |
-| `googleServicePlistPath?`   | `string`   | If you want to specify a different bundle path name for the GoogleService-Info, e.g. 'GoogleService-Info-Staging'. Mutualy exclusive with `iosClientId` |
-| `iosClientId?`              | `string`   | If you want to specify the client ID of type iOS. Mutualy exclusive with `googleServicePlistPath`.                                                      |
+| Name                        | Type       | Description                                                                                                                                                          |
+| :-------------------------- | :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `webClientId?`              | `string`   | Web client ID from Developer Console. Required to get the `idToken` on the user object, and for offline access.                                                      |
+| `accountName?`              | `string`   | ANDROID ONLY. An account name that should be prioritized.                                                                                                            |
+| `forceCodeForRefreshToken?` | `boolean`  | ANDROID ONLY. If true, the granted server auth code can be exchanged for an access token and a refresh token.                                                        |
+| `hostedDomain?`             | `string`   | Specifies a hosted domain restriction                                                                                                                                |
+| `offlineAccess?`            | `boolean`  | Must be true if you wish to access user APIs on behalf of the user from your own server                                                                              |
+| `openIdRealm?`              | `string`   | iOS ONLY The OpenID2 realm of the home web server. This allows Google to include the user's OpenID Identifier in the OpenID Connect ID token.                        |
+| `profileImageSize?`         | `number`   | iOS ONLY The desired height (and width) of the profile image. Defaults to 120px                                                                                      |
+| `scopes?`                   | `string`[] | The Google API scopes to request access to. Default is email and profile.                                                                                            |
+| `googleServicePlistPath?`   | `string`   | If you want to specify a different bundle path name for the GoogleService-Info file, e.g. 'GoogleService-Info-Staging'. Mutually exclusive with `iosClientId`        |
+| `iosClientId?`              | `string`   | If you want to specify the client ID of type iOS. It is taken from the `GoogleService-Info.plist` file by default. Mutually exclusive with `googleServicePlistPath`. |
 
 ---
 
