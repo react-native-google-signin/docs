@@ -42,19 +42,18 @@ import Script from "next/script";
 
 ```tsx
 useEffect(() => {
-  const scriptTag = document.createElement('script');
-  scriptTag.src = 'https://accounts.google.com/gsi/client';
+  const scriptTag = document.createElement("script");
+  scriptTag.src = "https://accounts.google.com/gsi/client";
   scriptTag.async = true;
   scriptTag.onload = () => {
     setLoaded(true);
   };
   scriptTag.onerror = () => {
-    console.error('Failed to load Google One-tap script');
+    console.error("Failed to load Google One-tap script");
   };
 
-document.body.appendChild(scriptTag);
+  document.body.appendChild(scriptTag);
 }, []);
-
 ```
 
   </TabItem>

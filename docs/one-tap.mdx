@@ -104,7 +104,7 @@ signature: (`params`: [`OneTapSignInParams`](api#onetapsigninparams)) => `Promis
 | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android  | Starts a flow to sign in with your app for the first time (to create a user account). It offers a list of user accounts to choose from (multiple Google accounts can be logged in on the device).                                                                                            |
 | Apple    | Starts an interactive sign-in flow. [Docs](https://developers.google.com/identity/sign-in/ios/reference/Classes/GIDSignIn#-signinwithpresentingviewcontroller:hint:completion:). It offers a list of user accounts to choose from (multiple Google accounts can be logged in on the device). |
-| Web      | Presents a one-tap prompt and waits for user interaction. Has slightly different styling than `signIn` prompt. [Read below](#web-support) for web support.                                                                                                                                   |
+| Web      | Presents a one-tap prompt and waits for user interaction. Has slightly different styling than `signIn` prompt (configrable via the `context` param). [Read below](#web-support) for web support.                                                                                             |
 
 You don't need to call `createAccount` as a response to a user action - you can call it some time after your app starts (Though keep in mind the way the dialog is presented on iOS might be inconvenient to users) or when suitable.
 
@@ -226,7 +226,7 @@ The reason `webClientId` is a required parameter is API uniformity across all pl
 
 ## Web support
 
-Providing a unified API across all platforms is a bit more complex than it may seem. The web experience is different from the mobile one, and so are the underlying APIs.
+Providing a unified API across all platforms is a bit more tricky than it may seem. The web experience is different from the mobile one, and so are the underlying APIs.
 
 The `GoogleOneTapSignIn.signIn` and `GoogleOneTapSignIn.createAccount` functions are not `Promise`-based but callback-based as seen below. That means they return `void` and you need to provide callbacks for success and error handling.
 
@@ -260,7 +260,7 @@ useEffect(() => {
         momentListener: (moment) => {
           // optional
         },
-      }
+      },
     );
   }
 }, []);

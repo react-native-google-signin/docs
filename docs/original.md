@@ -228,4 +228,3 @@ try {
 You may also use this call at any time to find out if Google Play Services are available and react to the result as necessary.
 
 ![prompt install](/img/prompt-install.png)
-
