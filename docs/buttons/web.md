@@ -18,7 +18,7 @@ One-tap UI may not always be available: This happens if user has [opted out](htt
 The Google Sign-In button serves as a fallback. Tapping it will open the regular Google Sign-In dialog.
 
 ```tsx
-import { WebGoogleSigninButton } from "@react-native-google-signin/google-signin";
+import { WebGoogleSigninButton } from '@react-native-google-signin/google-signin';
 
 <WebGoogleSigninButton />;
 ```
@@ -29,12 +29,12 @@ All props are optional.
 
 | Name             | Type                                                                  | Description                                                                         |
 | ---------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `type?`          | `"standard"` \| `"icon"`                                              | Optional. The type of the sign-in button.                                           |
-| `theme?`         | `"outline"` \| `"filled_blue"` \| `"filled_black"`                    | Optional. The theme of the sign-in button.                                          |
-| `size?`          | `"large"` \| `"medium"` \| `"small"`                                  | Optional. The size of the sign-in button.                                           |
-| `text?`          | `"signin_with"` \| `"signup_with"` \| `"continue_with"` \| `"signin"` | Optional. The text to display on the sign-in button.                                |
-| `shape?`         | `"rectangular"` \| `"pill"` \| `"circle"` \| `"square"`               | Optional. The shape of the sign-in button.                                          |
-| `width?`         | `number`                                                              | Optional. The width of the sign-in button.                                          |
-| `locale?`        | `string`                                                              | Optional. The locale for the sign-in button.                                        |
-| `logoAlignment?` | `"left"` \| `"center"`                                                | Optional. The alignment of the logo on the button.                                  |
-| `onError?`       | `(error: Error) => void`                                              | Optional. Called when you try to render the button before the Client SDK is loaded. |
+| `type?`          | `"standard"` \| `"icon"`                                              | The type of the sign-in button.                                           |
+| `theme?`         | `"outline"` \| `"filled_blue"` \| `"filled_black"`                    | The theme of the sign-in button.                                          |
+| `size?`          | `"large"` \| `"medium"` \| `"small"`                                  | The size of the sign-in button.                                           |
+| `text?`          | `"signin_with"` \| `"signup_with"` \| `"continue_with"` \| `"signin"` | The text to display on the sign-in button.                                |
+| `shape?`         | `"rectangular"` \| `"pill"` \| `"circle"` \| `"square"`               | The shape of the sign-in button.                                          |
+| `width?`         | `number`                                                              | The width of the sign-in button.                                          |
+| `locale?`        | `string`                                                              | The locale for the sign-in button.                                        |
+| `logoAlignment?` | `"left"` \| `"center"`                                                | The alignment of the logo on the button.                                  |
+| `onError?`       | `(error: Error) => void`                                              | Called when you try to render the button before the Client SDK is loaded. |
