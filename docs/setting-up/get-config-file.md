@@ -8,7 +8,6 @@ Please note that you **do not** need Firebase to configure Google Sign In. Howev
 
 If you're using Expo EAS, read [credentials docs](https://docs.expo.dev/app-signing/managed-credentials/#inspecting-credentials-configuration) to learn how to obtain information about how your app is signed with EAS.
 
-
 ### Android SHA-1 certificate fingerprint note
 
 You could have multiple signing configurations - for example for building debug APK, release APK, and [Play App Signing](https://support.google.com/googleplay/android-developer/answer/9842756?hl=en) for production deployments. You will need to get the SHA1 certificate fingerprints
