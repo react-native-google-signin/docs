@@ -10,7 +10,7 @@ You may _not_ want to use it because it's not very visually appealing - but you 
 ![signin button](/img/signin-button.png)
 
 ```tsx
-import { GoogleSigninButton } from "@react-native-google-signin/google-signin";
+import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
 <GoogleSigninButton
   size={GoogleSigninButton.Size.Wide}

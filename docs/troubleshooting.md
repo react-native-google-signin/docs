@@ -5,10 +5,6 @@ sidebar_position: 70
 
 # FAQ / Troubleshooting
 
-#### I'm getting an error, and I'm not able to fix it
-
-Configuring google sign in can sometimes be tricky. If you're hitting a wall, you can get in touch with the maintainer ([@vonovak](https://github.com/vonovak)) via his [personal site](https://react-native-training.eu/). Please note that this is a paid service.
-
 ## Android
 
 [See troubleshooting for non-firebase users below](#troubleshooting-for-non-firebase-users)

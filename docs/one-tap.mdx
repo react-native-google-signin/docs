@@ -3,7 +3,7 @@ sidebar_position: 30
 sidebar_class_name: sponsor-heart
 ---
 
-import Image from "@theme/IdealImage";
+import Image from '@theme/IdealImage';
 
 # One-tap Google sign in
 
@@ -18,7 +18,7 @@ This is the easiest and recommended way to implement Google Sign In. It is a sig
 :::tip
 The functionality covered in this page is only available to sponsors️. [It takes just a few clicks to get access](install#accessing-the-private-package-for-sponsors) ❤️.
 
-This module is being actively developed, and new features are added regularly. Since the first release in July 2023, there has been more than 1 release per month on average (last updated in June 2024).
+This module is being actively developed, and new features are added regularly. Since the first release in July 2023, there has been more than 1 release per month on average (last updated in July 2024).
 :::
 
 Note that on Apple and Android, you can combine the one-tap methods with those one from the [Original Google Sign In](original). To do that, use the One-tap sign in to sign in the user. Then call `signInSilently()` and then (for example) `getCurrentUser()` to get the current user's information. However, this shouldn't be necessary because this module should cover all your needs. Please open an issue if that's not the case.
@@ -28,7 +28,7 @@ import {
   GoogleOneTapSignIn,
   statusCodes,
   type OneTapUser,
-} from "@react-native-google-signin/google-signin";
+} from '@react-native-google-signin/google-signin';
 ```
 
 ### `signIn`
@@ -57,7 +57,7 @@ import {
   statusCodes,
   isErrorWithCode,
   GoogleSignin,
-} from "@react-native-google-signin/google-signin";
+} from '@react-native-google-signin/google-signin';
 
 // Somewhere in your code
 const signIn = async () => {
@@ -78,9 +78,8 @@ const signIn = async () => {
           // sign in was cancelled
           break;
         case statusCodes.ONE_TAP_START_FAILED:
-          // Android and Web only, you probably have hit rate limiting.
+          // Android-only, you probably have hit rate limiting.
           // On Android, you can still call `presentExplicitSignIn` in this case.
-          // On the web, user needs to click the `WebGoogleSigninButton` to sign in.
           break;
         case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
           // Android-only: play services not available or outdated
@@ -98,7 +97,7 @@ const signIn = async () => {
 
 ### `createAccount`
 
-signature: (`params`: [`OneTapSignInParams`](api#onetapsigninparams)) => `Promise`\<[`OneTapUser`](api#onetapuser)\>
+signature: (`params`: [`OneTapCreateAccountParams`](api#onetapcreateaccountparams)) => `Promise`\<[`OneTapUser`](api#onetapuser)\>
 
 | Platform | Behavior                                                                                                                                                                                                                                                                                     |
 | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -124,7 +123,7 @@ Returns a `Promise` that resolves with an object containing the user data or rej
 ```ts
 await GoogleOneTapSignIn.createAccount({
   webClientId: `autoDetect`, // works only if you use Firebase
-  nonce: "your_nonce",
+  nonce: 'your_nonce',
 });
 ```
 
@@ -154,7 +153,7 @@ Call this method only as a reaction to when user taps a "sign in with Google" bu
 ```ts
 await GoogleOneTapSignIn.presentExplicitSignIn({
   webClientId: `autoDetect`, // works only if you use Firebase
-  nonce: "your_nonce",
+  nonce: 'your_nonce',
 });
 ```
 
@@ -244,7 +243,7 @@ You should display the One Tap UI on page load or other window events, instead o
 
 ```ts
 useEffect(() => {
-  if (Platform.OS === "web") {
+  if (Platform.OS === 'web') {
     // use callback-based api on the web!
     GoogleOneTapSignIn.signIn(
       {

@@ -12,14 +12,14 @@ Web support is only available to sponsors️. [It takes just a few clicks to get
 
 There are different ways to load the client script. Some of them are:
 
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 <Tabs>
   <TabItem value="Next.js" label="Next.js">
 
 ```tsx
-import Script from "next/script";
+import Script from 'next/script';
 
 <Script
   src="https://accounts.google.com/gsi/client"
@@ -42,14 +42,14 @@ import Script from "next/script";
 
 ```tsx
 useEffect(() => {
-  const scriptTag = document.createElement("script");
-  scriptTag.src = "https://accounts.google.com/gsi/client";
+  const scriptTag = document.createElement('script');
+  scriptTag.src = 'https://accounts.google.com/gsi/client';
   scriptTag.async = true;
   scriptTag.onload = () => {
     setLoaded(true);
   };
   scriptTag.onerror = () => {
-    console.error("Failed to load Google One-tap script");
+    console.error('Failed to load Google One-tap script');
   };
 
   document.body.appendChild(scriptTag);

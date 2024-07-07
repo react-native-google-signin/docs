@@ -1,7 +1,7 @@
 ---
-id: "index"
-title: "Module API"
-sidebar_label: "Reference"
+id: 'index'
+title: 'Module API'
+sidebar_label: 'Reference'
 custom_edit_url: null
 displayed_sidebar: apiSidebar
 ---
@@ -74,6 +74,17 @@ The following are available for the Web. [Read the value descriptions here](http
 
 ---
 
+### OneTapCreateAccountParams
+
+Ƭ **OneTapCreateAccountParams**: `Object` extends [`OneTapSignInParams`](#onetapsigninparams) with:
+
+| Name                          | Type      | Description                                                                                     |
+| ----------------------------- | --------- | ----------------------------------------------------------------------------------------------- |
+| `accountName?`                | `string`  | iOS only. An account name present on the device that should be used.                            |
+| `requestVerifiedPhoneNumber?` | `boolean` | Android only. Whether to request for a verified phone number during sign-ups. False by default. |
+
+---
+
 ### RequestAuthorizationParams
 
 Ƭ **RequestAuthorizationParams**: `Object`
@@ -137,7 +148,7 @@ On the Web, the signatures of `signIn`, `presentExplicitSignIn`, and `createAcco
 | :---------------------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
 | `signIn`                | (`params`: [`OneTapSignInParams`](#onetapsigninparams)) => `Promise`\<[`OneTapUser`](#onetapuser)\>                                        |
 | `presentExplicitSignIn` | (`params`: [`OneTapSignInParams`](#onetapsigninparams)) => `Promise`\<[`OneTapUser`](#onetapuser)\>                                        |
-| `createAccount`         | (`params`: [`OneTapSignInParams`](#onetapsigninparams)) => `Promise`\<[`OneTapUser`](#onetapuser)\>                                        |
+| `createAccount`         | (`params`: [`OneTapCreateAccountParams`](#onetapcreateaccountparams)) => `Promise`\<[`OneTapUser`](#onetapuser)\>                          |
 | `requestAuthorization`  | (`options`: [`RequestAuthorizationParams`](#requestauthorizationparams)) => `Promise`\<[`AuthorizationResponse`](#authorizationresponse)\> |
 | `signOut`               | (`emailOrUniqueId`: `string`) => `Promise`\<`null`\>                                                                                       |
 
