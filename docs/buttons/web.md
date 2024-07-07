@@ -27,8 +27,8 @@ import { WebGoogleSigninButton } from '@react-native-google-signin/google-signin
 
 All props are optional.
 
-| Name             | Type                                                                  | Description                                                                         |
-| ---------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Name             | Type                                                                  | Description                                                               |
+| ---------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `type?`          | `"standard"` \| `"icon"`                                              | The type of the sign-in button.                                           |
 | `theme?`         | `"outline"` \| `"filled_blue"` \| `"filled_black"`                    | The theme of the sign-in button.                                          |
 | `size?`          | `"large"` \| `"medium"` \| `"small"`                                  | The size of the sign-in button.                                           |
