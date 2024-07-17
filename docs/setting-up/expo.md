@@ -16,7 +16,7 @@ With Expo SDK 50, minimum iOS version was bumped to 13.4. In case you get an err
 
 This package cannot be used in ["Expo Go"](https://docs.expo.dev/workflow/overview/#expo-go-an-optional-tool-for-learning) because it requires custom native code.
 
-However, you can add custom native code to Expo by using a [development build](https://docs.expo.dev/workflow/overview/#development-builds). That is the approach recommended by Expo for production apps, and is documented in this guide.
+However, you can add custom native code to Expo by using a [development build](https://docs.expo.dev/workflow/overview/#development-builds). Using development builds is the recommended approach for production apps, and is documented in this guide.
 
 :::
 
@@ -26,7 +26,7 @@ npx expo install @react-native-google-signin/google-signin
 
 ## Add config plugin
 
-After installing the npm package, add the [config plugin](https://docs.expo.io/guides/config-plugins/) (read more details below) to the [`plugins`](https://docs.expo.io/versions/latest/config/app/#plugins) array of your `app.json` or `app.config.js`.
+After installing the npm package, add a config plugin (read more details below) to the [`plugins`](https://docs.expo.io/versions/latest/config/app/#plugins) array of your `app.json` or `app.config.js`. There are 2 config plugins available: for projects with Firebase, and without Firebase.
 
 ### Expo without Firebase
 
@@ -51,7 +51,7 @@ To obtain `iosUrlScheme`, go to the [Google Cloud Console](https://console.cloud
 
 ### Expo and Firebase
 
-With Firebase, [obtain the config file](./get-config-file) and place it into your project. Then specify the path to the file:
+If you are using Firebase, [obtain the config file](./get-config-file) and place it into your project. Then specify the path to the file:
 
 ```json title="app.json"
 {
