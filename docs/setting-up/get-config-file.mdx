@@ -1,0 +1,86 @@
+---
+sidebar_position: 15
+---
+
+# Obtaining configuration information
+
+Please note that you **do not** need Firebase to configure Google Sign In. However, if you use it, it's a little easier to set up the sign in experience because Firebase gives you one file to download and put into your project.
+
+## Android
+
+Read below on how to set up Google Sign In for your Android app.
+
+### Obtaining SHA-1 certificate fingerprints
+
+:::warning
+This is crucial for Google Sign-In to work on Android. If not done correctly, you will get the infamous [`DEVELOPER_ERROR` error](/docs/troubleshooting#developer_error).
+:::
+
+You likely have multiple signing configurations - for example for building local debug and release APKs, builds on [Expo EAS](https://docs.expo.dev/app-signing/managed-credentials/#inspecting-credentials-configuration), and [Play App Signing](https://support.google.com/googleplay/android-developer/answer/9842756?hl=en) for production deployments. You will need to get the SHA1 certificate fingerprints
+for _all_ keystores you intend to use and enter them _all_ in Firebase or Google Cloud Console.
+
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+  <TabItem value="eas" label="When using Expo EAS">
+    If you're using Expo EAS, read [credentials docs](https://docs.expo.dev/app-signing/managed-credentials/#inspecting-credentials-configuration) to learn how to obtain information about how your app is signed with EAS.
+  </TabItem>
+
+  <TabItem value="local" label="When developing locally">
+    1. From your project root, `cd android && ./gradlew signingReport`.
+    2. Scroll to the top of output, see the fingerprints. Debug fingerprint is used in dev, release fingerprint is used for release APK.
+  </TabItem>
+
+  <TabItem value="playStore" label="When releasing via Google Play Store">
+    Check if "Google Play App Signing" is enabled for your app [in the console](https://play.google.com/console/u/0/).
+    If it is enabled, you need to obtain the "App signing certificate" `SHA-1`.
+
+    You can find it at: App -> Release (in the left sidebar) -> Setup -> App integrity. Under the App signing key certificate, copy `SHA-1 certificate fingerprint`.
+  </TabItem>
+</Tabs>
+
+### Add SHA-1 to Firebase or Google Cloud Console
+
+<Tabs>
+  <TabItem value="firebase" label="When using Firebase">
+    1. Sign in to Firebase and open your project.
+    2. Click the Settings icon and select Project settings.
+    3. In the "Your apps" card, select the app you need to add SHA1 to.
+    4. Click "Add fingerprint".
+    4. Download the `google-services.json` file.
+
+    ![Firebase, add Android keystore's SHA1 to your project](/img/android-fingerprint-firebase.png)
+  </TabItem>
+
+  <TabItem value="cloud-console" label="When not using Firebase">
+    Follow the "To create an OAuth 2.0 client ID in the console" instructions [here](https://support.google.com/cloud/answer/6158849?hl=en).
+  </TabItem>
+
+</Tabs>
+
+## iOS
+
+Read below on how to set up Google Sign In for your iOS app.
+
+<Tabs>
+  <TabItem value="firebase" label="When using Firebase">
+    1. Sign in to Firebase and open your project.
+    2. Click the Settings icon and select Project settings.
+    3. Download the `GoogleService-Info.plist` file.
+
+  </TabItem>
+
+  <TabItem value="cloud-console" label="When not using Firebase">
+
+    You need to obtain the `reversed client id`.
+
+    Follow the instructions at ["Get an OAuth client ID"](https://developers.google.com/identity/sign-in/ios/start-integrating#get_an_oauth_client_id), ["Get an OAuth server client ID"](https://developers.google.com/identity/sign-in/ios/start-integrating#server_client_id) and then ["Configure your application project"](https://developers.google.com/identity/sign-in/ios/start-integrating#configure_app_project).
+
+    When done configuring your project, take note of Web Client ID which you may need later. It can be found [here](https://console.developers.google.com/apis/credentials).
+    Make sure you select the correct project. The Client IDs are under OAuth section.
+
+  </TabItem>
+
+</Tabs>
