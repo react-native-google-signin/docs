@@ -23,7 +23,6 @@ Follow the [setup guide](/docs/setting-up/get-config-file) and perform its steps
 
 If you're passing `webClientId` in configuration object to `GoogleSignin.configure()` make sure it's correct and that it is of type web (NOT Android!). You can get your `webClientId` from [Google Developer Console](https://console.developers.google.com/apis/credentials). It is listed under "OAuth 2.0 client IDs".
 
-
 ### Login does not work when using Internal App Sharing.
 
 If you get a `DEVELOPER_ERROR` when using Internal App Sharing, it is because Google resigns your application with its own key.
@@ -37,7 +36,6 @@ See ["Choose Dependency versions"](setting-up/android.md#choose-dependency-versi
 ### `Missing api_key/current_key object`
 
 open `android/app/google-services.json` and replace `"api_key":[]` with `"api_key":[{ "current_key": "" }]`
-
 
 ### Package name !== application id
 
