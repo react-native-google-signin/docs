@@ -7,8 +7,6 @@ sidebar_position: 70
 
 ## Android
 
-[See troubleshooting for non-Firebase users below](#troubleshooting-for-non-firebase-users)
-
 ### "A non-recoverable sign in failure occurred"
 
 See [this comment](https://github.com/react-native-community/google-signin/issues/659#issuecomment-513555464). Or [this SO question](https://stackoverflow.com/questions/53816227/google-signin-sdk-is-failing-by-throwing-error-a-non-recoverable-sign-in-failur).
