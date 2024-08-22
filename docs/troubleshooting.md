@@ -17,11 +17,15 @@ See [the next paragraph](#developer_error).
 
 ### `DEVELOPER_ERROR` or `code: 10` or `Developer console is not set up correctly` error message {#developer_error}
 
-This is always (_always_!) a configuration mismatch. Make sure that your SHA certificate fingerprints and package name you entered in Firebase / Google Cloud Console are correct. If you are in development, make sure your development signing fingerprint is added as well.
+This is always (_always_!) a configuration mismatch between your app and Google's servers. The problem is on your app's side.
 
-Follow the [setup guide](/docs/setting-up/get-config-file) and perform its steps once again.
+Follow these pointers:
 
-If you're passing `webClientId` in configuration object to `GoogleSignin.configure()` make sure it's correct and that it is of type web (NOT Android!). You can get your `webClientId` from [Google Developer Console](https://console.developers.google.com/apis/credentials). It is listed under "OAuth 2.0 client IDs".
+- [Search the issue tracker](https://github.com/react-native-google-signin/google-signin/issues?q=is%3Aissue+DEVELOPER+ERROR+is%3Aclosed) for old reports of the error
+- Make sure that your SHA certificate fingerprints and package name you entered in Firebase / Google Cloud Console are correct. If you are in development, make sure your development signing fingerprint is added as well.
+- Make sure you filled out "OAuth Consent Screen" in Google Cloud Console.
+- Follow the [setup guide](/docs/setting-up/get-config-file) and perform its steps once again.
+- If you're passing `webClientId` in configuration object to `GoogleSignin.configure()` make sure it's correct and that it is of type web (NOT Android!). You can get your `webClientId` from [Google Developer Console](https://console.developers.google.com/apis/credentials). It is listed under "OAuth 2.0 client IDs".
 
 ### Login does not work when using Internal App Sharing.
 
