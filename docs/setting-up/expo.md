@@ -34,7 +34,7 @@ If you're _not_ using Firebase, provide the `iosUrlScheme` option to the config 
 
 To obtain `iosUrlScheme`, go to the [Google Cloud Console](https://console.cloud.google.com/apis/credentials) and copy the "iOS URL scheme" from your iOS client in the "OAuth 2.0 Client IDs" section.
 
-```json title="app.json"
+```json title="app.json|js"
 {
   "expo": {
     "plugins": [
@@ -53,7 +53,7 @@ To obtain `iosUrlScheme`, go to the [Google Cloud Console](https://console.cloud
 
 If you are using Firebase, [obtain the config file](./get-config-file) and place it into your project. Then specify the path to the file:
 
-```json title="app.json"
+```json title="app.json|js"
 {
   "expo": {
     "plugins": ["@react-native-google-signin/google-signin"],
