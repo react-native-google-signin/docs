@@ -6480,7 +6480,7 @@ __metadata:
     react: "npm:^18.0.0"
     react-dom: "npm:^18.0.0"
     typedoc: "npm:^0.26.6"
-    typedoc-plugin-markdown: "npm:^4.2.6"
+    typedoc-plugin-markdown: "patch:typedoc-plugin-markdown@npm%3A4.2.6#~/.yarn/patches/typedoc-plugin-markdown-npm-4.2.6-525bc81e4a.patch"
     typescript: "npm:~5.5.4"
   languageName: unknown
   linkType: soft
@@ -13270,12 +13270,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-markdown@npm:^4.2.6":
+"typedoc-plugin-markdown@npm:4.2.6":
   version: 4.2.6
   resolution: "typedoc-plugin-markdown@npm:4.2.6"
   peerDependencies:
     typedoc: 0.26.x
   checksum: 10c0/73c28d95b50c05326b03775ed89de4ca739a9a61579268c0fa8cd735268df93e27ef13c26e996aa8930f647eff3f6666ceeb78cfc5391b608a53cceb34aa161c
+  languageName: node
+  linkType: hard
+
+"typedoc-plugin-markdown@patch:typedoc-plugin-markdown@npm%3A4.2.6#~/.yarn/patches/typedoc-plugin-markdown-npm-4.2.6-525bc81e4a.patch":
+  version: 4.2.6
+  resolution: "typedoc-plugin-markdown@patch:typedoc-plugin-markdown@npm%3A4.2.6#~/.yarn/patches/typedoc-plugin-markdown-npm-4.2.6-525bc81e4a.patch::version=4.2.6&hash=bd3ce5"
+  peerDependencies:
+    typedoc: 0.26.x
+  checksum: 10c0/d34cb0b11924e1ce1872a59659c14f7d0cbcccdd35f345ae29aeddac4353733638111c05796b1d729059cbe006abca81e6ae1139e4ba0b7617b7f9519171ef25
   languageName: node
   linkType: hard
 
