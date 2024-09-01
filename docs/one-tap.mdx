@@ -201,7 +201,7 @@ await GoogleOneTapSignIn.signOut(user.id);
 
 signature: (`params`: [`RequestAuthorizationParams`](api#requestauthorizationparams)) => `Promise`\<[`AuthorizationResponse`](api#authorizationresponse)\>
 
-The underlying Android SDK separates authentication and authorization - that means that on Android you can request an access token and call Google APIs on behalf of the user without signing the user in before that.
+The underlying Android SDK separates authentication and authorization - that means that on Android you can request an access token and call Google APIs on behalf of the user without previously signing the user in.
 
 This method is used to request extra authorization from the user. Use this on Android to obtain server-side access (offline access) to the user's data or for requesting an access token that has access to additional scopes.
 
