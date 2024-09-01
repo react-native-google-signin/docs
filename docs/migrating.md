@@ -67,4 +67,24 @@ await GoogleOneTapSignIn.requestAuthorization({
 ### Original Sign In
 
 1. Follow step 2. from above for `signIn`, `addScopes` and `signInSilently` methods.
-2. remove `SIGN_IN_REQUIRED` mentions. This case is now handled with [`NoSavedCredentialFound`](api#nosavedcredentialfound) object.
+2. remove `SIGN_IN_REQUIRED` mentions. This case is now handled with [`NoSavedCredentialFound`](api#nosavedcredentialfound) object:
+
+```diff
+const getCurrentUserInfo = async () => {
+  try {
+    const response = await GoogleSignin.signInSilently();
++    if (isSuccessResponse(response)) {
++        setState({ userInfo: response.data })
++    } else if (isNoSavedCredentialFoundResponse(response)) {
++        // user has not signed in yet
++    }
+-    setState({ userInfo: response });
+  } catch (error) {
+-    if (error.code === statusCodes.SIGN_IN_REQUIRED) {
+-      // user has not signed in yet
+-    } else {
+-      // some other error
+-    }
+  }
+};
+```

@@ -83,10 +83,10 @@ const signIn = async () => {
     await GoogleSignin.hasPlayServices();
     const response = await GoogleOneTapSignIn.signIn();
 
-    if (response.type === 'success') {
+    if (isSuccessResponse(response)) {
       // read user's info
       console.log(response.data);
-    } else if (response.type === 'noSavedCredentialFound') {
+    } else if (isNoSavedCredentialFoundResponse(response)) {
       // Android and Apple only.
       // No saved credential found, call `createAccount`
     }

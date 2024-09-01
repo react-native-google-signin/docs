@@ -69,9 +69,9 @@ import {
 const signIn = async () => {
   try {
     await GoogleSignin.hasPlayServices();
-    const { type, data } = await GoogleSignin.signIn();
-    if (type === 'success') {
-      setState({ userInfo: data });
+    const response = await GoogleSignin.signIn();
+    if (isSuccessResponse(response)) {
+      setState({ userInfo: response.data });
     } else {
       // sign in was cancelled by user
     }
@@ -111,7 +111,7 @@ You may not need this call: you can supply required scopes to the `configure` ca
 Example:
 
 ```js
-const user = await GoogleSignin.addScopes({
+const response = await GoogleSignin.addScopes({
   scopes: ['https://www.googleapis.com/auth/user.gender.read'],
 });
 ```
@@ -129,10 +129,10 @@ To see how to handle errors read [`signIn()` method](#signin)
 ```ts
 const getCurrentUser = async () => {
   try {
-    const { type, data } = await GoogleSignin.signInSilently();
-    if (type === 'success') {
-      setState({ userInfo: data });
-    } else if (result === 'noSavedCredentialFound') {
+    const response = await GoogleSignin.signInSilently();
+    if (isSuccessResponse(response)) {
+      setState({ userInfo: response.data });
+    } else if (isNoSavedCredentialFoundResponse(response)) {
       // user has not signed in yet
     }
   } catch (error) {
