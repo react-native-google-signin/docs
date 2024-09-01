@@ -35,7 +35,7 @@ import {
 
 signature: (`params`: [`OneTapConfigureParams`](api#onetapconfigureparams)) => `void`
 
-It is mandatory to call this method before attempting to call any of the sign-in methods. This method is synchronous meaning you can call e.g. `signIn` right after it. Typically, you would call `configure` only once, soon after your app starts.
+It is mandatory to call this method before attempting to call any of the sign-in methods. This method is synchronous, meaning you can call e.g. `signIn` right after it. Typically, you would call `configure` only once, soon after your app starts.
 
 `webClientId` is a required parameter. Use "autoDetect" for [automatic webClientId detection](#automatic-webclientid-detection). All other parameters are optional.
 

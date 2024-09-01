@@ -21,7 +21,7 @@ import {
 
 signature: (`options`: [`ConfigureParams`](api#configureparams)) => `void`
 
-It is mandatory to call this method before attempting to call `signIn()` and `signInSilently()`. This method is synchronous meaning you can call `signIn` / `signInSilently` right after it. Typically, you would call `configure` only once, soon after your app starts. All parameters are optional.
+It is mandatory to call this method before attempting to call `signIn()` and `signInSilently()`. This method is synchronous, meaning you can call `signIn` / `signInSilently` right after it. Typically, you would call `configure` only once, soon after your app starts. All parameters are optional.
 
 Example usage with default options: you'll get user email and basic profile info.
 
@@ -82,7 +82,7 @@ const signIn = async () => {
           // operation (eg. sign in) already in progress
           break;
         case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
-          // android only, play services not available or outdated
+          // Android only, play services not available or outdated
           break;
         default:
         // some other error happened
