@@ -54,3 +54,12 @@ div[class^='announcementBar'] {
   );
   font-weight: bold;
 }
+
+blockquote {
+  background-color: rgb(246, 248, 250);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+[data-theme='dark'] blockquote {
+  background-color: #282A36;
+}

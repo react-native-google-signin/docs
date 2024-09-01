@@ -1,0 +1,14 @@
+diff --git a/dist/theme/context/partials/member.typeDeclarationTable.js b/dist/theme/context/partials/member.typeDeclarationTable.js
+index fb4c85bd702f1d1b165caeecfea32ca54150b614..f0ab06f6d7d3b90cea01e977f190d5bf00cf47bb 100644
+--- a/dist/theme/context/partials/member.typeDeclarationTable.js
++++ b/dist/theme/context/partials/member.typeDeclarationTable.js
+@@ -29,7 +29,8 @@ function typeDeclarationTable(model, options) {
+     const rows = [];
+     declarations.forEach((declaration) => {
+         const row = [];
+-        row.push((0, markdown_1.backTicks)(declaration.name));
++        const name = declaration.name+ (declaration.flags.isOptional ? "?" : '')
++        row.push((0, markdown_1.backTicks)(name));
+         row.push(this.partials.someType(declaration.type));
+         if (hasDefaultValues) {
+             row.push((0, utils_1.escapeChars)(!declaration.defaultValue || declaration.defaultValue === '...'

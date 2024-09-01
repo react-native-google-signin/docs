@@ -12,9 +12,11 @@ Available exclusively to GitHub sponsors, this version offers:
 
 ✅ One-tap sign-in support for [Android](https://developers.google.com/identity/android-credential-manager) and [Web](https://developers.google.com/identity/gsi/web/guides/features), with an API compatibility layer for iOS and macOS.
 
+✅ [Automatic webClientId detection](one-tap#automatic-webclientid-detection) for Firebase.
+
 ✅ Support for macOS (using react-native-macOS).
 
-Your sponsorship enables continued maintenance and development of the module and contributions to upstream SDKs [1](https://github.com/openid/AppAuth-iOS/pull/788), [2](https://github.com/google/GoogleSignIn-iOS/pull/402). Thank you for supporting this project! ❤️
+Your sponsorship enables continued maintenance and development of the module and contributions to upstream SDKs (such as [1](https://github.com/openid/AppAuth-iOS/pull/788), [2](https://github.com/google/GoogleSignIn-iOS/pull/402)). Thank you for supporting this project! ❤️
 
 ### Public Version
 
@@ -22,11 +24,11 @@ Available on the public npm registry, this version does not include One-tap sign
 
 ## Accessing the private package for sponsors
 
-[Upon sponsoring](https://github.com/sponsors/vonovak) (please use specifically the tiers that mention this project!), you will get access to the private package and to the private repo with the sources and examples.
+[Upon sponsoring](https://github.com/sponsors/vonovak) (please use specifically the tiers that mention this project!), you will get an invitation to access the private package and to the private repo with the sources and examples.
 
 Three steps are needed to access the sponsor package, which is hosted on [GitHub npm packages registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry).
 
-1. [Become a sponsor](https://github.com/sponsors/vonovak) and accept private repository invitation - it takes just a few clicks.
+1. [Become a sponsor](https://github.com/sponsors/vonovak) and accept the private repository invitation - it takes just a few clicks.
 
 2. [Obtain here](https://github.com/settings/tokens) a Personal Access Token with `packages:read` permission.
 
@@ -67,13 +69,15 @@ If you use another package manager ([such as bun](https://bun.sh/docs/install/re
 
 The package requires React Native 0.60 or higher.
 
-If you're using the [New Architecture](https://reactnative.dev/docs/new-architecture-intro), you need to be on React Native 0.72 or higher.
+If you're using the [New Architecture](https://reactnative.dev/docs/new-architecture-intro), you need to be on React Native 0.72 or higher but it's strongly recommended to use the latest version available.
 
 ## Installing
 
 ```bash
-yarn add @react-native-google-signin/google-signin
+yarn add @react-native-google-signin/google-signin@latest
 ```
+
+If you're a sponsor, open the npm lockfile (`yarn.lock` or `package-lock.json`) and verify that the package is fetched from the GitHub registry (the entry will point to `npm.pkg.github.com`, not `registry.npmjs.org`). If it's not, it means that your package manager is not configured correctly.
 
 There are several guides to follow now:
 

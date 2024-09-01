@@ -23,5 +23,6 @@ yarn-error.log*
 .yarn/*
 !.yarn/releases
 !.yarn/plugins
+!.yarn/patches
 
 .idea

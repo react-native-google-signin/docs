@@ -1,0 +1,90 @@
+---
+sidebar_position: 90
+sidebar_label: Migrating
+---
+
+# Migrating to new JS API
+
+## One-tap sign in module
+
+1. Add the [`configure`](one-tap#configure) method to your code. This method is required to be called to configure the module.
+
+2. Change the `signIn`, `createAccount`, `presentExplicitSignIn`, and `requestAuthorization` methods to use the new apis built on [`OneTapResponse`](/docs/api#onetapresponse):
+
+```diff
+const signIn = async () => {
+  try {
+-    const userInfo = await GoogleOneTapSignIn.signIn({
+-      webClientId: `autoDetect`, // works only if you use Firebase
+-      iosClientId: config.iosClientId, // only needed if you're not using Firebase
+-    });
+-    setState({ userInfo });
++    const response = await GoogleOneTapSignIn.signIn();
++
++    if (response.type === 'success') {
++      setState({ userInfo: response.data });
++    } else if (response.type === 'noSavedCredentialFound') {
++      // Android and Apple only. No saved credential found, call `createAccount`
++    }
+
+  } catch (error) {
+    if (isErrorWithCode(error)) {
+      switch (error.code) {
+-        case statusCodes.NO_SAVED_CREDENTIAL_FOUND:
+-          // Android and Apple only. No saved credential found, call `createAccount`
+-          break;
+-        case statusCodes.SIGN_IN_CANCELLED:
+-          // sign in was cancelled
+-          break;
+        case statusCodes.ONE_TAP_START_FAILED:
+          // Android-only, you probably have hit rate limiting.
+          // On Android, you can still call `presentExplicitSignIn` in this case.
+          break;
+        case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
+          // Android-only: play services not available or outdated
+          // Web: when calling an unimplemented api (requestAuthorization)
+          break;
+        default:
+        // something else happened
+      }
+    } else {
+      // an error that's not related to google sign in occurred
+    }
+  }
+};
+```
+
+3. If requesting offline access in `requestAuthorization` on Android, add `enabled: true`:
+
+```diff
+await GoogleOneTapSignIn.requestAuthorization({
+  offlineAccess: {
++      enabled: true,
+  },
+});
+```
+
+### Original Sign In
+
+1. Follow step 2. from above for `signIn`, `addScopes` and `signInSilently` methods.
+2. remove `SIGN_IN_REQUIRED` mentions. This case is now handled with [`NoSavedCredentialFound`](api#nosavedcredentialfound) object:
+
+```diff
+const getCurrentUserInfo = async () => {
+  try {
+    const response = await GoogleSignin.signInSilently();
++    if (isSuccessResponse(response)) {
++        setState({ userInfo: response.data })
++    } else if (isNoSavedCredentialFoundResponse(response)) {
++        // user has not signed in yet
++    }
+-    setState({ userInfo: response });
+  } catch (error) {
+-    if (error.code === statusCodes.SIGN_IN_REQUIRED) {
+-      // user has not signed in yet
+-    } else {
+-      // some other error
+-    }
+  }
+};
+```
