@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "docusaurus start",
+    "startDG": "ENABLE_DOC_GEN=true docusaurus start",
+    "start": "ENABLE_DOC_GEN=false docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -16,25 +17,25 @@
     "prettier:check": "prettier --list-different 'docs/**/*.{md,mdx}'"
   },
   "dependencies": {
-    "@docusaurus/core": "^3.4.0",
-    "@docusaurus/plugin-ideal-image": "^3.4.0",
-    "@docusaurus/preset-classic": "^3.4.0",
+    "@docusaurus/core": "^3.5.2",
+    "@docusaurus/plugin-ideal-image": "^3.5.2",
+    "@docusaurus/preset-classic": "^3.5.2",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.1.0",
-    "docusaurus-lunr-search": "^3.3.2",
+    "docusaurus-lunr-search": "^3.4.0",
     "prism-react-renderer": "^2.3.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.4.0",
-    "@docusaurus/tsconfig": "^3.4.0",
-    "@docusaurus/types": "^3.4.0",
-    "docusaurus-plugin-typedoc": "^0.22.0",
+    "@docusaurus/module-type-aliases": "^3.5.2",
+    "@docusaurus/tsconfig": "^3.5.2",
+    "@docusaurus/types": "^3.5.2",
+    "docusaurus-plugin-typedoc": "^1.0.5",
     "prettier": "^3.3.2",
-    "typedoc": "^0.25.7",
-    "typedoc-plugin-markdown": "^3.17.1",
-    "typescript": "~5.2.2"
+    "typedoc": "^0.26.6",
+    "typedoc-plugin-markdown": "^4.2.6",
+    "typescript": "~5.5.4"
   },
   "browserslist": {
     "production": [

@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Web setup guide
 
-On the web, there is one extra step necessary to use the library: to load the Google Client Library and make it available in the browser **before** calling any of the APIs exposed by this package.
+On the web, there is one extra step necessary to use the library: you need to load the Google Client Library and make it available in the browser **before** calling any of the APIs exposed by this package.
 
 :::tip
 Web support is only available to sponsors️. [It takes just a few clicks to get access](/docs/install.mdx#accessing-the-private-package-for-sponsors) ❤️.
@@ -62,6 +62,6 @@ useEffect(() => {
 
 After the script is loaded, you can call the functions for signing in and render the `WebGoogleSigninButton`.
 
-If you call any of the One-tap functions before the client library is loaded, such calls will reject with the [`PLAY_SERVICES_NOT_AVAILABLE` error code](../errors#status-codes).
+If you call any of the One-tap functions before the client library is loaded, such calls trigger the [`onError` callback](/docs/api#webonetapsignincallbacks) with the [`PLAY_SERVICES_NOT_AVAILABLE` error code](../errors#status-codes).
 
 You can read the official docs for loading the Client Library [here](https://developers.google.com/identity/gsi/web/guides/client-library).
