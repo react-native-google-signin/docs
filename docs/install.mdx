@@ -41,7 +41,7 @@ import TabItem from '@theme/TabItem';
   <TabItem value="classic" label="npm / yarn v1">
     create a `.npmrc` file in your project root with the following content:
 
-```
+```txt title=".npmrc"
 //npm.pkg.github.com/:_authToken=${NPM_TOKEN_GOOGLE_SIGN_IN}
 
 @react-native-google-signin:registry=https://npm.pkg.github.com/
@@ -52,7 +52,7 @@ import TabItem from '@theme/TabItem';
   <TabItem value="yarn v3+" label="yarn v3+">
     create a `.yarnrc.yml` file in your project root with the following content:
 
-```yml
+```yml title=".yarnrc.yml"
 npmScopes:
   react-native-google-signin:
     npmRegistryServer: https://npm.pkg.github.com
@@ -77,7 +77,7 @@ If you're using the [New Architecture](https://reactnative.dev/docs/new-architec
 yarn add @react-native-google-signin/google-signin@latest
 ```
 
-If you're a sponsor, open the npm lockfile (`yarn.lock` or `package-lock.json`) and verify that the package is fetched from the GitHub registry (the entry will point to `npm.pkg.github.com`, not `registry.npmjs.org`). If it's not, it means that your package manager is not configured correctly.
+If you're a sponsor, open the npm lockfile (`yarn.lock` or `package-lock.json`) and verify that the package is fetched from the GitHub registry (the entry must point to `npm.pkg.github.com`, not `registry.npmjs.org`). If it does not, it means that your package manager is not configured correctly.
 
 There are several guides to follow now:
 
