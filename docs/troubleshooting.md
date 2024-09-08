@@ -22,7 +22,7 @@ This is always (_always_!) a configuration mismatch between your app and Google'
 Follow these pointers:
 
 - [Search the issue tracker](https://github.com/react-native-google-signin/google-signin/issues?q=is%3Aissue+DEVELOPER+ERROR+is%3Aclosed) for old reports of the error
-- Make sure that your SHA certificate fingerprints and package name you entered in Firebase / Google Cloud Console are correct. If you are in development, make sure your development signing fingerprint is added as well.
+- Make sure that your SHA certificate fingerprints and package name you entered in Firebase / Google Cloud Console are correct. [See how your app was signed](https://x.com/vonovak/status/1692127631473529226). If you are in development, make sure your development signing fingerprint is added as well.
 - Follow the [setup guide](/docs/setting-up/get-config-file) and perform its steps once again.
 - If you're passing `webClientId` in configuration object to `GoogleSignin.configure()` make sure it's correct and that it is of type web (NOT Android!). You can get your `webClientId` from [Google Developer Console](https://console.developers.google.com/apis/credentials). It is listed under "OAuth 2.0 client IDs".
 
