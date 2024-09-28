@@ -49,9 +49,9 @@ To obtain `iosUrlScheme`, go to the [Google Cloud Console](https://console.cloud
 }
 ```
 
-### Expo and Firebase
+### Expo and Firebase Authentication
 
-If you are using Firebase, [obtain the 2 Firebase config files](./get-config-file) and place them into your project. Then specify the path to the files:
+If you are using Firebase Authentication, [obtain the 2 Firebase config files](./get-config-file) and place them into your project. Then specify the path to the files:
 
 ```json title="app.json|js"
 {
