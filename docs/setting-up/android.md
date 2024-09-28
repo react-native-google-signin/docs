@@ -23,11 +23,11 @@ But if you're using RN 0.72 or older, you need to either:
 
 - Follow [this](./get-config-file) guide to set up your project and get the configuration information which you'll need later.
 
-### Without Firebase
+### Without Firebase Authentication
 
 You don't need to do any more modifications.
 
-### With Firebase
+### With Firebase Authentication
 
 #### 1. Download the configuration file
 
@@ -68,10 +68,10 @@ apply plugin: 'com.google.gms.google-services'
 
 This ends the setup for Firebase.
 
+## Rebuild the app
+
+Do not forget to rebuild the app after the setup is done.
+
 ## Choose Dependency versions (optional)
 
 The library depends on `com.google.android.gms:play-services-auth`, as seen in [build.gradle](https://github.com/react-native-community/google-signin/blob/master/android/build.gradle). If needed, you may control their versions by the `ext` closure, as seen in the code snippet above.
-
-## Running on simulator or device
-
-Make sure you have an emulator / device with Google Play Services installed.
