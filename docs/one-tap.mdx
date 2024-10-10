@@ -35,7 +35,7 @@ import {
 
 signature: (`params`: [`OneTapConfigureParams`](api#onetapconfigureparams)) => `void`
 
-It is mandatory to call this method before attempting to call any of the sign-in methods. This method is synchronous, meaning you can call e.g. `signIn` right after it. Typically, you would call `configure` only once, soon after your app starts.
+It is mandatory to call `configure` before attempting to call any of the sign-in methods. This method is synchronous, meaning you can call e.g. `signIn` right after it. Typically, you would call `configure` only once, soon after your app starts.
 
 `webClientId` is a required parameter. Use "autoDetect" for [automatic webClientId detection](#automatic-webclientid-detection). All other parameters are optional.
 
@@ -43,6 +43,47 @@ It is mandatory to call this method before attempting to call any of the sign-in
 GoogleOneTapSignIn.configure({
   webClientId: 'autoDetect',
 });
+```
+
+---
+
+### `checkPlayServices`
+
+✨since v17.3.0
+
+signature: (`showErrorResolutionDialog`?: `boolean`): `Promise`\<[`PlayServicesInfo`](api#playservicesinfo)\>
+
+The behavior of `checkPlayServices` varies across platforms:
+
+- Android: The function resolves if the device has Play Services installed and their version is >= the minimum required version. Otherwise, it rejects with `statusCodes.PLAY_SERVICES_NOT_AVAILABLE` error code, and more information in `userInfo` field (see [below](#example-code-snippet)).
+
+On Android, presence of up-to-date Google Play Services is required to call any of the provided authentication and authorization methods. It is therefore necessary to call `checkPlayServices` any time prior to calling the authentication / authorization methods and only call those if `checkPlayServices` is successful.
+
+The `showErrorResolutionDialog` parameter (default `true`) controls whether a dialog that helps to resolve an error is shown (only in case the error is user-resolvable).
+
+Some errors are user-resolvable (e.g. when Play Services are outdated, or disabled) while other errors cannot be resolved (e.g. when the phone doesn't ship Play Services at all - which is the case with some device vendors).
+
+<details>
+  <summary>Dialog screenshots</summary>
+
+![prompt install](/img/prompt-install.png)
+![prompt enable](/img/prompt-enable.png)
+
+</details>
+
+- Apple: Play Services are an Android-only concept and are not needed on Apple. Hence, the method always resolves with:
+
+```ts
+{
+  minRequiredVersion: -1,
+  installedVersion: -1,
+}
+```
+
+- Web: resolves (with the same value as on Apple) when the Google Client Library [is loaded](setting-up/web), rejects otherwise.
+
+```ts title="Example of showPlayServicesUpdateDialog() method"
+await GoogleOneTapSignIn.showPlayServicesUpdateDialog();
 ```
 
 ---
@@ -69,6 +110,8 @@ If there is no user that was previously signed in, the promise resolves with [`N
 
 </details>
 
+#### Example code snippet
+
 ```ts title="Example of calling the signIn() method" showLineNumbers
 import {
   GoogleOneTapSignIn,
@@ -80,7 +123,7 @@ import {
 // Somewhere in your code
 const signIn = async () => {
   try {
-    await GoogleSignin.hasPlayServices();
+    await GoogleOneTapSignIn.checkPlayServices();
     const response = await GoogleOneTapSignIn.signIn();
 
     if (isSuccessResponse(response)) {
@@ -98,8 +141,10 @@ const signIn = async () => {
           // You can still call `presentExplicitSignIn` in this case.
           break;
         case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
-          // Android: play services not available or outdated
+          // Android: play services not available or outdated.
+          // Get more details from `error.userInfo`.
           // Web: when calling an unimplemented api (requestAuthorization)
+          // or when the Google Client Library is not loaded yet.
           break;
         default:
         // something else happened
