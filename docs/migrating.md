@@ -9,7 +9,7 @@ sidebar_label: Migrating
 
 1. Add the [`configure`](one-tap#configure) method to your code. This method is required to be called to configure the module.
 
-2. Change the `signIn`, `createAccount`, `presentExplicitSignIn`, and `requestAuthorization` methods to use the new apis built on [`OneTapResponse`](/docs/api#onetapresponse):
+2. Change the `signIn`, `createAccount`, `presentExplicitSignIn`, and `requestAuthorization` methods to use the new apis: That means that the data you previously accessed directly on `userInfo` (see below - for example `userInfo.name`) will now be nested in `userInfo.data` (e.g. `userInfo.data.name`). See [`OneTapResponse` type](/docs/api#onetapresponse):
 
 ```diff
 const signIn = async () => {
@@ -18,7 +18,7 @@ const signIn = async () => {
 -      webClientId: `autoDetect`, // works only if you use Firebase
 -      iosClientId: config.iosClientId, // only needed if you're not using Firebase
 -    });
--    setState({ userInfo });
+-    setState({ userInfo }); // use e.g. `userInfo.name`
 +    const response = await GoogleOneTapSignIn.signIn();
 +
 +    if (response.type === 'success') {
@@ -64,7 +64,7 @@ await GoogleOneTapSignIn.requestAuthorization({
 });
 ```
 
-### Original Sign In
+## Original Sign In
 
 1. Follow step 2. from above for `signIn`, `addScopes` and `signInSilently` methods.
 2. remove `SIGN_IN_REQUIRED` mentions. This case is now handled with [`NoSavedCredentialFound`](api#nosavedcredentialfound) object:
