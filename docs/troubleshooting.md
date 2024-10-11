@@ -32,7 +32,7 @@ If you get a `DEVELOPER_ERROR` when using Internal App Sharing, it is because Go
 
 See [the previous paragraph](#developer_error).
 
-### Changing Google Play Services version
+### Changing `play-services-auth` version
 
 See ["Choose Dependency versions"](setting-up/android.md#choose-dependency-versions-optional) above.
 
