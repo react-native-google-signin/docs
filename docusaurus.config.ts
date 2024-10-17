@@ -120,12 +120,12 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    announcementBar: {
-      id: 'announcementBar',
-      content:
-        '<a target="_blank" href="https://github.com/react-native-google-signin/google-signin/issues/1259">Bridgeless mode</a> support is now publicly available!',
-      isCloseable: true,
-    },
+    // announcementBar: {
+    //   id: 'announcementBar',
+    //   content:
+    //     '<a target="_blank" href="https://github.com/react-native-google-signin/google-signin/issues/1259">Bridgeless mode</a> support is now publicly available!',
+    //   isCloseable: true,
+    // },
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
       title: 'RN Google Sign In',
