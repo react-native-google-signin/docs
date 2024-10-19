@@ -18,7 +18,7 @@ This is the easiest and recommended way to implement Google Sign In. It is a sig
 :::tip
 The functionality covered in this page is only available to sponsors️. [It takes just a few clicks to get access](install#accessing-the-private-package-for-sponsors) ❤️.
 
-This module is being actively developed, and new features are added regularly. Since the first release in July 2023, there has been more than 1 release per month on average (last updated in September 2024).
+This module is being actively developed, and new features are added regularly. Since the first release in July 2023, there has been more than 1 release per month on average.
 :::
 
 Note that on Apple and Android, you can combine the one-tap methods with those one from the [Original Google Sign In](original). To do that, use the One-tap sign in to sign in the user. Then call `signInSilently()` and then (for example) `getCurrentUser()` to get the current user's information. However, this shouldn't be necessary because this module should cover all your needs. Please open an issue if that's not the case.
@@ -117,7 +117,8 @@ import {
   GoogleOneTapSignIn,
   statusCodes,
   isErrorWithCode,
-  GoogleSignin,
+  isSuccessResponse,
+  isNoSavedCredentialFoundResponse,
 } from '@react-native-google-signin/google-signin';
 
 // Somewhere in your code
@@ -151,6 +152,7 @@ const signIn = async () => {
       }
     } else {
       // an error that's not related to google sign in occurred
+      console.error(error);
     }
   }
 };
