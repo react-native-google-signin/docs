@@ -24,6 +24,10 @@ If you use Expo, please follow [this guide](/setting-up/expo.md) instead. This g
 
 ![link config](/img/urlTypes.png)
 
+## Rebuild the native project
+
+Do not forget to rebuild the native app after the setup is done.
+
 ### Optional: modify your app to respond to the URL scheme
 
 This is only required if you have multiple listeners for `openURL` - for instance if you have both Google and Facebook OAuth (as seen in the code snippet below).

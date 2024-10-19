@@ -68,9 +68,9 @@ apply plugin: 'com.google.gms.google-services'
 
 This ends the setup for Firebase.
 
-## Rebuild the app
+## Rebuild the native project
 
-Do not forget to rebuild the app after the setup is done.
+Do not forget to rebuild the native app after the setup is done.
 
 ## Choose Dependency versions (optional)
 
