@@ -6,25 +6,29 @@ sidebar_position: 15
 
 Please note that you **do not** need Firebase to configure Google Sign In. However, if you use it, it's a little easier to set up the sign in experience because Firebase gives you one file to download and put into your project.
 
+Configuration information obtained in this guide is used in later steps of the setup and in the [`configure()` call](/docs/one-tap#configure).
+
 ## Android
 
-Read below on how to set up Google Sign In for your Android app.
+Follow the 2 steps below to set up Google Sign In for your Android app.
 
 :::danger
 Completing this guide is crucial for Google Sign-In to work on Android. If not done correctly, you will get the infamous `DEVELOPER_ERROR` error [(how to troubleshoot it)](/docs/troubleshooting#developer_error).
 :::
 
-### Obtain SHA-1 certificate fingerprints
+### Step 1: Obtain SHA-1 certificate fingerprints
 
-You likely have multiple signing configurations - for example for building local debug and release APKs, builds on [Expo EAS](https://docs.expo.dev/app-signing/managed-credentials/#inspecting-credentials-configuration), and [Play App Signing](https://support.google.com/googleplay/android-developer/answer/9842756?hl=en) for production deployments. You will need to get the SHA1 certificate fingerprints
-for _all_ keystores you intend to use and enter them _all_ in Firebase or Google Cloud Console.
+You likely have multiple signing configurations - for example for building debug and release APKs locally or building on [Expo EAS](https://docs.expo.dev/app-signing/managed-credentials/#inspecting-credentials-configuration). Then there's the [Play App Signing](https://support.google.com/googleplay/android-developer/answer/9842756?hl=en) for store deployments - while the Google Play Store does not rebuild your app, it may _re-sign_ it using its own signing configuration.
+
+First, you need to get the SHA1 certificate fingerprints for _all_ of these signing configurations using the instructions below.
+Then go to "Step 2".
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs>
   <TabItem value="eas" label="When using Expo EAS">
-    If you're using Expo EAS, read [credentials docs](https://docs.expo.dev/app-signing/managed-credentials/#inspecting-credentials-configuration) to learn how to obtain information about how your app is signed with EAS.
+    If you're using Expo EAS, run `eas credentials` to obtain the Keystore information, which includes the SHA-1 fingerprint. See [EAS credentials docs](https://docs.expo.dev/app-signing/managed-credentials/#inspecting-credentials-configuration) to learn more.
   </TabItem>
 <TabItem value="local" label="When developing locally">
   1. From your project root, `cd android && ./gradlew signingReport`.
@@ -42,7 +46,9 @@ import TabItem from '@theme/TabItem';
   </TabItem>
 </Tabs>
 
-### Add SHA-1 hashes to Firebase or Google Cloud Console
+### Step 2: Add SHA-1 hashes to Firebase or Google Cloud Console
+
+Using the SHA-1 fingerprints obtained in the previous step, follow the instructions below.
 
 <Tabs>
   <TabItem value="firebase" label="When using Firebase">
@@ -58,11 +64,16 @@ import TabItem from '@theme/TabItem';
   </TabItem>
 
 <TabItem value="cloud-console" label="When not using Firebase">
-  Follow the "To create an OAuth 2.0 client ID in the console" instructions
-  [here](https://support.google.com/cloud/answer/6158849?hl=en).
+  Follow the "Create authorization credentials" instructions
+  [here](https://developers.google.com/identity/protocols/oauth2/native-app#android) to create an "OAuth client ID" of type Android for each of the SHA-1 fingerprints you obtained - see screenshot below.
+
+![Google cloud console - creating Android OAuth ID](/img/android-client-id.png)
+
 </TabItem>
 
 </Tabs>
+
+---
 
 ## iOS
 
@@ -70,9 +81,10 @@ Read below on how to set up Google Sign In for your iOS app.
 
 <Tabs>
   <TabItem value="firebase" label="When using Firebase">
-1. Sign in to Firebase and open your project.
-2. Click the Settings icon and select Project settings.
-3. In the "Your apps" card, select the app.
+
+1. Sign in to [Firebase Console](https://console.firebase.google.com/) and open your project.
+2. Click the settings icon and go to "Project settings".
+3. Scroll down to "Your apps" section, and select the app.
 4. Check that "Bundle ID" is correct.
 5. Download the `GoogleService-Info.plist` file.
 
@@ -80,13 +92,18 @@ Read below on how to set up Google Sign In for your iOS app.
 
   <TabItem value="cloud-console" label="When not using Firebase">
 
-    You need to obtain the `reversed client id`.
+    Remember that _all_ created client IDs can be found in the [Google Cloud Console](https://console.cloud.google.com/apis/credentials?project=_).
 
-    Follow the instructions at ["Get an OAuth client ID"](https://developers.google.com/identity/sign-in/ios/start-integrating#get_an_oauth_client_id), ["Get an OAuth server client ID"](https://developers.google.com/identity/sign-in/ios/start-integrating#server_client_id) and then ["Configure your application project"](https://developers.google.com/identity/sign-in/ios/start-integrating#configure_app_project).
+    Obtain the iOS OAuth Client ID and "iOS URL scheme" (also known as `reversed client id`): Create an OAuth Client ID of type iOS in [Google Cloud Console](https://console.cloud.google.com/apis/credentials?project=_). Alternatively, use <a href="https://console.developers.google.com/henhouse/?pb=%5B%22hh-0%22%2Cnull%2Cnull%2Cnull%2C%22https%3A%2F%2Fdevelopers.google.com%22%2Cnull%2Cnull%2Cnull%2C%22Configure%20a%20project%20for%20Google%20Sign-In%22%2C1%2Cnull%2Cnull%2C0%2C1%2Cnull%2Cnull%2Cnull%2Cnull%2C0%2Cnull%2Cnull%2C0%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2C0%2Cnull%2Cnull%2Cnull%2C0%5D" target="_blank">this wizard</a>.
 
-    When done configuring your project (check you selected the correct project in the console), take note of Web Client ID which you may need later. It can be found [here](https://console.developers.google.com/apis/credentials).
-    The Client IDs are under the OAuth section.
+    We will use these later in the setup.
 
   </TabItem>
 
 </Tabs>
+
+---
+
+## Web Client ID (optional)
+
+For many use cases, a Web Client ID is needed (the [`configure()`](/docs/one-tap#configure) call). To obtain a Web Client ID, go to [Google Cloud Console](https://console.cloud.google.com/apis/credentials?project=_) and find an existing one (it may be already created by Firebase) or create a new OAuth Client ID of type **Web**.

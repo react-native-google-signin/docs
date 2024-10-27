@@ -8,13 +8,13 @@ sidebar_position: 1
 
 :::info
 
-With Expo SDK 50, minimum iOS version was bumped to 13.4. In case you get an error during pod install step, please consult release notes to determine the right version of this package to install.
+With Expo SDK 50, minimum iOS version was bumped to 13.4. In case you get an error during pod install step, please see [release notes](https://github.com/react-native-google-signin/google-signin/releases/tag/v11.0.0) to determine the right version of this package to install.
 
 :::
 
 :::note
 
-This package cannot be used in ["Expo Go"](https://docs.expo.dev/workflow/overview/#expo-go-an-optional-tool-for-learning) because it requires custom native code.
+This package cannot be used in [Expo Go](https://docs.expo.dev/workflow/overview/#expo-go-an-optional-tool-for-learning) because it requires custom native code.
 
 However, you can add custom native code to an Expo app by using a [development build](https://docs.expo.dev/workflow/overview/#development-builds). Using a development build is the recommended approach for production apps, and is documented in this guide.
 
@@ -32,7 +32,7 @@ After installing the npm package, add a config plugin (read more details below) 
 
 If you're _not_ using Firebase, provide the `iosUrlScheme` option to the config plugin.
 
-To obtain `iosUrlScheme`, go to the [Google Cloud Console](https://console.cloud.google.com/apis/credentials) and copy the "iOS URL scheme" from your iOS client in the "OAuth 2.0 Client IDs" section.
+To obtain `iosUrlScheme`, go to the [Google Cloud Console](https://console.cloud.google.com/apis/credentials?project=_) and copy the "iOS URL scheme" from your iOS client in the "OAuth 2.0 Client IDs" section.
 
 ```json title="app.json|js"
 {
@@ -73,10 +73,7 @@ If you're using the sponsor package:
 
 If you're using Expo SDK >= 50, you're good to go.
 
-But if you're using Expo 49 or older, you need to either:
-
-- install version `12.1.0` of the package
-- or install version >= `13` AND specify `compileSdkVersion` 34 of your project using [Expo BuildProperties](https://docs.expo.dev/versions/latest/sdk/build-properties/#usage)
+But if you're using Expo 49 or older, you need to specify `compileSdkVersion` 34 of your project using [Expo BuildProperties](https://docs.expo.dev/versions/latest/sdk/build-properties/#usage).
 
 ## Rebuild the app
 

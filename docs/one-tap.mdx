@@ -135,6 +135,7 @@ const signIn = async () => {
       // No saved credential found, call `createAccount`
     }
   } catch (error) {
+    console.error(error);
     if (isErrorWithCode(error)) {
       switch (error.code) {
         case statusCodes.ONE_TAP_START_FAILED:
@@ -152,7 +153,6 @@ const signIn = async () => {
       }
     } else {
       // an error that's not related to google sign in occurred
-      console.error(error);
     }
   }
 };

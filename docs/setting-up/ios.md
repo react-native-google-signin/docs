@@ -16,10 +16,14 @@ If you use Expo, please follow [this guide](/setting-up/expo.md) instead. This g
 
 - Follow [this](./get-config-file) guide to get the configuration information which you need for the next steps.
 
+### Firebase Authentication
+
+If you're using Firebase Authentication, download the `GoogleService-Info.plist` file and place it into your Xcode project.
+
 ### Xcode configuration
 
 - Configure URL types in the `Info` panel (see screenshot)
-  - add a URL with scheme set to your `REVERSED_CLIENT_ID` (found inside `GoogleService-Info.plist` or Google Cloud console)
+  - add your "iOS URL scheme" (also known as `reversed client id`), which can be found in [Google Cloud Console](https://console.cloud.google.com/apis/credentials?project=_) under your iOS client ID.
 - If you need to support Mac Catalyst, you will need to enable the Keychain Sharing capability on each build target. No keychain groups need to be added.
 
 ![link config](/img/urlTypes.png)
