@@ -21,7 +21,7 @@ This is always (_always_!) a configuration mismatch between your app and the ser
 
 Follow these pointers:
 
-- Make sure that your SHA certificate fingerprints and Android package name you entered in Firebase / Google Cloud Console are correct.
+- Make sure that your SHA certificate fingerprints and Android package name you entered in [Firebase Console](https://console.firebase.google.com/) / [Google Cloud Console](https://console.cloud.google.com/apis/credentials?project=_) are correct.
 - [See how your app was signed](https://x.com/vonovak/status/1692127631473529226). If you are in development, make sure your development signing fingerprint is added as well.
 - Follow the [setup guide](/docs/setting-up/get-config-file) and perform its steps once again.
 - [Search the issue tracker](https://github.com/react-native-google-signin/google-signin/issues?q=is%3Aissue+DEVELOPER+ERROR+is%3Aclosed) for old reports of the error
@@ -55,4 +55,4 @@ Your `Url Schemes` configuration is incorrect.
 
 If you use Expo, make sure that the [config plugin](setting-up/expo#add-config-plugin) is configured correctly.
 
-In vanilla React Native projects, add URL type like this: ![configure URL schemes](/img/add-url-scheme-ios.png)
+In vanilla React Native projects, add URL type [like this](https://react-native-google-signin.github.io/docs/setting-up/ios#xcode-configuration).
