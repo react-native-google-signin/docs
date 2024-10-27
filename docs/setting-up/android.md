@@ -14,10 +14,7 @@ If you're using the sponsor package:
 
 If you're using RN >= 0.73, you're good to go.
 
-But if you're using RN 0.72 or older, you need to either:
-
-- install version `12.1.0` of the package
-- or install version >= `13` AND specify `compileSdkVersion` 34 in `android/build.gradle` of your project as highlighted below
+But if you're using RN 0.72 or older, you need to specify `compileSdkVersion` 34 in `android/build.gradle` of your project as highlighted below.
 
 ## Google project configuration
 
@@ -31,7 +28,7 @@ You don't need to do any more modifications.
 
 #### 1. Download the configuration file
 
-- Download the configuration file (`google-services.json`) from Firebase into your project according to [this guide](https://developers.google.com/android/guides/google-services-plugin#adding_the_json_file).
+- Download the configuration file (`google-services.json`) from Firebase. Then, place it into your project according to [these instructions](https://developers.google.com/android/guides/google-services-plugin#adding_the_json_file).
 
 #### 2. Update gradle files
 
