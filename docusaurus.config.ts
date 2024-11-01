@@ -126,6 +126,9 @@ const config: Config = {
     //     '<a target="_blank" href="https://github.com/react-native-google-signin/google-signin/issues/1259">Bridgeless mode</a> support is now publicly available!',
     //   isCloseable: true,
     // },
+    colorMode: {
+      respectPrefersColorScheme: true,
+    },
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
       title: 'RN Google Sign In',
