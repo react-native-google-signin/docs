@@ -133,7 +133,7 @@ const getCurrentUser = async () => {
     if (isSuccessResponse(response)) {
       setState({ userInfo: response.data });
     } else if (isNoSavedCredentialFoundResponse(response)) {
-      // user has not signed in yet
+      // user has not signed in yet, or they have revoked access
     }
   } catch (error) {
     // handle errror
