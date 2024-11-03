@@ -100,7 +100,7 @@ Learn more about additional web-only parameters at [Google's reference documenta
 
 | Name          | Type      | Description                                                                                                                                                                                                          |
 | ------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `nonce`?      | `string`  | Currently supported only on the Android and Web. A cryptographically random value used to mitigate replay attacks.                                                                                                   |
+| `nonce`?      | `string`  | A cryptographically random value used to mitigate replay attacks. Supported on all platforms.                                                                                                                        |
 | `skipPrompt`? | `boolean` | Web only. When calling any of the sign-in methods, a prompt is displayed by default on the top-right of the web page. Set this to true to only allow signing in via the `WebGoogleSigninButton`. **Default** `false` |
 
 ---
@@ -256,13 +256,14 @@ On the Web, the signatures of `signIn`, `presentExplicitSignIn`, and `createAcco
 
 ### SignInParams
 
-> **SignInParams**: \{`loginHint`: `string`; \}
+> **SignInParams**: \{`loginHint`: `string`;`nonce`: `string`; \}
 
 #### Type declaration
 
 | Name         | Type     | Description                                                                                                                                                                                                                                            |
 | ------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `loginHint`? | `string` | iOS only. The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/reference/Classes/GIDSignIn#-signinwithpresentingviewcontroller:hint:completion:). |
+| `nonce`?     | `string` | iOS only. A cryptographically random value used to mitigate replay attacks. Currently only available for sponsors. For support across all platforms, use the One-Tap sign in module.                                                                   |
 
 ---
 
