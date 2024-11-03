@@ -192,7 +192,7 @@ Returns a `Promise` that resolves with [`OneTapResponse`](api#onetapresponse) or
 
 ```ts
 await GoogleOneTapSignIn.createAccount({
-  nonce: 'your_nonce',
+  nonce: 'your_nonce', // nonce is supported on all platforms!
 });
 ```
 
@@ -223,7 +223,7 @@ Preferably, call this method only as a reaction to when user taps a "sign in wit
 
 ```ts
 await GoogleOneTapSignIn.presentExplicitSignIn({
-  nonce: 'your_nonce',
+  nonce: 'your_nonce', // nonce is supported on all platforms!
 });
 ```
 
