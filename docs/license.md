@@ -31,7 +31,7 @@ The Sponsor, even after termination of the sponsorship, shall not:
 
 - Re-sell or distribute RNGS, in whole or in part, to any third party.
 - Create a service that allows third parties to use RNGS to build their own products.
-- Develop or distribute a code template, starter kit, library or similar developer resource that includes RNGS.
+- Distribute a code template, starter kit, library or similar developer resource that includes RNGS.
 
 ## 5. Termination and Continuing Rights for Past Sponsors
 
