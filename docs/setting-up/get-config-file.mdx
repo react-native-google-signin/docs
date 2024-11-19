@@ -20,8 +20,8 @@ Completing this guide is crucial for Google Sign-In to work on Android. If not d
 
 You likely have multiple signing configurations - for example for building debug and release APKs locally or building on [Expo EAS](https://docs.expo.dev/app-signing/managed-credentials/#inspecting-credentials-configuration). Then there's the [Play App Signing](https://support.google.com/googleplay/android-developer/answer/9842756?hl=en) for store deployments - while the Google Play Store does not rebuild your app, it may _re-sign_ it using its own signing configuration.
 
-First, you need to get the SHA1 certificate fingerprints for _all_ of these signing configurations using the instructions below.
-Then go to "Step 2".
+First, you need to obtain the SHA1 certificate fingerprints for _all_ of these signing configurations using the instructions below.
+Then, use _all_ of those SHA1 hashes in "Step 2".
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -41,14 +41,14 @@ import TabItem from '@theme/TabItem';
     If it is enabled, you need to take the following steps:
 
 1. In Google Play Console, navigate to: \<Your App\> -> Release section (in the left sidebar) -> Setup -> App Signing.
-2. Under the "App signing key certificate" _and also_ "Upload key certificate", take note of `SHA-1 certificate fingerprint`.
+2. Under the "App signing key certificate" _and also_ "Upload key certificate", take note of `SHA-1 certificate fingerprint`. That's a total of two or more fingerprints (Play Store sometimes has more than one "App signing key certificate"!).
 
   </TabItem>
 </Tabs>
 
 ### Step 2: Add SHA-1 hashes to Firebase or Google Cloud Console
 
-Using the SHA-1 fingerprints obtained in the previous step, follow the instructions below.
+Using _all_ of the SHA-1 fingerprints obtained in the previous step, follow the instructions below.
 
 <Tabs>
   <TabItem value="firebase" label="When using Firebase">
