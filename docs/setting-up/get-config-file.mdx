@@ -18,7 +18,7 @@ Completing this guide is crucial for Google Sign-In to work on Android. If not d
 
 ### Step 1: Obtain SHA-1 certificate fingerprints
 
-You likely have multiple signing configurations - for example for building debug and release APKs locally or building on [Expo EAS](https://docs.expo.dev/app-signing/managed-credentials/#inspecting-credentials-configuration). Then there's the [Play App Signing](https://support.google.com/googleplay/android-developer/answer/9842756?hl=en) for store deployments - while the Google Play Store does not rebuild your app, it may _re-sign_ it using its own signing configuration.
+You probably use multiple signing configurations for your Android app - for example for building debug and release APKs locally or building on [Expo EAS](https://docs.expo.dev/app-signing/managed-credentials/#inspecting-credentials-configuration). Then there's the [Play App Signing](https://support.google.com/googleplay/android-developer/answer/9842756?hl=en) for store deployments - while the Google Play Store does not rebuild your app, it may _re-sign_ it using its own signing configuration.
 
 First, you need to obtain the SHA1 certificate fingerprints for _all_ of these signing configurations using the instructions below.
 Then, use _all_ of those SHA1 hashes in "Step 2".
