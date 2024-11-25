@@ -1,6 +1,6 @@
 # WebGoogleSigninButton
 
-This is the sign-in button that you can use in Web apps. It renders `null` when used in native apps.
+This is the sign-in button that you can use in web apps. It renders `null` when used in native apps.
 It has a slightly different API than the native `GoogleSigninButton` component which is why it exists as a separate component.
 
 :::tip
@@ -11,7 +11,7 @@ The button will _not render_ before the [Google Client API has been loaded](../s
 
 ### How to use this
 
-As the One-tap Guide explains, there are two ways to sign in on the Web: using the One-tap UI or using the Google Sign-In button.
+As the Modern Sign In Guide explains, there are two ways to sign in on the web: using the One-tap UI or using the Google Sign-In button.
 
 One-tap UI may not always be available: This happens if user has [opted out](https://developers.google.com/identity/gsi/web/guides/features#globally_opt_out) or when they close the dialog several times in a row, entering the [cooldown period](https://developers.google.com/identity/gsi/web/guides/features#exponential_cooldown).
 

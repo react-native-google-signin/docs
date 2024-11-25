@@ -6,25 +6,30 @@ sidebar_position: 1
 
 There are two ways to consume the package:
 
-### Sponsor-Only Version
+### 1. Sponsor-Only version
 
 Available exclusively to GitHub sponsors, this version offers:
 
-✅ One-tap sign-in support for [Android](https://developers.google.com/identity/android-credential-manager) and [Web](https://developers.google.com/identity/gsi/web/guides/features), with an API compatibility layer for iOS and macOS.
+✅ The [**Modern Sign In**](/docs/one-tap) built on top of [Credential Manager](https://developers.google.com/identity/android-credential-manager) Google Sign In for Android, [Sign In with Google](https://developers.google.com/identity/gsi/web/guides/features) for web, and [Google Sign-In SDK for iOS and macOS](https://developers.google.com/identity/sign-in/ios/start).
+
+✅ Sign In [Security features](/docs/security)
 
 ✅ [Automatic webClientId detection](one-tap#automatic-webclientid-detection) for Firebase.
 
-✅ Support for macOS (using react-native-macOS).
+✅ Support for macOS (using `react-native-macos`).
 
-Your sponsorship enables continued maintenance and development of the module and contributions to upstream SDKs (such as [1](https://github.com/openid/AppAuth-iOS/pull/788), [2](https://github.com/google/GoogleSignIn-iOS/pull/402)). Thank you for supporting this project! ❤️
+Your sponsorship enables maintenance and development of the module and contributions to upstream SDKs (such as [1](https://github.com/openid/AppAuth-iOS/pull/788), [2](https://github.com/google/GoogleSignIn-iOS/pull/402)). Thank you for supporting this project! ❤️
 
-### Public Version
+### 2. Public version
 
-Available on the public npm registry, this version does not include One-tap sign-in (it uses the functional, but deprecated [legacy Google Sign-In for Android](https://web.archive.org/web/20240308064911/https://developers.google.com/identity/sign-in/android/start-integrating)), Web and macOS support found in the sponsor-only version.
+Available on the public npm registry, this version supports Android and iOS.
+
+- Android implementation is built on top of the functional, but deprecated [Legacy Google Sign-In for Android](https://web.archive.org/web/20240308064911/https://developers.google.com/identity/sign-in/android/start-integrating)).
+- None of the sponsor-only features are present.
 
 ## Accessing the private package for sponsors
 
-[Upon sponsoring](https://github.com/sponsors/vonovak) (please use specifically the tiers that mention this project!), you will get an invitation to access the private package and to the private repo with the sources and examples.
+[Upon sponsoring](https://github.com/sponsors/vonovak) (use specifically the tiers that mention this project!), you will get an invitation to access the private package and to the private repo with the sources and examples.
 
 Three steps are needed to access the sponsor package, which is hosted on [GitHub npm packages registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry).
 
@@ -63,13 +68,13 @@ npmScopes:
 
 </Tabs>
 
-If you use another package manager ([such as bun](https://bun.sh/docs/install/registries)), please refer to its documentation on how to set up a custom registry.
+If you use another package manager ([such as Bun](https://bun.sh/docs/install/registries)), refer to its documentation on how to set up a custom registry.
 
 ## Requirements
 
-The package requires React Native 0.60 or higher.
+The package supports Expo SDK >= 50 / React Native >= 0.73. Unofficially, it may work with older versions, but it's not guaranteed.
 
-If you're using the [New Architecture](https://reactnative.dev/docs/new-architecture-intro), you need to be on React Native 0.72 or higher but it's strongly recommended to use the latest version available.
+If you're using the [New Architecture](https://reactnative.dev/docs/new-architecture-intro), it's strongly recommended to use the latest React Native version available.
 
 ## Installing
 
@@ -82,5 +87,5 @@ If you're a sponsor, open the npm lockfile (`yarn.lock` or `package-lock.json`) 
 There are several guides to follow now:
 
 - [Expo guide](setting-up/expo) for native mobile apps built with Expo
-- [Web guide](setting-up/web) if you want to use the package on the Web
+- [Web guide](setting-up/web) if you want to use the package on web
 - If you're not using Expo but plain React Native, follow [Android guide](setting-up/android) and [iOS guide](setting-up/ios)

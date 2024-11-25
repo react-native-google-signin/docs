@@ -1,6 +1,6 @@
 # API reference
 
-## One-tap sign in module
+## Modern sign in module
 
 ### AuthorizationResponse
 
@@ -31,6 +31,20 @@ On iOS, you can also obtain `serverAuthCode` by calling `createAccount()` with `
 
 ---
 
+### EnableAppCheckParams
+
+> **EnableAppCheckParams**: \{`debugProviderAPIKey`: `string`; \}
+
+Parameters for enabling [App Check](/docs/security#appcheck). Provide `debugProviderAPIKey` to enable App Check with [debug provider](https://developers.google.com/identity/sign-in/ios/appcheck/debug-provider).
+
+#### Type declaration
+
+| Name                   | Type     |
+| ---------------------- | -------- |
+| `debugProviderAPIKey`? | `string` |
+
+---
+
 ### OneTapConfigureParams
 
 > **OneTapConfigureParams**: [`ClientIdOrPlistPath`](index.mdx#clientidorplistpath) & \{`hostedDomain`: `string`;`logLevel`: `"debug"` \| `"info"` \| `"warn"`;`offlineAccess`: `boolean`;`openIdRealm`: `string`;`profileImageSize`: `number`;`scopes`: `string`[];`webClientId`: `WebClientId`; \}
@@ -47,7 +61,7 @@ On iOS, you can also obtain `serverAuthCode` by calling `createAccount()` with `
 | `openIdRealm`?      | `string`                          | iOS only. The OpenID2 realm of the home web server. This allows Google to include the user's OpenID Identifier in the OpenID Connect ID token.                                                                                                                                                                                                                                                   |
 | `profileImageSize`? | `number`                          | iOS only. The desired height and width of the profile image. **Default** `120px`                                                                                                                                                                                                                                                                                                                 |
 | `scopes`?           | `string`[]                        | iOS only. The Google API scopes to request access to. Use `requestAuthorization` to request additional scopes on Android. **Default** `["email", "profile"]`                                                                                                                                                                                                                                     |
-| `webClientId`       | `WebClientId`                     | The web client ID obtained from Google Cloud console. In One-tap module only, pass `autoDetect` to automatically determine the value from Firebase config file.                                                                                                                                                                                                                                  |
+| `webClientId`       | `WebClientId`                     | The web client ID obtained from Google Cloud console. In the Modern module only, pass `autoDetect` to automatically determine the value from Firebase config file.                                                                                                                                                                                                                               |
 
 ---
 
@@ -180,16 +194,17 @@ Learn more in the [guide](/docs/one-tap#requestauthorization).
 
 > `const` **GoogleOneTapSignIn**: complex type, see below
 
-The entry point of the One-tap Sign In API, exposed as `GoogleOneTapSignIn`.
+The entry point of the Modern Sign In API, exposed as `GoogleOneTapSignIn`.
 
-On the Web, the signatures of `signIn`, `presentExplicitSignIn`, and `createAccount` are callback-based and on native they are Promise-based. Read more in the [guide](/docs/one-tap#web-support).
+On the web, the signatures of `signIn`, `presentExplicitSignIn`, and `createAccount` are callback-based and on native they are Promise-based. Read more in the [guide](/docs/one-tap#web-support).
 
 #### Type declaration
 
 | Name                    | Type                                                                                                                                                                       |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `configure`             | (`params`: [`OneTapConfigureParams`](index.mdx#onetapconfigureparams)) => `void`                                                                                           |
-| `checkPlayServices`     | (`showErrorResolutionDialog`?: `boolean`) => `Promise`\<[`PlayServicesInfo`](index.mdx#playservicesinfo)\>                                                                 | -   |
+| `checkPlayServices`     | (`showErrorResolutionDialog`?: `boolean`) => `Promise`\<[`PlayServicesInfo`](index.mdx#playservicesinfo)\>                                                                 |
+| `enableAppCheck`        | (`params`?: [`EnableAppCheckParams`](index.mdx#enableappcheckparams)) => `Promise`\<`null`\>                                                                               |
 | `signIn`                | (`params?`: [`OneTapSignInParams`](index.mdx#onetapsigninparams)) => `Promise`\<[`OneTapResponse`](index.mdx#onetapresponse)\>                                             |
 | `createAccount`         | (`params?`: [`OneTapCreateAccountParams`](index.mdx#onetapcreateaccountparams)) => `Promise`\<[`OneTapResponse`](index.mdx#onetapresponse)\>                               |
 | `presentExplicitSignIn` | (`params?`: [`OneTapExplicitSignInParams`](index.mdx#onetapexplicitsigninparams)) => `Promise`\<[`OneTapExplicitSignInResponse`](index.mdx#onetapexplicitsigninresponse)\> |
@@ -263,7 +278,7 @@ On the Web, the signatures of `signIn`, `presentExplicitSignIn`, and `createAcco
 | Name         | Type     | Description                                                                                                                                                                                                                                            |
 | ------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `loginHint`? | `string` | iOS only. The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/reference/Classes/GIDSignIn#-signinwithpresentingviewcontroller:hint:completion:). |
-| `nonce`?     | `string` | iOS only. A cryptographically random value used to mitigate replay attacks. Currently only available for sponsors. For support across all platforms, use the One-Tap sign in module.                                                                   |
+| `nonce`?     | `string` | iOS only. A cryptographically random value used to mitigate replay attacks. Currently only available for sponsors. For support across all platforms, use the Modern sign in module.                                                                    |
 
 ---
 
@@ -330,6 +345,7 @@ The entry point of the Google Sign In API, exposed as `GoogleSignin`.
 | `addScopes`              | (`options`: [`AddScopesParams`](index.mdx#addscopesparams)) => `Promise`\<[`SignInResponse`](index.mdx#signinresponse) \| `null`\> |
 | `clearCachedAccessToken` | (`tokenString`: `string`) => `Promise`\<`null`\>                                                                                   |
 | `configure`              | (`options`?: [`ConfigureParams`](index.mdx#configureparams)) => `void`                                                             |
+| `enableAppCheck`         | (`params`?: [`EnableAppCheckParams`](index.mdx#enableappcheckparams)) => `Promise`\<`null`\>                                       |
 | `getCurrentUser`         | () => [`User`](index.mdx#user) \| `null`                                                                                           |
 | `getTokens`              | () => `Promise`\<[`GetTokensResponse`](index.mdx#gettokensresponse)\>                                                              |
 | `hasPlayServices`        | (`options`?: [`HasPlayServicesParams`](index.mdx#hasplayservicesparams)) => `Promise`\<`boolean`\>                                 |
@@ -538,8 +554,8 @@ if (isSuccessResponse(response)) {
 
 The response object when the user cancels the flow for any operation that requires user interaction.
 
-On the Web, this is also returned while [cooldown period](https://developers.google.com/identity/gsi/web/guides/features#exponential_cooldown) is active.
-Detecting the cooldown period itself is not possible on the Web for user privacy reasons.
+On the web, this is also returned while [cooldown period](https://developers.google.com/identity/gsi/web/guides/features#exponential_cooldown) is active.
+Detecting the cooldown period itself is not possible on the web for user privacy reasons.
 On Android, it can be detected via `ONE_TAP_START_FAILED`
 
 #### Type declaration
@@ -576,13 +592,13 @@ The response to calling One Tap's `signIn` and Original Google Sign In's `signIn
 | `data` | `null`                     |
 | `type` | `"noSavedCredentialFound"` |
 
-## Web One-tap sign in module
+## Web Modern sign in module
 
 ### WebOneTapSignInCallbacks
 
 > **WebOneTapSignInCallbacks**: \{`momentListener`: `MomentListener`;`onError`: (`error`: `NativeModuleError`) => `void` \| `Promise`\<`void`\>;`onResponse`: (`userInfo`: [`OneTapExplicitSignInResponse`](index.mdx#onetapexplicitsigninresponse)) => `void` \| `Promise`\<`void`\>; \}
 
-When using One-tap on the Web, the sign in result is delivered via a callback, not via a promise.
+When using Modern sign in on the web, the sign in result is delivered via a callback, not via a promise.
 The shape of data delivered to the callback is the same as the shape of the data in the promise, enabling code reuse.
 Read more in the [guide](/docs/one-tap#web-support).
 
@@ -592,4 +608,4 @@ Read more in the [guide](/docs/one-tap#web-support).
 | ----------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `momentListener`? | `MomentListener`                                                                                                        | A callback function that is called when important events take place. See [reference](https://developers.google.com/identity/gsi/web/reference/js-reference#PromptMomentNotification).                                                                             |
 | `onError`         | (`error`: `NativeModuleError`) => `void` \| `Promise`\<`void`\>                                                         | Called when an error occurs. You can use the `code` property of the error to determine the reason for the error. The reported errors on the web are in the same format as the errors reported on the native platforms, so you can reuse your error handling code. |
-| `onResponse`      | (`userInfo`: [`OneTapExplicitSignInResponse`](index.mdx#onetapexplicitsigninresponse)) => `void` \| `Promise`\<`void`\> | Called when the user successfully signs in, or cancels the sign in, either using the One-tap flow or the button flow.                                                                                                                                             |
+| `onResponse`      | (`userInfo`: [`OneTapExplicitSignInResponse`](index.mdx#onetapexplicitsigninresponse)) => `void` \| `Promise`\<`void`\> | Called when the user successfully signs in, or cancels the sign in, either using the web One-tap flow or the button flow.                                                                                                                                         |

@@ -4,9 +4,11 @@ sidebar_position: 15
 
 # Obtaining configuration information
 
-Please note that you **do not** need Firebase to configure Google Sign In. However, if you use it, it's a little easier to set up the sign in experience because Firebase gives you one file to download and put into your project.
+Before getting your hands dirty with code, some configuration needs to be taken care of. Be patient, this is the most complex part of the setup.
 
-Configuration information obtained in this guide is used in later steps of the setup and in the [`configure()` call](/docs/one-tap#configure).
+Configuration information obtained in this guide is used in later steps of the setup and in the `configure()` call: [1](/docs/one-tap#configure) or [2](/docs/original#configure).
+
+You **do not** need Firebase to configure Google Sign In. However, if you use it, it's a little easier to set up the sign in experience because Firebase gives you one file to download and put into your project.
 
 ## Android
 
@@ -18,21 +20,21 @@ Completing this guide is crucial for Google Sign-In to work on Android. If not d
 
 ### Step 1: Obtain SHA-1 certificate fingerprints
 
-You probably use multiple signing configurations for your Android app - for example for building debug and release APKs locally or building on [Expo EAS](https://docs.expo.dev/app-signing/managed-credentials/#inspecting-credentials-configuration). Then there's the [Play App Signing](https://support.google.com/googleplay/android-developer/answer/9842756?hl=en) for store deployments - while the Google Play Store does not rebuild your app, it may _re-sign_ it using its own signing configuration.
+You probably use multiple signing configurations for your Android app - for example for building debug and release APKs locally or building on [Expo EAS](https://docs.expo.dev/app-signing/managed-credentials/#inspecting-credentials-configuration). Then there's the [Play App Signing](https://support.google.com/googleplay/android-developer/answer/9842756?hl=en) for store deployments - while the Google Play Store does not rebuild your app, it may _re-sign_ it using one of its own signing configurations.
 
-First, you need to obtain the SHA1 certificate fingerprints for _all_ of these signing configurations using the instructions below.
-Then, use _all_ of those SHA1 hashes in "Step 2".
+First, you need to obtain the SHA-1 certificate fingerprints for _all_ of these signing configurations using the instructions below.
+Then, use _all_ of those SHA-1 hashes in [Step 2](#step-2) below.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs>
   <TabItem value="eas" label="When using Expo EAS">
-    If you're using Expo EAS, run `eas credentials` to obtain the Keystore information, which includes the SHA-1 fingerprint. See [EAS credentials docs](https://docs.expo.dev/app-signing/managed-credentials/#inspecting-credentials-configuration) to learn more.
+    If you use [Expo EAS](https://expo.dev/eas), run `eas credentials` to obtain the Keystore information, which includes the SHA-1 fingerprint. See [EAS credentials docs](https://docs.expo.dev/app-signing/managed-credentials/#inspecting-credentials-configuration) to learn more.
   </TabItem>
 <TabItem value="local" label="When developing locally">
   1. From your project root, `cd android && ./gradlew signingReport`.
-  2. Scroll to the top of output, see the fingerprints. Debug fingerprint is used in dev,
+  2. Scroll to the top of output, see the fingerprints. Debug fingerprint is used for debug apk,
   release fingerprint is used for release APK.
 </TabItem>
 
@@ -46,20 +48,20 @@ import TabItem from '@theme/TabItem';
   </TabItem>
 </Tabs>
 
-### Step 2: Add SHA-1 hashes to Firebase or Google Cloud Console
+### Step 2: Add SHA-1 hashes to Firebase or Google Cloud Console {#step-2}
 
 Using _all_ of the SHA-1 fingerprints obtained in the previous step, follow the instructions below.
 
-<Tabs>
+<Tabs queryString="firebase-or-not">
   <TabItem value="firebase" label="When using Firebase">
 1. Sign in to Firebase and open your project.
 2. Click the Settings icon and select Project settings.
-3. In the "Your apps" card, select the app you need to add SHA1 to.
+3. In the "Your apps" card, select the app you need to add SHA-1 to.
 4. Click "Add fingerprint".
 5. Check that "Package name" is correct.
 6. Download the `google-services.json` file.
 
-![Firebase, add Android keystore's SHA1 to your project](/img/android-fingerprint-firebase.png)
+![Firebase, add Android keystore's SHA-1 to your project](/img/android-fingerprint-firebase.png)
 
   </TabItem>
 
@@ -79,7 +81,7 @@ Using _all_ of the SHA-1 fingerprints obtained in the previous step, follow the 
 
 Read below on how to set up Google Sign In for your iOS app.
 
-<Tabs>
+<Tabs queryString="firebase-or-not">
   <TabItem value="firebase" label="When using Firebase">
 
 1. Sign in to [Firebase Console](https://console.firebase.google.com/) and open your project.
@@ -94,9 +96,9 @@ Read below on how to set up Google Sign In for your iOS app.
 
     Remember that _all_ created client IDs can be found in the [Google Cloud Console](https://console.cloud.google.com/apis/credentials?project=_).
 
-    Obtain the iOS OAuth Client ID and "iOS URL scheme" (also known as `reversed client id`): Create an OAuth Client ID of type iOS in [Google Cloud Console](https://console.cloud.google.com/apis/credentials?project=_). Alternatively, use <a href="https://console.developers.google.com/henhouse/?pb=%5B%22hh-0%22%2Cnull%2Cnull%2Cnull%2C%22https%3A%2F%2Fdevelopers.google.com%22%2Cnull%2Cnull%2Cnull%2C%22Configure%20a%20project%20for%20Google%20Sign-In%22%2C1%2Cnull%2Cnull%2C0%2C1%2Cnull%2Cnull%2Cnull%2Cnull%2C0%2Cnull%2Cnull%2C0%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2C0%2Cnull%2Cnull%2Cnull%2C0%5D" target="_blank">this wizard</a>.
+    Obtain the "iOS OAuth Client ID" _and_ "iOS URL scheme" (also known as `reversed client id`): Create or use an existing OAuth Client ID of type iOS in [Google Cloud Console](https://console.cloud.google.com/apis/credentials?project=_). Alternatively, use <a href="https://console.developers.google.com/henhouse/?pb=%5B%22hh-0%22%2Cnull%2Cnull%2Cnull%2C%22https%3A%2F%2Fdevelopers.google.com%22%2Cnull%2Cnull%2Cnull%2C%22Configure%20a%20project%20for%20Google%20Sign-In%22%2C1%2Cnull%2Cnull%2C0%2C1%2Cnull%2Cnull%2Cnull%2Cnull%2C0%2Cnull%2Cnull%2C0%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2C0%2Cnull%2Cnull%2Cnull%2C0%5D" target="_blank">this wizard</a>.
 
-    We will use these later in the setup.
+    You will need the iOS Client ID and iOS URL scheme later.
 
   </TabItem>
 

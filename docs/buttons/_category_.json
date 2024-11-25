@@ -4,6 +4,6 @@
   "collapsed": true,
   "link": {
     "type": "generated-index",
-    "description": "There are two button components exported, one for Web and the other for native apps. This is because the two components have a slightly different api."
+    "description": "There are two button components exported, one for web and the other for native apps. This is because the two components have a slightly different api."
   }
 }

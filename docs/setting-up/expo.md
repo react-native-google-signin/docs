@@ -8,7 +8,7 @@ sidebar_position: 1
 
 :::info
 
-With Expo SDK 50, minimum iOS version was bumped to 13.4. In case you get an error during pod install step, please see [release notes](https://github.com/react-native-google-signin/google-signin/releases/tag/v11.0.0) to determine the right version of this package to install.
+With Expo SDK 50, minimum iOS version was bumped to 13.4. In case you get an error during pod install step, see [these release notes](https://github.com/react-native-google-signin/google-signin/releases/tag/v11.0.0) to determine the right version of this package to install.
 
 :::
 
@@ -32,9 +32,9 @@ After installing the npm package, add a config plugin (read more details below) 
 
 If you're _not_ using Firebase, provide the `iosUrlScheme` option to the config plugin.
 
-To obtain `iosUrlScheme`, go to the [Google Cloud Console](https://console.cloud.google.com/apis/credentials?project=_) and copy the "iOS URL scheme" from your iOS client in the "OAuth 2.0 Client IDs" section.
+To obtain `iosUrlScheme`, follow [the guide](./get-config-file#ios).
 
-```json title="app.json|js"
+```json title="app.json | js"
 {
   "expo": {
     "plugins": [
@@ -51,9 +51,9 @@ To obtain `iosUrlScheme`, go to the [Google Cloud Console](https://console.cloud
 
 ### Expo and Firebase Authentication
 
-If you are using Firebase Authentication, [obtain the 2 Firebase config files](./get-config-file) and place them into your project. Then specify the path to the files:
+If you are using Firebase Authentication, obtain the 2 Firebase config files (`google-services.json` for Android and `GoogleService-Info.plist` for iOS) according to the [guide](./get-config-file?firebase-or-not=firebase) and place them into your project. Then specify the paths to the files:
 
-```json title="app.json|js"
+```json title="app.json | js"
 {
   "expo": {
     "plugins": ["@react-native-google-signin/google-signin"],
@@ -67,17 +67,9 @@ If you are using Firebase Authentication, [obtain the 2 Firebase config files](.
 }
 ```
 
-## Ensure compatibility
-
-If you're using the sponsor package:
-
-If you're using Expo SDK >= 50, you're good to go.
-
-But if you're using Expo 49 or older, you need to specify `compileSdkVersion` 34 of your project using [Expo BuildProperties](https://docs.expo.dev/versions/latest/sdk/build-properties/#usage).
-
 ## Rebuild the app
 
-Then run the following to generate the native project directories.
+Then run the following to generate the native project directories. Run this command every time you add or update any dependency with native code.
 
 ```sh
 npx expo prebuild --clean

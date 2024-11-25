@@ -1,5 +1,6 @@
 ---
-sidebar_position: 2
+sidebar_position: 5
+sidebar_class_name: sponsor-heart
 ---
 
 # Web setup guide
@@ -25,7 +26,7 @@ import Script from 'next/script';
   src="https://accounts.google.com/gsi/client"
   strategy="lazyOnload"
   onLoad={() => {
-    // present the one-tap popup
+    // present the sign in popup
   }}
 />;
 ```
@@ -49,7 +50,7 @@ useEffect(() => {
     setLoaded(true);
   };
   scriptTag.onerror = () => {
-    console.error('Failed to load Google One-tap script');
+    console.error('Failed to load Google script');
   };
 
   document.body.appendChild(scriptTag);
@@ -62,6 +63,6 @@ useEffect(() => {
 
 After the script is loaded, you can call the functions for signing in and render the `WebGoogleSigninButton`.
 
-If you call any of the One-tap functions before the client library is loaded, such calls trigger the [`onError` callback](/docs/api#webonetapsignincallbacks) with the [`PLAY_SERVICES_NOT_AVAILABLE` error code](../errors#status-codes).
+If you call any of the module functions before the client library is loaded, such calls trigger the [`onError` callback](/docs/api#webonetapsignincallbacks) with the [`PLAY_SERVICES_NOT_AVAILABLE` error code](../errors#status-codes).
 
 You can read the official docs for loading the Client Library [here](https://developers.google.com/identity/gsi/web/guides/client-library).
