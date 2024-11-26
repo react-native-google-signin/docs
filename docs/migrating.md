@@ -5,7 +5,7 @@ sidebar_label: Migrating
 
 # Migrating to new JS API
 
-## One-tap sign in module
+## Modern sign in module
 
 1. Add the [`configure`](one-tap#configure) method to your code. This method is required to be called to configure the module.
 

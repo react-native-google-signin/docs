@@ -5,7 +5,7 @@ sidebar_label: License
 
 The original module is licensed as MIT, the module for sponsors has the following license.
 
-Please do get in touch in the issue tracker if you have any questions or concerns about the license!
+[Get in touch](https://github.com/vonovak#-how-to-reach-me) if you have any questions or concerns about the license!
 
 # License for react-native-google-signin/google-signin (RNGS)
 

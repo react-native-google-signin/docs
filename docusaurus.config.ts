@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'React Native Google Sign In',
-  tagline: 'Google Sign-in for your React Native applications',
+  tagline: 'Google Sign-in for Expo and React Native apps',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -108,7 +108,7 @@ const config: Config = {
               // categoryOrder: ['Top-level api', 'Type aliases', '*'],
               // categories are not good
               groupOrder: [
-                'One-tap sign in module',
+                'Modern sign in module',
                 'Original Google sign in',
                 '*',
               ],
