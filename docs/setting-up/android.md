@@ -5,7 +5,7 @@ sidebar_position: 3
 # Android setup guide
 
 :::warning
-If you use Expo, please follow [this guide](/setting-up/expo.md) instead. This guide applies to vanilla React Native apps only.
+If you use Expo, follow [this guide](/setting-up/expo.md) instead. This guide applies to vanilla React Native apps only.
 :::
 
 ### Ensure compatibility
