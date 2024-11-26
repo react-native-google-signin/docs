@@ -6,26 +6,33 @@ sidebar_position: 1
 
 There are two ways to consume the package:
 
-### 1. Sponsor-Only version
+[//]: # '🌟'
 
-Available exclusively to GitHub sponsors, this version offers:
+### Sponsor-Only version
 
-✅ The [**Modern Sign In**](/docs/one-tap) built on top of [Credential Manager](https://developers.google.com/identity/android-credential-manager) Google Sign In for Android, [Sign In with Google](https://developers.google.com/identity/gsi/web/guides/features) for web, and [Google Sign-In SDK for iOS and macOS](https://developers.google.com/identity/sign-in/ios/start).
+Available to GitHub sponsors, this version includes:
 
-✅ Sign In [Security features](/docs/security)
+⚡️[**Modern Sign In**](/docs/one-tap) implemented with:
 
-✅ [Automatic webClientId detection](one-tap#automatic-webclientid-detection) for Firebase.
+- Android: latest [Credential Manager library](https://developers.google.com/identity/android-credential-manager)
+- Web: [Sign In with Google for Web](https://developers.google.com/identity/gsi/web/guides/features)
+- iOS & macOS: [Google Sign-In SDK](https://developers.google.com/identity/sign-in/ios/start)
 
-✅ Support for macOS (using `react-native-macos`).
+🛡️ **Advanced [security features](/docs/security)**
 
-Your sponsorship enables maintenance and development of the module and contributions to upstream SDKs (such as [1](https://github.com/openid/AppAuth-iOS/pull/788), [2](https://github.com/google/GoogleSignIn-iOS/pull/402)). Thank you for supporting this project! ❤️
+🔧 **Easier configuration** for Firebase - [automatic webClientId detection](one-tap#automatic-webclientid-detection)
 
-### 2. Public version
+🖥️ **Full platform support** - Deploy everywhere with a unified api: Android, iOS, Web, and macOS
 
-Available on the public npm registry, this version supports Android and iOS.
+Your support helps improve the module and upstream SDKs (such as [1](https://github.com/openid/AppAuth-iOS/pull/788), [2](https://github.com/google/GoogleSignIn-iOS/pull/402)). Thank you for enabling better tools for the community! ❤️
 
-- Android implementation is built on top of the functional, but deprecated [Legacy Google Sign-In for Android](https://web.archive.org/web/20240308064911/https://developers.google.com/identity/sign-in/android/start-integrating)).
-- None of the sponsor-only features are present.
+### Public version
+
+Available on the public npm registry, this version:
+
+- Has platform support limited to Android and iOS.
+- Uses functional, but deprecated [Legacy Android Google Sign-In](https://web.archive.org/web/20240308064911/https://developers.google.com/identity/sign-in/android/start-integrating).
+- Contains none of the sponsor-only features.
 
 ## Accessing the private package for sponsors
 
@@ -35,7 +42,7 @@ Three steps are needed to access the sponsor package, which is hosted on [GitHub
 
 1. [Become a sponsor](https://github.com/sponsors/vonovak) and accept the private repository invitation - it takes just a few clicks.
 
-2. [Obtain here](https://github.com/settings/tokens) a Personal Access Token with `packages:read` permission.
+2. [Obtain here](https://github.com/settings/tokens/new?description=react-native-google-sign-in&scopes=read:packages) a Personal Access Token with `packages:read` permission.
 
 3. Set up your package manager so that it fetches the package from the GH packages registry instead of the public registry. In this example, we're using an `NPM_TOKEN_GOOGLE_SIGN_IN` environment variable.
 
