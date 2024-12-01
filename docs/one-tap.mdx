@@ -8,7 +8,7 @@ import Image from '@theme/IdealImage';
 
 # Modern Google sign in
 
-This is the recommended way to implement Google Sign In. This API is available on Android, iOS, macOS and web (with a little extra work [described below](#web-support)). The module APIs are named `GoogleOneTapSignIn` for historical reasons.
+This is Google's recommended way to implement Google Sign In. This API is available on Android, iOS, macOS and web (with a little extra work [described below](#web-support)). The module APIs are named `GoogleOneTapSignIn` for historical reasons.
 
 - On Android, it is built on top of the new [Credential Manager](https://developers.google.com/identity/android-credential-manager) APIs.
 
@@ -38,7 +38,7 @@ signature: (`params`: [`OneTapConfigureParams`](api#onetapconfigureparams)) => `
 
 It is mandatory to call `configure` before attempting to call any of the sign-in methods. This method is synchronous, meaning you can call e.g. `signIn` right after it. Typically, you would call `configure` only once, soon after your app starts.
 
-`webClientId` is a required parameter. Use "autoDetect" for [automatic webClientId detection](#automatic-webclientid-detection). All other parameters are optional.
+`webClientId` is a required parameter. Use "autoDetect" for [automatic webClientId detection](#automatic-config). If you're using neither Expo nor Firebase, you need to provide the `iosClientId` parameter. All other parameters are optional.
 
 ```ts title="Example of calling the configure() method"
 GoogleOneTapSignIn.configure({
@@ -270,11 +270,13 @@ This method is used to request extra authorization from the user. Use this on An
 
 </details>
 
-## Automatic `webClientId` detection
+## Automatic `webClientId` & `iosClientId` detection {#automatic-config}
 
-✨since v15.2.0
+✨since v15.2.0 for `webClientId`, 18.2.0 for `iosClientId`
 
-This module can automatically detect the `webClientId` from Firebase's configuration file (does not work on web where you need to provide it explicitly).
+If you use Expo (with the config plugin and prebuild), or if you're using Firebase, you don't need to provide the `iosClientId` parameter to the `configure` method.
+
+Additionally, this module can automatically detect the `webClientId` from Firebase's configuration file (does not work on web where you need to provide it explicitly).
 
 This is useful if you're using Firebase and want to avoid manually setting the `webClientId` in your code, especially if you have multiple environments (e.g. staging, production).
 
@@ -294,7 +296,7 @@ Open the `GoogleService-Info.plist` in your favorite text editor and add the fol
 2. pass `"autoDetect"` as the `webClientId` parameter.
 
 :::tip
-On iOS, `iosClientId` can also be detected automatically - simply do not pass any `iosClientId` value.
+As explained above, `iosClientId` can also be detected automatically - simply do not pass any `iosClientId` value.
 The reason `webClientId` is a required parameter is API uniformity across all platforms.
 :::
 
