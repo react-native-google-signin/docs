@@ -7,10 +7,6 @@ sidebar_position: 70
 
 ## Android
 
-### "A non-recoverable sign in failure occurred"
-
-See [this comment](https://github.com/react-native-community/google-signin/issues/659#issuecomment-513555464). Or [this SO question](https://stackoverflow.com/questions/53816227/google-signin-sdk-is-failing-by-throwing-error-a-non-recoverable-sign-in-failur).
-
 ### Login does not work when downloading from the Play Store.
 
 See [the next paragraph](#developer_error).
@@ -33,6 +29,10 @@ Follow these pointers:
 If you get a `DEVELOPER_ERROR` when using Internal App Sharing, it is because Google resigns your application with its own key.
 
 See [the previous paragraph](#developer_error).
+
+### "A non-recoverable sign in failure occurred"
+
+See [this comment](https://github.com/react-native-community/google-signin/issues/659#issuecomment-513555464). Or [this SO question](https://stackoverflow.com/questions/53816227/google-signin-sdk-is-failing-by-throwing-error-a-non-recoverable-sign-in-failur).
 
 ### Changing `play-services-auth` version
 

@@ -8,9 +8,9 @@ sidebar_class_name: sponsor-heart
 The functionality covered in this page is only available to sponsors️. [It takes just a few clicks to get access](install#accessing-the-private-package-for-sponsors) ❤️.
 :::
 
-# Advanced Security
+# Advanced security
 
-✨since v18.1.0
+✨since v18.2.0
 
 There are 2 security-related features available:
 
@@ -115,29 +115,48 @@ To set up App Check:
 
 2. Add **App Attest** capability to your app (as in [here](https://developers.google.com/identity/sign-in/ios/appcheck/get-started#install-sdk)). If you're using Expo, the capability can be added according to the [iOS capabilities documentation](https://docs.expo.dev/build-reference/ios-capabilities/).
 
+3. (skip if you use Expo): Ensure that `GIDClientID` (the iOS client ID) is set in your `Info.plist`. Expo config plugin does this for you.
+
 ### Usage
 
 Call `GoogleOneTapSignIn.enableAppCheck()` as shown below. Do this early, before invoking any authentication apis. The call either resolves when it succeeds or rejects with an error. On platforms other than iOS, the method is a no-op and resolves.
 
 <Tabs>
-  <TabItem value="debug-provider" label="Debug provider">
-Provide the [debug provider](https://developers.google.com/identity/sign-in/ios/appcheck/debug-provider) with the API key:
-
-```ts
-await GoogleOneTapSignIn.enableAppCheck({
-  debugProviderWithAPIKey: config.apiKey,
-});
-```
-
-  </TabItem>
 
   <TabItem value="production-environment" label="Production environment">
 
-```ts
-await GoogleOneTapSignIn.enableAppCheck({
-  debugProviderWithAPIKey: undefined, // or don't provide this parameter at all
-});
-```
+    ```ts
+    await GoogleOneTapSignIn.enableAppCheck();
+    ```
+
+  </TabItem>
+
+  <TabItem value="debug-provider-recommended" label="Debug provider (recommended)">
+
+Use `APP_CHECK_API_KEY` [env variable in Xcode](https://stackoverflow.com/a/76212610/2070942) to configure the [debug provider](https://developers.google.com/identity/sign-in/ios/appcheck/debug-provider) with the API key. Then call:
+
+    ```ts
+    await GoogleOneTapSignIn.enableAppCheck();
+    ```
+
+:::danger
+API keys and debug tokens are sensitive data. Keep them private.
+:::
+
+  </TabItem>
+  <TabItem value="debug-provider" label="Debug provider (alternative)">
+
+Configure the [debug provider](https://developers.google.com/identity/sign-in/ios/appcheck/debug-provider) with the API key:
+
+    ```ts
+    await GoogleOneTapSignIn.enableAppCheck({
+      debugProviderAPIKey: config.apiKey,
+    });
+    ```
+
+:::danger
+API keys and debug tokens are sensitive data. Keep them private.
+:::
 
   </TabItem>
 </Tabs>
