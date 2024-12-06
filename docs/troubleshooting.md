@@ -38,10 +38,6 @@ See [this comment](https://github.com/react-native-community/google-signin/issue
 
 See ["Choose Dependency versions"](setting-up/android.md#choose-dependency-versions-optional) above.
 
-### `Missing api_key/current_key object`
-
-open `android/app/google-services.json` and replace `"api_key":[]` with `"api_key":[{ "current_key": "" }]`
-
 ### Package name !== application id
 
 When adding a new oauth client, google asks you to add your package name. In some cases your package name is not equal to your application id. Check if your package name in the `AndroidManifest.xml` is the same as your application/bundle id. Find your application id in the play console or `android/app/build.gradle`. The format looks like `com.yourapp.id`.
