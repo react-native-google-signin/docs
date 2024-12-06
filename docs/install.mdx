@@ -8,9 +8,9 @@ There are two ways to consume the package:
 
 [//]: # '🌟'
 
-### Sponsor-Only version
+### Modern version
 
-Available to GitHub sponsors, this version includes:
+Available to GitHub sponsors of the maintainer and Expo customers, this version includes:
 
 ⚡️[**Modern Sign In**](/docs/one-tap) implemented with:
 
@@ -34,15 +34,15 @@ Available on the public npm registry, this version:
 
 - Has platform support limited to Android and iOS.
 - Uses functional, but deprecated [Legacy Android Google Sign-In](https://web.archive.org/web/20240308064911/https://developers.google.com/identity/sign-in/android/start-integrating).
-- Contains none of the sponsor-only features.
+- Contains none of the extra features listed above.
 
-## Accessing the private package for sponsors
+## Obtaining access to the Modern version
 
-[Upon sponsoring](https://github.com/sponsors/vonovak) (use specifically the tiers that mention this project!), you will get an invitation to access the private package and to the private repo with the sources and examples.
+You can get access either [by sponsoring](https://github.com/sponsors/vonovak) (use specifically the tiers that mention this project!) or as an Expo customer through [this form](https://forms.gle/tpP7TfUGW1CwgaEZ8). You will receive an invitation to access the private repo with the sources and examples, as well as to the private npm package.
 
-Three steps are needed to access the sponsor package, which is hosted on [GitHub npm packages registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry).
+Three steps are needed to access the private package, which is hosted on [GitHub npm packages registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry).
 
-1. [Become a sponsor](https://github.com/sponsors/vonovak) and accept the private repository invitation - it takes just a few clicks.
+1. [Become a sponsor](https://github.com/sponsors/vonovak) or [complete the form](https://forms.gle/tpP7TfUGW1CwgaEZ8) and accept the private repository invitation.
 
 2. [Obtain here](https://github.com/settings/tokens/new?description=react-native-google-sign-in&scopes=read:packages) a Personal Access Token with `packages:read` permission.
 
@@ -91,7 +91,7 @@ If you're using the [New Architecture](https://reactnative.dev/docs/new-architec
 yarn add @react-native-google-signin/google-signin@latest
 ```
 
-If you're a sponsor, open the npm lockfile (`yarn.lock` or `package-lock.json`) and verify that the package is fetched from the GitHub registry (the entry must point to `npm.pkg.github.com`, not `registry.npmjs.org`). If it does not, it means that your package manager is not configured correctly.
+If you're using the Modern version, open the npm lockfile (`yarn.lock` or `package-lock.json`) and verify that the package is fetched from the GitHub registry (the entry must point to `npm.pkg.github.com`, not `registry.npmjs.org`). If it does not, it means that your package manager is not configured correctly.
 
 There are several guides to follow now:
 
