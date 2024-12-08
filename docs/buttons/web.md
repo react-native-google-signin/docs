@@ -4,7 +4,7 @@ This is the sign-in button that you can use in web apps. It renders `null` when 
 It has a slightly different API than the native `GoogleSigninButton` component which is why it exists as a separate component.
 
 :::tip
-Web support is only available to sponsors️. [It takes just a few clicks to get access](/docs/install.mdx#accessing-the-private-package-for-sponsors) ❤️.
+Web support is only available to sponsors️. [It takes just a few clicks to get access](/docs/install.mdx#obtaining-access) ❤️.
 :::
 
 The button will _not render_ before the [Google Client API has been loaded](../setting-up/web). You can use the `onError` prop to detect this case.
