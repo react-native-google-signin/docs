@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'React Native Google Sign In',
-  tagline: 'Google Sign-in for Expo and React Native apps',
+  tagline: 'Google sign in for Expo and React Native apps',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -129,7 +129,7 @@ const config: Config = {
     colorMode: {
       respectPrefersColorScheme: true,
     },
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/social-card.jpg',
     navbar: {
       title: 'RN Google Sign In',
       logo: {
