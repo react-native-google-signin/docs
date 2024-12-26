@@ -13,12 +13,12 @@ See [the next paragraph](#developer_error).
 
 ### `DEVELOPER_ERROR` or `code: 10` or `Developer console is not set up correctly` error message {#developer_error}
 
-This is always (_always_!) a configuration mismatch between your app and the server-side setup (in Firebase or Google Cloud console).
+This is always (!_always_!) a configuration mismatch between your app and the server-side setup (in Firebase or Google Cloud console).
 
 Follow these pointers:
 
 - Make sure that your SHA-1 (_NOT_ SHA-256!) certificate fingerprints and Android package name you entered in [Firebase Console](https://console.firebase.google.com/) / [Google Cloud Console](https://console.cloud.google.com/apis/credentials?project=_) are correct.
-- [See how your app was signed](https://x.com/vonovak/status/1692127631473529226). If you are in development, make sure your development signing fingerprint is added as well.
+- Add the SHA-1 from the output of [this command](https://x.com/vonovak/status/1692127631473529226) to your Firebase / Google Cloud Console. You should be able to recognize the SHA-1 - do not add a hash if you're not sure of its origin.
 - Follow the [setup guide](/docs/setting-up/get-config-file) and perform its steps once again.
 - [Search the issue tracker](https://github.com/react-native-google-signin/google-signin/issues?q=is%3Aissue+DEVELOPER+ERROR+is%3Aclosed) for old reports of the error.
 - If you're passing `webClientId` in the configuration object to `GoogleSignin.configure()`, make sure it's correct and that it is of type web (NOT Android!). You can get your `webClientId` from [Google Developer Console](https://console.developers.google.com/apis/credentials). It is listed under "OAuth 2.0 client IDs".
