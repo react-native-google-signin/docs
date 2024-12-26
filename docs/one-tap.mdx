@@ -10,17 +10,17 @@ import Image from '@theme/IdealImage';
 
 This is Google's recommended way to implement Google Sign In. This API is available on Android, iOS, macOS and web (with a little extra work [described below](#web-support)). It is a replacement for the [Original Google sign in](original). The module APIs are named `GoogleOneTapSignIn` for historical reasons.
 
-- On Android, it is built on top of the new [Credential Manager](https://developers.google.com/identity/android-credential-manager) APIs.
-
-- On Apple (iOS and macOS), it is built on top of the [Google Sign In SDK for iOS and macOS](https://developers.google.com/identity/sign-in/ios/start-integrating).
-
-- On the web, it covers both the [One-tap](https://developers.google.com/identity/gsi/web/guides/offerings#one_tap) flow and the [Google Sign-In button](https://developers.google.com/identity/gsi/web/guides/offerings#sign_in_with_google_button).
-
 :::tip
 The functionality covered in this page is only available to sponsors️. [It takes just a few clicks to get access](install#obtaining-access) ❤️.
 
 This module is being actively developed, and new features are added regularly.
 :::
+
+- On Android, it is built on top of the new [Credential Manager](https://developers.google.com/identity/android-credential-manager) APIs.
+
+- On Apple (iOS and macOS), it is built on top of the [Google Sign In SDK for iOS and macOS](https://developers.google.com/identity/sign-in/ios/start-integrating).
+
+- On the web, it covers both the [One-tap](https://developers.google.com/identity/gsi/web/guides/offerings#one_tap) flow and the [Google Sign-In button](https://developers.google.com/identity/gsi/web/guides/offerings#sign_in_with_google_button).
 
 Note that on Apple and Android, you can combine the Modern Sign In methods with those one from the [Original Google Sign In](original). To do that, use the Modern sign in to sign in the user. Then call `signInSilently()` and then (for example) `getCurrentUser()` to get the current user's information. However, this shouldn't be necessary because this module should cover all your needs. Please open an issue if that's not the case.
 
