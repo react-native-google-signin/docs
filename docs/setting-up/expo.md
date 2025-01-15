@@ -75,7 +75,7 @@ Then run the following to generate the native project directories. Run this comm
 npx expo prebuild --clean
 ```
 
-Next, rebuild your app and you're good to go!
+Next, rebuild your app and you're good to go! Now you're ready to (set up your configuration files)[/docs/setting-up/get-config-file].
 
 ```sh
 npx expo run:android && npx expo run:ios
