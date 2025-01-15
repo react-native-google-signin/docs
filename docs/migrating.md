@@ -5,6 +5,8 @@ sidebar_label: Migrating
 
 # Migrating to new JS API
 
+Version 13 introduced a new JS API, which changes the response signature of sign-in methods and makes minor changes to error handling (details  [here](https://github.com/react-native-google-signin/google-signin/pull/1326)). If you're upgrading from version 12, you'll need to make some minor adjustments.
+
 ## Modern sign in module
 
 1. Add the [`configure`](one-tap#configure) method to your code. This method is required to be called to configure the module.
