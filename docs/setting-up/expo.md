@@ -14,7 +14,7 @@ With Expo SDK 50, minimum iOS version was bumped to 13.4. In case you get an err
 
 :::note
 
-This package cannot be used in [Expo Go](https://docs.expo.dev/workflow/overview/#expo-go-an-optional-tool-for-learning) because it requires custom native code. This applies to both the [original](../original)  and [modern](../one-tap) (one-tap) sign in methods 
+This package cannot be used in [Expo Go](https://docs.expo.dev/workflow/overview/#expo-go-an-optional-tool-for-learning) because it requires custom native code. This applies to both the [original](../original)  and [modern](../one-tap) (one-tap) sign in methods.
 
 However, you can add custom native code to an Expo app by using a [development build](https://docs.expo.dev/workflow/overview/#development-builds). Using a development build is the recommended approach for production apps, and is documented in this guide.
 
