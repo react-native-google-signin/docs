@@ -34,17 +34,61 @@ Do not forget to rebuild the native app after the setup is done.
 
 ### Optional: modify your app to respond to the URL scheme
 
-This is only required if you have multiple listeners for `openURL` - for instance if you have both Google and Facebook OAuth (as seen in the code snippet below).
+This is only required if you have multiple listeners for `openURL` - for instance if you have both Google and Facebook OAuth.
 
-Because only one `openURL` method can be defined, if you have multiple listeners for `openURL`, you must combine them into a single function in your `AppDelegate.m` like so:
+Because only one `openURL` method can be defined, if you have multiple listeners for `openURL`, you must combine them into a single function as shown below:
 
-- Open `AppDelegate.m`
-- Add an import: `#import <GoogleSignIn/GoogleSignIn.h>`
-- Add a method to respond to the URL scheme. This is just an example of a method that you can add at the bottom of your file if you're using both `FBSDKApplicationDelegate` and `GIDSignIn` :
+#### For AppDelegate written in Swift
+
+If your AppDelegate a Swift file (the default in React Native 0.77.0 or higher), you'll need to:
+
+1. Add the following import to your project's [bridging header](https://developer.apple.com/documentation/swift/importing-objective-c-into-swift#Import-Code-Within-an-App-Target) file (usually `ios/YourProject-Bridging-Header.h`):
 
 ```objc
-// AppDelegate.m
+// …
+
+// ⬇️ Add this import
+#import <GoogleSignIn/GoogleSignIn.h>
+```
+
+2. Modify your `AppDelegate.swift` file:
+
+```swift
+// …
+
+@main
+class AppDelegate: RCTAppDelegate {
+  // …
+
+  // ⬇️ Add this method
+  override func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    // Add any other URL handlers you're using (e.g. Facebook SDK)
+    return ApplicationDelegate.shared.application(app, open: url, options: options) ||
+           GIDSignIn.sharedInstance.handle(url)
+  }
+
+}
+```
+
+#### For AppDelegate written in Objective-C
+
+For AppDelegate written in Objective-C (the default prior to React Native 0.77), modify your `AppDelegate.m` file:
+
+```objc
+#import "AppDelegate.h"
+#import <GoogleSignIn/GoogleSignIn.h> // ⬅️ add the header import
+
+// …
+
+@implementation AppDelegate
+
+// …
+
+// ⬇️ Add this method before file @end
 - (BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<NSString *,id> *)options {
+  // Add any other URL handlers you're using (e.g. Facebook SDK)
   return [[FBSDKApplicationDelegate sharedInstance] application:application openURL:url options:options] || [GIDSignIn.sharedInstance handleURL:url];
 }
+
+@end
 ```
