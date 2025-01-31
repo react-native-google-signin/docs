@@ -75,13 +75,6 @@ Then run the following to generate the native project directories. Run this comm
 npx expo prebuild --clean
 ```
 
-This will generate native project directories. [Expo recommends](https://docs.expo.dev/workflow/continuous-native-generation/#usage-with-eas-build) adding these directories to your `.gitignore` if you haven't already:
-```sh
-/android
-/ios
-```
-
-
 Next, rebuild your app and you're good to go!
 
 ```sh
