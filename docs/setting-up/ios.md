@@ -38,9 +38,9 @@ This is only required if you have multiple listeners for `openURL` - for instanc
 
 Because only one `openURL` method can be defined, if you have multiple listeners for `openURL`, you must combine them into a single function as shown below:
 
-#### For React Native >= 0.77.0
+#### For AppDelegate written in Swift
 
-If you're using React Native 0.77.0 or higher, you'll need to:
+If your AppDelegate a Swift file (the default in React Native 0.77.0 or higher), you'll need to:
 
 1. Add the following import to your project's [bridging header](<(https://developer.apple.com/documentation/swift/importing-objective-c-into-swift#Import-Code-Within-an-App-Target)>) file (usually `ios/YourProject-Bridging-Header.h`):
 
@@ -70,9 +70,9 @@ class AppDelegate: RCTAppDelegate {
 }
 ```
 
-#### For React Native < 0.77.0
+#### For AppDelegate written in Objective-C
 
-For older versions of React Native, modify your `AppDelegate.m` file:
+For AppDelegate written in Objective-C (the default prior to React Native 0.77), modify your `AppDelegate.m` file:
 
 ```objc
 #import "AppDelegate.h"
