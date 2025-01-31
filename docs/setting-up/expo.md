@@ -80,6 +80,3 @@ Next, rebuild your app and you're good to go!
 ```sh
 npx expo run:android && npx expo run:ios
 ```
-
-Now you're ready to [set up your configuration files](/docs/setting-up/get-config-file).
-
