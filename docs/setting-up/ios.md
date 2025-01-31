@@ -42,7 +42,7 @@ Because only one `openURL` method can be defined, if you have multiple listeners
 
 If your AppDelegate a Swift file (the default in React Native 0.77.0 or higher), you'll need to:
 
-1. Add the following import to your project's [bridging header](<(https://developer.apple.com/documentation/swift/importing-objective-c-into-swift#Import-Code-Within-an-App-Target)>) file (usually `ios/YourProject-Bridging-Header.h`):
+1. Add the following import to your project's [bridging header](https://developer.apple.com/documentation/swift/importing-objective-c-into-swift#Import-Code-Within-an-App-Target) file (usually `ios/YourProject-Bridging-Header.h`):
 
 ```objc
 // …
