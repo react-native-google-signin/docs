@@ -38,7 +38,9 @@ signature: (`params`: [`OneTapConfigureParams`](api#onetapconfigureparams)) => `
 
 It is mandatory to call `configure` before attempting to call any of the sign-in methods. This method is synchronous, meaning you can call e.g. `signIn` right after it. Typically, you would call `configure` only once, soon after your app starts.
 
-`webClientId` is a required parameter. Use "autoDetect" for [automatic webClientId detection](#automatic-config). If you're using neither Expo nor Firebase, you need to provide the `iosClientId` parameter. All other parameters are optional.
+`webClientId` is a required parameter. Use "autoDetect" for [automatic webClientId detection](#automatic-config).
+
+If you're using neither Expo nor Firebase, you also need to provide the `iosClientId` parameter. All other parameters are optional.
 
 ```ts title="Example of calling the configure() method"
 GoogleOneTapSignIn.configure({
