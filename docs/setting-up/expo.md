@@ -6,12 +6,6 @@ sidebar_position: 1
 
 ## Prepare your Expo project
 
-:::info
-
-With Expo SDK 50, minimum iOS version was bumped to 13.4. In case you get an error during pod install step, see [these release notes](https://github.com/react-native-google-signin/google-signin/releases/tag/v11.0.0) to determine the right version of this package to install.
-
-:::
-
 :::note
 
 This package cannot be used in [Expo Go](https://docs.expo.dev/workflow/overview/#expo-go-an-optional-tool-for-learning) because it requires custom native code. This applies to both the [original](../original) and [modern](../one-tap) (one-tap) sign in methods.
@@ -20,9 +14,11 @@ However, you can add custom native code to an Expo app by using a [development b
 
 :::
 
-```sh
-npx expo install @react-native-google-signin/google-signin
-```
+:::info
+
+With Expo SDK 50, minimum iOS version was bumped to 13.4. In case you get an error during pod install step, see [these release notes](https://github.com/react-native-google-signin/google-signin/releases/tag/v11.0.0) to determine the right version of this package to install.
+
+:::
 
 ## Add config plugin
 

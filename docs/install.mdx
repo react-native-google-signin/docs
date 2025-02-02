@@ -10,7 +10,7 @@ There are two ways to consume the package:
 
 ### Modern version {#sponsor-only-version}
 
-Available to GitHub sponsors of the maintainer and Expo customers, this version includes:
+Available through purchasing a license, and to Expo customers, this version includes:
 
 ⚡️[**Modern Sign In**](/docs/one-tap) implemented with:
 
@@ -38,11 +38,13 @@ Available on the public npm registry, this version:
 
 ## Obtaining access to the Modern version {#obtaining-access}
 
-You can get access either [by sponsoring](https://github.com/sponsors/vonovak) (use specifically the tiers that mention this project!) or as an Expo customer through [this form](https://forms.gle/tpP7TfUGW1CwgaEZ8). Note that this version is distributed under a [custom license](license). You will receive an invitation to access the private repo with the sources and examples, as well as to the private npm package.
+[Upon purchasing a license](https://rngs-package.com/auth/login), you will be able to configure your (or your colleagues') access to the private npm package and to the private repo with the sources and examples. Alternatively, as an Expo customer, obtain access through [this form](https://forms.gle/tpP7TfUGW1CwgaEZ8).
+
+[//]: # 'Note that this version is distributed under a [custom license](license).'
 
 Three steps are needed to access the private package, which is hosted on [GitHub npm packages registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry).
 
-1. [Become a sponsor](https://github.com/sponsors/vonovak) or [complete the form](https://forms.gle/tpP7TfUGW1CwgaEZ8) and accept the private repository invitation.
+1. [Purchase a license](https://rngs-package.com/auth/login) to immediately set up access. Alternatively, [complete the form](https://forms.gle/tpP7TfUGW1CwgaEZ8).
 
 2. [Obtain here](https://github.com/settings/tokens/new?description=react-native-google-sign-in&scopes=read:packages) a Personal Access Token with `packages:read` permission.
 
@@ -51,8 +53,21 @@ Three steps are needed to access the private package, which is hosted on [GitHub
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<Tabs>
-  <TabItem value="classic" label="npm / yarn v1">
+<Tabs queryString="package-manager">
+
+  <TabItem value="yarn" label="yarn v3+">
+    create a `.yarnrc.yml` file in your project root with the following content:
+
+    ```yml title=".yarnrc.yml"
+    npmScopes:
+    react-native-google-signin:
+    npmRegistryServer: https://npm.pkg.github.com
+    npmAuthToken: '${NPM_TOKEN_GOOGLE_SIGN_IN}'
+    ```
+
+  </TabItem>
+
+  <TabItem value="npm" label="npm / yarn v1">
     create a `.npmrc` file in your project root with the following content:
 
 ```txt title=".npmrc"
@@ -63,35 +78,36 @@ import TabItem from '@theme/TabItem';
 
   </TabItem>
 
-  <TabItem value="yarn v3+" label="yarn v3+">
-    create a `.yarnrc.yml` file in your project root with the following content:
-
-```yml title=".yarnrc.yml"
-npmScopes:
-  react-native-google-signin:
-    npmRegistryServer: https://npm.pkg.github.com
-    npmAuthToken: '${NPM_TOKEN_GOOGLE_SIGN_IN}'
-```
-
-  </TabItem>
-
 </Tabs>
 
 If you use another package manager ([such as Bun](https://bun.sh/docs/install/registries)), refer to its documentation on how to set up a custom registry.
 
 ## Requirements
 
-The package supports Expo SDK >= 50 / React Native >= 0.73. Unofficially, it may work with older versions, but it's not guaranteed.
+The packages support last 3 stable releases of React Native. Unofficially, they may work with older versions too.
 
 If you're using the [New Architecture](https://reactnative.dev/docs/new-architecture-intro), it's strongly recommended to use the latest React Native version available.
 
 ## Installing
 
-```bash
-yarn add @react-native-google-signin/google-signin@latest
-```
+<Tabs queryString="package-manager">
+  <TabItem value="yarn" label="yarn">
+    ```bash
+    yarn add @react-native-google-signin/google-signin@latest
+    ```
 
-If you're using the Modern version, open the npm lockfile (`yarn.lock` or `package-lock.json`) and verify that the package is fetched from the GitHub registry (the entry must point to `npm.pkg.github.com`, not `registry.npmjs.org`). If it does not, it means that your package manager is not configured correctly.
+  </TabItem>
+
+  <TabItem value="npm" label="npm">
+    ```bash
+    npm i @react-native-google-signin/google-signin@latest
+    ```
+
+  </TabItem>
+
+</Tabs>
+
+If you're using the Modern version, open the lockfile (`yarn.lock` / `package-lock.json`...) and verify that the package is fetched from the GitHub registry (the entry must point to `npm.pkg.github.com`, not `registry.npmjs.org`). If it does not, it means that your package manager is not configured correctly - try uninstalling and reinstalling the package.
 
 There are several guides to follow now:
 

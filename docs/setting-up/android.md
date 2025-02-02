@@ -10,7 +10,7 @@ If you use Expo, follow [this guide](/setting-up/expo.md) instead. This guide ap
 
 ### Ensure compatibility
 
-If you're using the sponsor package:
+If you're using the paid package:
 
 If you're using RN >= 0.73, you're good to go.
 

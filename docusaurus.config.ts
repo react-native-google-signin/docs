@@ -182,7 +182,7 @@ const config: Config = {
         //   ],
         // },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} <a href="https://github.com/vonovak" target=”_blank”>Vojtech Novak</a>. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Vojtech Novak. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
