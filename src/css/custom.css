@@ -35,7 +35,7 @@
 }
 
 .sponsor-heart a:after {
-  content: '❤️';
+  content: '⭐️';
   margin-left: auto; /* Pushes the content to the right */
 }
 

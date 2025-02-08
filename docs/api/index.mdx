@@ -1,6 +1,6 @@
 # API reference
 
-## Modern sign in module
+## Universal sign in module
 
 ### AuthorizationResponse
 
@@ -61,7 +61,7 @@ Parameters for enabling [App Check](/docs/security#appcheck). Provide `debugProv
 | `openIdRealm`?      | `string`                          | iOS only. The OpenID2 realm of the home web server. This allows Google to include the user's OpenID Identifier in the OpenID Connect ID token.                                                                                                                                                                                                                                                   |
 | `profileImageSize`? | `number`                          | iOS only. The desired height and width of the profile image. **Default** `120px`                                                                                                                                                                                                                                                                                                                 |
 | `scopes`?           | `string`[]                        | iOS only. The Google API scopes to request access to. Use `requestAuthorization` to request additional scopes on Android. **Default** `["email", "profile"]`                                                                                                                                                                                                                                     |
-| `webClientId`       | `WebClientId`                     | The web client ID obtained from Google Cloud console. In the Modern module only, pass `autoDetect` to automatically determine the value from Firebase config file.                                                                                                                                                                                                                               |
+| `webClientId`       | `WebClientId`                     | The web client ID obtained from Google Cloud console. In the Universal module only, pass `autoDetect` to automatically determine the value from Firebase config file.                                                                                                                                                                                                                            |
 
 ---
 
@@ -194,7 +194,7 @@ Learn more in the [guide](/docs/one-tap#requestauthorization).
 
 > `const` **GoogleOneTapSignIn**: complex type, see below
 
-The entry point of the Modern Sign In API, exposed as `GoogleOneTapSignIn`.
+The entry point of the Universal sign in API, exposed as `GoogleOneTapSignIn`.
 
 On the web, the signatures of `signIn`, `presentExplicitSignIn`, and `createAccount` are callback-based and on native they are Promise-based. Read more in the [guide](/docs/one-tap#web-support).
 
@@ -278,7 +278,7 @@ On the web, the signatures of `signIn`, `presentExplicitSignIn`, and `createAcco
 | Name         | Type     | Description                                                                                                                                                                                                                                            |
 | ------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `loginHint`? | `string` | iOS only. The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/reference/Classes/GIDSignIn#-signinwithpresentingviewcontroller:hint:completion:). |
-| `nonce`?     | `string` | iOS only. A cryptographically random value used to mitigate replay attacks. Only available in the paid version. For support across all platforms, use the Modern sign in module.                                                                       |
+| `nonce`?     | `string` | iOS only. A cryptographically random value used to mitigate replay attacks. Only available in the paid version. For support across all platforms, use the Universal sign in module.                                                                    |
 
 ---
 
@@ -592,13 +592,13 @@ The response to calling One Tap's `signIn` and Original Google Sign In's `signIn
 | `data` | `null`                     |
 | `type` | `"noSavedCredentialFound"` |
 
-## Web Modern sign in module
+## Web Universal sign in module
 
 ### WebOneTapSignInCallbacks
 
 > **WebOneTapSignInCallbacks**: \{`momentListener`: `MomentListener`;`onError`: (`error`: `NativeModuleError`) => `void` \| `Promise`\<`void`\>;`onResponse`: (`userInfo`: [`OneTapExplicitSignInResponse`](index.mdx#onetapexplicitsigninresponse)) => `void` \| `Promise`\<`void`\>; \}
 
-When using Modern sign in on the web, the sign in result is delivered via a callback, not via a promise.
+When using Universal sign in on the web, the sign in result is delivered via a callback, not via a promise.
 The shape of data delivered to the callback is the same as the shape of the data in the promise, enabling code reuse.
 Read more in the [guide](/docs/one-tap#web-support).
 
