@@ -8,47 +8,52 @@ There are two ways to consume the package:
 
 [//]: # '🌟'
 
-### Modern version {#sponsor-only-version}
+### Universal Sign In {#sponsor-only-version}
 
-Available through purchasing a license, and to Expo customers, this version includes:
+⭐️ **Key Features**:
 
-⚡️[**Modern Sign In**](/docs/one-tap) implemented with:
+- **Cross-Platform**: Unified API which works on **Android**, **iOS**, **Web**, and **macOS**.
 
-- Android: latest [Credential Manager library](https://developers.google.com/identity/android-credential-manager)
-- Web: [Sign In with Google for Web](https://developers.google.com/identity/gsi/web/guides/features)
-- iOS & macOS: [Google Sign-In SDK](https://developers.google.com/identity/sign-in/ios/start)
+  - Android: Built with [Credential Manager library](https://developers.google.com/identity/android-credential-manager)
+  - Web: Uses [Sign In with Google for Web](https://developers.google.com/identity/gsi/web/guides/features)
+  - iOS & macOS: Powered by the [Google Sign-In SDK](https://developers.google.com/identity/sign-in/ios/start)
+
+- **Licensed:** see [pricing](https://rngs-package.com/#pricing) and [license](https://rngs-package.com/license).
+- **Trusted**: Over 130k npm package downloads.
+- **See the UI**: [screenshots](screenshots) of the features.
+- **Faster Sign-Ups**: Reduce sign-up and sign-in times on Android by up to 50%, according to [Google](https://developer.android.com/identity/sign-in/legacy-gsi-migration#authentication).
 
 🛡️ **Advanced [security features](/docs/security)**
 
-🔧 **Easier configuration** - [some parameters can be detected automatically](one-tap#automatic-config)
+🔧 **Easier setup** - Automatic detection of [configuration parameters](one-tap#automatic-config) for faster integration.
 
-🖥️ **Full platform support** - Deploy everywhere with a unified api: Android, iOS, Web, and macOS
+[//]: # '🖥️ **Unified API** - Write code once, deploy everywhere.'
 
-✅ **An example app** - to showcase all **Modern Sign In** features
+📱 **An example app** - to showcase all Universal sign in features
 
-Your support helps improve the module and upstream SDKs (such as [1](https://github.com/openid/AppAuth-iOS/pull/788), [2](https://github.com/google/GoogleSignIn-iOS/pull/402)).
+Your purchase enables improvements in the module and upstream SDKs (such as [1](https://github.com/openid/AppAuth-iOS/pull/788), [2](https://github.com/google/GoogleSignIn-iOS/pull/402)).
 
 ### Public version
 
 Available on the public npm registry, this version:
 
 - Has platform support limited to Android and iOS.
-- Uses functional, but deprecated [Legacy Android Google Sign-In](https://web.archive.org/web/20240308064911/https://developers.google.com/identity/sign-in/android/start-integrating).
+- Uses functional, but deprecated [legacy Android Google Sign-In](https://web.archive.org/web/20240308064911/https://developers.google.com/identity/sign-in/android/start-integrating).
 - Contains none of the extra features listed above.
 
-## Obtaining access to the Modern version {#obtaining-access}
+## Obtaining Universal Sign In {#obtaining-access}
 
-[Upon purchasing a license](https://rngs-package.com/), you will be able to configure your (or your colleagues') access to the private npm package and to the private repo with the sources and examples. Alternatively, as an Expo customer, obtain access through [this form](https://forms.gle/tpP7TfUGW1CwgaEZ8).
+Universal sign in requires [purchasing a license](https://rngs-package.com/#pricing), after which you will be able to configure your (or your colleagues') access to the private npm package and to the private repo with the sources and examples. Alternatively, as an Expo customer, obtain access through this [form](https://forms.gle/tpP7TfUGW1CwgaEZ8).
 
 [//]: # 'Note that this version is distributed under a [custom license](license).'
 
-Three steps are needed to access the private package, which is hosted on [GitHub npm packages registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry).
+## Accessing the private npm package {#package-manager-setup}
 
-1. [Purchase a license](https://rngs-package.com/) to immediately set up access. Alternatively, [complete the form](https://forms.gle/tpP7TfUGW1CwgaEZ8).
+The private npm package is like any other, but it's hosted on the [GitHub npm packages registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry), not the public npm registry. Therefore, a small bit of setup is needed:
 
-2. [Obtain here](https://github.com/settings/tokens/new?description=react-native-google-sign-in&scopes=read:packages) a Personal Access Token with `packages:read` permission.
+1. [Obtain here](https://github.com/settings/tokens/new?description=react-native-google-sign-in&scopes=read:packages) a Personal Access Token with `packages:read` permission.
 
-3. Set up your package manager so that it fetches the package from the GH packages registry instead of the public registry. In this example, we're using an `NPM_TOKEN_GOOGLE_SIGN_IN` environment variable.
+2. Set up your package manager so that it fetches the package from the GH packages registry instead of the public registry. In this example, we're using an `NPM_TOKEN_GOOGLE_SIGN_IN` environment variable.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -82,12 +87,6 @@ import TabItem from '@theme/TabItem';
 
 If you use another package manager ([such as Bun](https://bun.sh/docs/install/registries)), refer to its documentation on how to set up a custom registry.
 
-## Requirements
-
-The packages support last 3 stable releases of React Native. Unofficially, they may work with older versions too.
-
-If you're using the [New Architecture](https://reactnative.dev/docs/new-architecture-intro), it's strongly recommended to use the latest React Native version available.
-
 ## Installing
 
 <Tabs queryString="package-manager">
@@ -107,10 +106,16 @@ If you're using the [New Architecture](https://reactnative.dev/docs/new-architec
 
 </Tabs>
 
-If you're using the Modern version, open the lockfile (`yarn.lock` / `package-lock.json`...) and verify that the package is fetched from the GitHub registry (the entry must point to `npm.pkg.github.com`, not `registry.npmjs.org`). If it does not, it means that your package manager is not configured correctly - try uninstalling and reinstalling the package.
+If you're using the Universal version, open the lockfile (`yarn.lock` / `package-lock.json`...) and verify that the package is fetched from the GitHub registry (the entry must point to `npm.pkg.github.com`, not `registry.npmjs.org`). If it does not, it means that your package manager is not configured correctly - try uninstalling and reinstalling the package.
 
 There are several guides to follow now:
 
 - [Expo guide](setting-up/expo) for native mobile apps built with Expo
 - [Web guide](setting-up/web) if you want to use the package on web
 - If you're not using Expo but plain React Native, follow [Android guide](setting-up/android) and [iOS guide](setting-up/ios)
+
+## Requirements
+
+The packages support last 3 stable releases of React Native. Unofficially, they may work with older versions too.
+
+If you're using the [New Architecture](https://reactnative.dev/docs/new-architecture-intro), it's strongly recommended to use the latest React Native version available.

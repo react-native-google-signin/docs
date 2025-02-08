@@ -24,8 +24,8 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Thanks to the paid version, the module receives updates regularly, and
-        comes with this detailed documentation site.
+        Thanks to the licensed version, the module is maintained, and comes with
+        this detailed documentation site.
       </>
     ),
   },

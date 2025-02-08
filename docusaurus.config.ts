@@ -108,7 +108,7 @@ const config: Config = {
               // categoryOrder: ['Top-level api', 'Type aliases', '*'],
               // categories are not good
               groupOrder: [
-                'Modern sign in module',
+                'Universal sign in module',
                 'Original Google sign in',
                 '*',
               ],
