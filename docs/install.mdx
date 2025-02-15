@@ -41,6 +41,8 @@ Available on the public npm registry, this version:
 - Uses functional, but deprecated [legacy Android Google Sign-In](https://web.archive.org/web/20240308064911/https://developers.google.com/identity/sign-in/android/start-integrating).
 - Contains none of the extra features listed above.
 
+> If you want to migrate from the public version to the Universal version, follow the [migration guide](migrating#migrating-from-original-to-universal-sign-in).
+
 ## Obtaining Universal Sign In {#obtaining-access}
 
 Universal sign in requires [purchasing a license](https://universal-sign-in.com/#pricing), after which you will be able to configure your (or your colleagues') access to the private npm package and to the private repo with the sources and examples. Alternatively, as an Expo customer, obtain access through this [form](https://forms.gle/tpP7TfUGW1CwgaEZ8).
@@ -106,7 +108,7 @@ If you use another package manager ([such as Bun](https://bun.sh/docs/install/re
 
 </Tabs>
 
-If you're using the Universal version, open the lockfile (`yarn.lock` / `package-lock.json`...) and verify that the package is fetched from the GitHub registry (the entry must point to `npm.pkg.github.com`, not `registry.npmjs.org`). If it does not, it means that your package manager is not configured correctly - try uninstalling and reinstalling the package.
+After installing: if you're using the Universal version, open the lockfile (`yarn.lock` / `package-lock.json`...) and verify that the package is fetched from the GitHub registry (the entry must point to `npm.pkg.github.com`, not `registry.npmjs.org`). If it does not, it means that your package manager is not configured correctly - try uninstalling and reinstalling the package.
 
 There are several guides to follow now:
 
