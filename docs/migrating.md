@@ -1,13 +1,36 @@
 ---
-sidebar_position: 90
-sidebar_label: Migrating
+sidebar_position: 43
 ---
 
-# Migrating to new JS API
+# Migration guides
+
+There are 2 migrations described here: from Original to Universal Sign In and from the old JS API to the new JS API.
+
+## Migrating from Original to Universal Sign In
+
+Migrating from Original to Universal module is mostly about changing the method names: the table summarizes the mapping from Original module's calls to the Universal (OneTap) module's calls:
+
+| Original Method          | Universal (OneTap) Method              | Notes                                                                                                                                                                                                                                            |
+| ------------------------ | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `configure`              | `configure`                            | Same functionality.                                                                                                                                                                                                                              |
+| `signInSilently`         | `signIn`                               | Universal's `signIn` attempts sign in without user interaction.                                                                                                                                                                                  |
+| `signIn`                 | `createAccount`                        | Universal's `createAccount` is for first-time sign in (but can be used for existing users too).                                                                                                                                                  |
+| `addScopes`              | `requestAuthorization`                 | Similar functionality, different parameters. On Android, you can call `requestAuthorization` without being signed in!                                                                                                                            |
+| `hasPlayServices`        | `checkPlayServices`                    | Same functionality, different name.                                                                                                                                                                                                              |
+| `getCurrentUser`         | Use `signIn` response                  | Manage the current user state yourself, or through libraries like [Firebase Auth](https://rnfirebase.io/auth/usage#listening-to-authentication-state) or [Supabase Auth](https://supabase.com/docs/reference/javascript/auth-onauthstatechange). |
+| `getTokens`              | Use `signIn` or `requestAuthorization` | Tokens are included in the response object.                                                                                                                                                                                                      |
+| `signOut`                | `signOut`                              | Universal requires email/id parameter on web.                                                                                                                                                                                                    |
+| `revokeAccess`           | Not yet provided by Google.            | See [here](https://stackoverflow.com/a/78877334/2070942).                                                                                                                                                                                        |
+| `hasPreviousSignIn`      | Use `signIn` response                  | Check for `noSavedCredentialFound` response type.                                                                                                                                                                                                |
+| `clearCachedAccessToken` | Not provided, presumably not needed.   | -                                                                                                                                                                                                                                                |
+
+---
+
+## Migrating to new JS API
 
 Version 13 introduced a new JS API, which changes some method response signatures and makes minor changes to error handling (details [here](https://github.com/react-native-google-signin/google-signin/pull/1326)). If you're upgrading from version 12 or earlier, you'll need to make some minor adjustments.
 
-## Universal Sign In
+### Universal Sign In
 
 1. Add the [`configure`](one-tap#configure) method to your code. This method is required to be called to configure the module.
 
@@ -66,7 +89,7 @@ await GoogleOneTapSignIn.requestAuthorization({
 });
 ```
 
-## Original Sign In
+### Original Sign In
 
 1. Follow step 2. from above for `signIn`, `addScopes` and `signInSilently` methods.
 2. remove `SIGN_IN_REQUIRED` mentions. This case is now handled with [`NoSavedCredentialFound`](api#nosavedcredentialfound) object:
