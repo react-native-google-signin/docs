@@ -14,8 +14,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Supports Android, iOS, Web and MacOS. <br /> Also works with Expo
-        (requires development client)!
+        Supports Android, iOS, Web and MacOS. <br /> Also works with Expo!
       </>
     ),
   },
@@ -25,7 +24,7 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         Thanks to the licensed version, the module is maintained, and comes with
-        this detailed documentation site.
+        detailed documentation.
       </>
     ),
   },
@@ -35,8 +34,8 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Supports the New Architecture (including bridgeless mode), and most of
-        the features of the native SDKs. Open an issue if something's missing!
+        Supports the New Architecture, and most of the features of the native
+        SDKs. Open an issue if something's missing!
       </>
     ),
   },
