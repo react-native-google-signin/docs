@@ -37,7 +37,7 @@ _Your purchase enables improvements in the module and upstream SDKs (such as [1]
 
 Available on the public npm registry under MIT license, this version:
 
-- Uses the fully functional, but deprecated [legacy Android Google Sign-In](https://web.archive.org/web/20240308064911/https://developers.google.com/identity/sign-in/android/start-integrating) which will be removed from the Google Play Services Auth SDK (`com.google.android.gms:play-services-auth`) later in 2025.
+- Uses the functional, but deprecated [legacy Android Google Sign-In](https://web.archive.org/web/20240308064911/https://developers.google.com/identity/sign-in/android/start-integrating) which will be removed from the Google Play Services Auth SDK (`com.google.android.gms:play-services-auth`) later in 2025. The free version will continue to use a version where the deprecated SDK is present.
 - Has platform support limited to Android and iOS.
 - Contains none of the extra features listed above.
 
@@ -65,12 +65,12 @@ import TabItem from '@theme/TabItem';
   <TabItem value="yarn" label="yarn v3+">
     create a `.yarnrc.yml` file in your project root with the following content:
 
-    ```yml title=".yarnrc.yml"
-    npmScopes:
-    react-native-google-signin:
+```yml title=".yarnrc.yml"
+npmScopes:
+  react-native-google-signin:
     npmRegistryServer: https://npm.pkg.github.com
     npmAuthToken: '${NPM_TOKEN_GOOGLE_SIGN_IN}'
-    ```
+```
 
   </TabItem>
 
