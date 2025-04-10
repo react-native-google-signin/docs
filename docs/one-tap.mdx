@@ -216,14 +216,28 @@ await GoogleOneTapSignIn.presentExplicitSignIn({
 
 ### `signOut`
 
-signature: (`emailOrUniqueId`: `string`) => `Promise`\<`null`\>
+signature: () => `Promise`\<`null`\>
 
-Signs out the current user. On the web, you need to provide the `id` or email of the user. On Android and Apple, this parameter does not have any effect.
+Signs out the current user. This disables the automatic sign-in.
 
 Returns a `Promise` that resolves with `null` or rejects in case of error.
 
 ```ts
-await GoogleOneTapSignIn.signOut(user.id);
+await GoogleOneTapSignIn.signOut();
+```
+
+---
+
+### `revokeAccess`
+
+signature: (`emailOrUniqueId`: `string`) => `Promise`\<`null`\>
+
+Revokes access given to the current application and signs the user out. Use when user deletes their account in your app. On the web, you need to provide the `id` or email of the user. On Android and Apple, the `emailOrUniqueId` parameter does not have any effect.
+
+Returns a `Promise` that resolves with `null` or rejects in case of error.
+
+```ts
+await GoogleOneTapSignIn.revokeAccess(user.id);
 ```
 
 ---
