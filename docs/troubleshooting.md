@@ -17,9 +17,9 @@ This is always (!_always_!) a configuration mismatch between your app and the se
 
 Follow these pointers:
 
-- Make sure that your SHA-1 (_NOT_ SHA-256!) certificate fingerprints and Android package name you entered in [Firebase Console](https://console.firebase.google.com/) / [Google Cloud Console](https://console.cloud.google.com/apis/credentials?project=_) are correct.
-- Add the SHA-1 from the output of [this command](https://x.com/vonovak/status/1692127631473529226) to your Firebase / Google Cloud Console. You should be able to recognize the SHA-1 - do not add a hash if you're not sure of its origin.
 - Follow the [setup guide](/docs/setting-up/get-config-file) and perform its steps once again.
+- Make sure that your SHA-1 (_NOT_ SHA-256!) certificate fingerprints and Android package name you entered in [Firebase Console](https://console.firebase.google.com/) / [Google Cloud Console](https://console.cloud.google.com/apis/credentials?project=_) are correct.
+- Add the SHA-1 from the output of [this command](https://x.com/vonovak/status/1692127631473529226) to your Firebase / Google Cloud Console. You should be able to recognize the SHA-1 — do not add a hash if you're not sure of its origin.
 - [Search the issue tracker](https://github.com/react-native-google-signin/google-signin/issues?q=is%3Aissue+DEVELOPER+ERROR+is%3Aclosed) for old reports of the error.
 - If you're passing `webClientId` in the configuration object to `GoogleSignin.configure()`, make sure it's correct and that it is of type web (NOT Android!). You can get your `webClientId` from [Google Developer Console](https://console.developers.google.com/apis/credentials). It is listed under "OAuth 2.0 client IDs".
 - If you are using Firebase, you need to add Google as a Sign-in method in Firebase itself (Build -> Authentication -> Sign-in method). If you have already created an app, you will be prompted for fingerprints and then you will get a new `google-services.json` which you need to use in your app instead of the old one.

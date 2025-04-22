@@ -4,7 +4,7 @@ sidebar_position: 60
 
 # Error handling
 
-When `catch`ing errors thrown by the library, it's strongly recommended not to immediately present them using the [`Alert` module](https://reactnative.dev/docs/alert). This is because on Android, when transitioning from the Google Sign-In flow to your app, the current [Activity](https://developer.android.com/reference/android/app/Activity) may be `null` which would cause the alert call to be a noop. You can work around this by presenting the alert after a delay, or handling the error differently.
+When catching and handling errors thrown by the library, it's strongly recommended not to immediately present them using the [`Alert` module](https://reactnative.dev/docs/alert). This is because on Android, when transitioning from the Google Sign-In flow to your app, the current [Activity](https://developer.android.com/reference/android/app/Activity) may be `null` which would cause the alert call to be a noop. You can work around this by presenting the alert after a delay, or handling the error differently.
 
 ### `isErrorWithCode(value)`
 
@@ -38,7 +38,7 @@ import { statusCodes } from '@react-native-google-signin/google-signin';
 
 Status codes are useful when determining which kind of error has occurred during the sign-in process. Under the hood, these constants are derived from native GoogleSignIn error codes and are platform-specific. Always compare `error.code` to `statusCodes.*` and do not rely on the raw value of `error.code`.
 
-See [example usage](original#signin).
+See [example usage](one-tap#signin).
 
 | Name                          | Description                                                                                                                                                                                                                                                                                                                                                                 |
 | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

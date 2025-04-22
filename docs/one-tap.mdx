@@ -18,15 +18,50 @@ import Banner from './_sponsorBanner.mdx';
 
 - On the web, it covers both the [One-tap](https://developers.google.com/identity/gsi/web/guides/offerings#one_tap) flow and the [Google Sign-In button](https://developers.google.com/identity/gsi/web/guides/offerings#sign_in_with_google_button).
 
-Note that on Apple and Android, you can combine the Universal sign in methods with those one from the [Original Google Sign In](original). To do that, use the Universal sign in to sign in the user. Then call `signInSilently()` and then (for example) `getCurrentUser()` to get the current user's information. However, this shouldn't be necessary because this module should cover all your needs. Please open an issue if that's not the case.
+## Usage
 
-```ts title="example of importing the module"
+You can copy-paste this snippet to get a complete sign-in flow quickly. Read more about the methods below.
+
+```ts title="example of going through the sign in flow" showLineNumbers
 import {
   GoogleOneTapSignIn,
   statusCodes,
   type OneTapUser,
 } from '@react-native-google-signin/google-signin';
+
+const startSignInFlow = async () => {
+  try {
+    await GoogleOneTapSignIn.checkPlayServices();
+    const signInResponse = await GoogleOneTapSignIn.signIn();
+    if (signInResponse.type === 'success') {
+      // use signInResponse.data
+    } else if (signInResponse.type === 'noSavedCredentialFound') {
+      // the user wasn't previously signed into this app
+      const createResponse = await GoogleOneTapSignIn.createAccount();
+      if (createResponse.type === 'success') {
+        // use createResponse.data
+      } else if (createResponse.type === 'noSavedCredentialFound') {
+        // no Google user account was present on the device yet (unlikely but possible)
+        const explicitResponse =
+          await GoogleOneTapSignIn.presentExplicitSignIn();
+
+        if (explicitResponse.type === 'success') {
+          // use explicitResponse.data
+        }
+      }
+    }
+    // the else branches correspond to the user canceling the sign in
+  } catch (error) {
+    // handle error
+  }
+};
 ```
+
+Note that on Apple and Android, you can combine the Universal sign in methods with those one from the [Original Google Sign In](original). To do that, use the Universal sign in to sign in the user. Then call `signInSilently()` and then (for example) `getCurrentUser()` to get the current user's information. However, this shouldn't be necessary because this module should cover all your needs. Please open an issue if that's not the case.
+
+---
+
+## Methods
 
 ### `configure`
 
@@ -42,47 +77,6 @@ If you're using neither Expo nor Firebase, you also need to provide the `iosClie
 GoogleOneTapSignIn.configure({
   webClientId: 'autoDetect',
 });
-```
-
----
-
-### `checkPlayServices`
-
-✨since v17.3.0
-
-signature: (`showErrorResolutionDialog`?: `boolean`): `Promise`\<[`PlayServicesInfo`](api#playservicesinfo)\>
-
-The behavior of `checkPlayServices` varies across platforms:
-
-- Android: The function resolves if the device has Play Services installed and their version is >= the minimum required version. Otherwise, it rejects with `statusCodes.PLAY_SERVICES_NOT_AVAILABLE` error code, and more information in `userInfo` field (see [below](#example-code-snippet)).
-
-On Android, presence of up-to-date Google Play Services is required to call any of the provided authentication and authorization methods. It is therefore necessary to call `checkPlayServices` any time prior to calling the authentication / authorization methods and only call those if `checkPlayServices` is successful.
-
-The `showErrorResolutionDialog` parameter (default `true`) controls whether a dialog that helps to resolve an error is shown (only in case the error is user-resolvable).
-
-Some errors are user-resolvable (e.g. when Play Services are outdated, or disabled) while other errors cannot be resolved (e.g. when the phone doesn't ship Play Services at all - which is the case with some device vendors).
-
-<details>
-  <summary>Dialog screenshots</summary>
-
-![prompt install](/img/prompt-install.png)
-![prompt enable](/img/prompt-enable.png)
-
-</details>
-
-- Apple: Play Services are an Android-only concept and are not needed on Apple. Hence, the method always resolves with:
-
-```ts
-{
-  minRequiredVersion: -1,
-  installedVersion: -1,
-}
-```
-
-- Web: resolves (with the same value as on Apple) when the Google Client Library [is loaded](setting-up/web), rejects otherwise.
-
-```ts title="Example of showPlayServicesUpdateDialog() method"
-await GoogleOneTapSignIn.showPlayServicesUpdateDialog();
 ```
 
 ---
@@ -210,6 +204,47 @@ import PresentExplicitSignIn from './screenshots/_presentExplicitSignIn.mdx';
 await GoogleOneTapSignIn.presentExplicitSignIn({
   nonce: 'your_nonce', // nonce is supported on all platforms!
 });
+```
+
+---
+
+### `checkPlayServices`
+
+✨since v17.3.0
+
+signature: (`showErrorResolutionDialog`?: `boolean`): `Promise`\<[`PlayServicesInfo`](api#playservicesinfo)\>
+
+The behavior of `checkPlayServices` varies across platforms:
+
+- Android: The function resolves if the device has Play Services installed and their version is >= the minimum required version. Otherwise, it rejects with `statusCodes.PLAY_SERVICES_NOT_AVAILABLE` error code, and more information in `userInfo` field (see [below](#example-code-snippet)).
+
+On Android, the presence of up-to-date Google Play Services is required to call any of the provided authentication and authorization methods. It is therefore necessary to call `checkPlayServices` any time prior to calling the authentication / authorization methods and only call those if `checkPlayServices` is successful.
+
+The `showErrorResolutionDialog` parameter (default `true`) controls whether a dialog that helps to resolve an error is shown (only in case the error is user-resolvable).
+
+Some errors are user-resolvable (e.g. when Play Services are outdated, or disabled) while other errors cannot be resolved (e.g. when the phone doesn't ship Play Services at all - which is the case with some device vendors).
+
+<details>
+  <summary>Dialog screenshots</summary>
+
+![prompt install](/img/prompt-install.png)
+![prompt enable](/img/prompt-enable.png)
+
+</details>
+
+- Apple: Play Services are an Android-only concept and are not needed on Apple. Hence, the method always resolves with:
+
+```ts
+{
+  minRequiredVersion: -1,
+  installedVersion: -1,
+}
+```
+
+- Web: resolves (with the same value as on Apple) when the Google Client Library [is loaded](setting-up/web), rejects otherwise.
+
+```ts title="Example of showPlayServicesUpdateDialog() method"
+await GoogleOneTapSignIn.showPlayServicesUpdateDialog();
 ```
 
 ---
