@@ -21,7 +21,7 @@ Completing this guide is crucial for Google Sign-In to work on Android. If not d
 
 ### Step 1: Collect SHA-1 certificate fingerprints
 
-Your Android app probably uses multiple signing configurations. For example, an app might be signed differently when building `debug` and `release` APKs locally or building on [Expo EAS](https://docs.expo.dev/app-signing/managed-credentials/#inspecting-credentials-configuration). Then there's the [Play App Signing](https://support.google.com/googleplay/android-developer/answer/9842756?hl=en) for store deployments — while the Google Play Store does not (re)build your app, it may _re-sign_ it using one of its own signing configurations.
+Your Android app probably uses multiple signing configurations. For example, an app might be signed differently when building `debug` and `release` APKs locally or when building on [Expo EAS](https://docs.expo.dev/app-signing/managed-credentials/#inspecting-credentials-configuration). Then there's the [Play App Signing](https://support.google.com/googleplay/android-developer/answer/9842756?hl=en) for store deployments — while the Google Play Store does not (re)build your app, it may _re-sign_ it using one of its own signing configurations.
 
 It's extremely common for an app to have three or more signing configurations, each with its own SHA-1 certificate fingerprint.
 
@@ -112,9 +112,11 @@ Read below on how to set up Google Sign In for your iOS app.
 
     Remember that _all_ created client IDs can be found in the [Google Cloud Console](https://console.cloud.google.com/apis/credentials?project=_).
 
-    Obtain the "iOS OAuth Client ID" _and_ "iOS URL scheme" (also known as `reversed client id`): Create an OAuth Client ID of type iOS in [Google Cloud Console](https://console.cloud.google.com/apis/credentials?project=_). Alternatively, use <a href="https://console.developers.google.com/henhouse/?pb=%5B%22hh-0%22%2Cnull%2Cnull%2Cnull%2C%22https%3A%2F%2Fdevelopers.google.com%22%2Cnull%2Cnull%2Cnull%2C%22Configure%20a%20project%20for%20Google%20Sign-In%22%2C1%2Cnull%2Cnull%2C0%2C1%2Cnull%2Cnull%2Cnull%2Cnull%2C0%2Cnull%2Cnull%2C0%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2C0%2Cnull%2Cnull%2Cnull%2C0%5D" target="_blank">this wizard</a>.
+    Obtain the "iOS OAuth Client ID" _and_ "iOS URL scheme" (also known as `reversed client id`): Create an OAuth Client ID of type iOS in [Google Cloud Console](https://console.cloud.google.com/apis/credentials?project=_) as seen in the screenshot below. Alternatively, use <a href="https://console.developers.google.com/henhouse/?pb=%5B%22hh-0%22%2Cnull%2Cnull%2Cnull%2C%22https%3A%2F%2Fdevelopers.google.com%22%2Cnull%2Cnull%2Cnull%2C%22Configure%20a%20project%20for%20Google%20Sign-In%22%2C1%2Cnull%2Cnull%2C0%2C1%2Cnull%2Cnull%2Cnull%2Cnull%2C0%2Cnull%2Cnull%2C0%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2Cnull%2C0%2Cnull%2Cnull%2Cnull%2C0%5D" target="_blank">this wizard</a>.
 
     You will need the iOS Client ID and iOS URL scheme later.
+
+    ![Google Cloud Console - creating iOS OAuth ID](/img/ios-client-id.png)
 
   </TabItem>
 
