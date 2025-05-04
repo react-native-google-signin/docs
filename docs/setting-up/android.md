@@ -8,14 +8,6 @@ sidebar_position: 3
 If you use Expo, follow [this guide](/setting-up/expo.md) instead. This guide applies to vanilla React Native apps only.
 :::
 
-### Ensure compatibility
-
-If you're using the paid package:
-
-If you're using RN >= 0.73, you're good to go.
-
-But if you're using RN 0.72 or older, you need to specify `compileSdkVersion` 34 in `android/build.gradle` of your project as highlighted below.
-
 ## Google project configuration
 
 - Follow [this](./get-config-file) guide to set up your project and get the configuration information which you'll need later.

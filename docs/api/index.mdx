@@ -4,7 +4,7 @@
 
 ### AuthorizationResponse
 
-> **AuthorizationResponse**: [`CancelledResponse`](index.mdx#cancelledresponse) \| [`AuthorizationSuccessResponse`](index.mdx#authorizationsuccessresponse)
+> **AuthorizationResponse** = [`CancelledResponse`](#cancelledresponse) \| [`AuthorizationSuccessResponse`](#authorizationsuccessresponse)
 
 The response object of `requestAuthorization`. Either the user cancelled the flow or they successfully gave authorization.
 
@@ -12,42 +12,42 @@ The response object of `requestAuthorization`. Either the user cancelled the flo
 
 ### AuthorizationSuccessResponse
 
-> **AuthorizationSuccessResponse**: \{ `data`: \{ `accessToken`: `string`; `grantedScopes`: `string`[]; `serverAuthCode`: `string` \| `null`; \}; `type`: `"success"`; \}
+> **AuthorizationSuccessResponse** = \{ `data`: \{ `accessToken`: `string`; `grantedScopes`: `string`[]; `serverAuthCode`: `string` \| `null`; \}; `type`: `"success"`; \}
 
 An object that contains an access token that has access to the `grantedScopes`.
 It contains also the `serverAuthCode` if `offlineAccess` was requested.
 
-On iOS, you can also obtain `serverAuthCode` by calling `createAccount()` with `offlineAccess: true`.
+On iOS, you can also obtain `serverAuthCode` by calling `createAccount()`.
 
-#### Type declaration
+#### Properties
 
-| Name                  | Type                                                                                           |
-| --------------------- | ---------------------------------------------------------------------------------------------- |
-| `data`                | \{`accessToken`: `string`;`grantedScopes`: `string`[];`serverAuthCode`: `string` \| `null`; \} |
-| `data.accessToken`    | `string`                                                                                       |
-| `data.grantedScopes`  | `string`[]                                                                                     |
-| `data.serverAuthCode` | `string` \| `null`                                                                             |
-| `type`                | `"success"`                                                                                    |
+| Property                 | Type                                                                                              |
+| ------------------------ | ------------------------------------------------------------------------------------------------- |
+| <a id="data"></a> `data` | \{ `accessToken`: `string`; `grantedScopes`: `string`[]; `serverAuthCode`: `string` \| `null`; \} |
+| `data.accessToken`       | `string`                                                                                          |
+| `data.grantedScopes`     | `string`[]                                                                                        |
+| `data.serverAuthCode`    | `string` \| `null`                                                                                |
+| <a id="type"></a> `type` | `"success"`                                                                                       |
 
 ---
 
 ### EnableAppCheckParams
 
-> **EnableAppCheckParams**: \{ `debugProviderAPIKey`: `string`; \}
+> **EnableAppCheckParams** = \{ `debugProviderAPIKey?`: `string`; \}
 
 Parameters for enabling [App Check](/docs/security#appcheck). Provide `debugProviderAPIKey` to enable App Check with [debug provider](https://developers.google.com/identity/sign-in/ios/appcheck/debug-provider).
 
-#### Type declaration
+#### Properties
 
-| Name                   | Type     |
-| ---------------------- | -------- |
-| `debugProviderAPIKey`? | `string` |
+| Property                                                | Type     |
+| ------------------------------------------------------- | -------- |
+| <a id="debugproviderapikey"></a> `debugProviderAPIKey?` | `string` |
 
 ---
 
 ### OneTapConfigureParams
 
-> **OneTapConfigureParams**: [`ClientIdOrPlistPath`](index.mdx#clientidorplistpath) & \{ `hostedDomain`: `string`; `logLevel`: `"debug"` \| `"info"` \| `"warn"`; `openIdRealm`: `string`; `profileImageSize`: `number`; `scopes`: `string`[]; `webClientId`: `WebClientId`; \}
+> **OneTapConfigureParams** = [`ClientIdOrPlistPath`](#clientidorplistpath) & \{ `hostedDomain?`: `string`; `logLevel?`: `"debug"` \| `"info"` \| `"warn"`; `openIdRealm?`: `string`; `profileImageSize?`: `number`; `scopes?`: `string`[]; `webClientId`: `WebClientId`; \}
 
 `webClientId` is the most important parameter in the configuration. It is required.
 
@@ -55,49 +55,49 @@ Parameters for enabling [App Check](/docs/security#appcheck). Provide `debugProv
 
 | Name                | Type                              | Description                                                                                                                                                                  |
 | ------------------- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `hostedDomain`?     | `string`                          | iOS only. Specifies a hosted domain restriction. By setting this, authorization will be restricted to accounts of the user in the specified domain.                          |
-| `logLevel`?         | `"debug"` \| `"info"` \| `"warn"` | Web only. Controls debug logging in browser console. This is implemented in Google's web SDK and is not part of their public API so it may change or be removed at any time. |
-| `openIdRealm`?      | `string`                          | iOS only. The OpenID2 realm of the home web server. This allows Google to include the user's OpenID Identifier in the OpenID Connect ID token.                               |
-| `profileImageSize`? | `number`                          | iOS only. The desired height and width of the profile image. **Default** `120px`                                                                                             |
-| `scopes`?           | `string`[]                        | iOS only. The Google API scopes to request access to. Use `requestAuthorization` to request additional scopes on Android. **Default** `["email", "profile"]`                 |
+| `hostedDomain?`     | `string`                          | iOS only. Specifies a hosted domain restriction. By setting this, authorization will be restricted to accounts of the user in the specified domain.                          |
+| `logLevel?`         | `"debug"` \| `"info"` \| `"warn"` | Web only. Controls debug logging in browser console. This is implemented in Google's web SDK and is not part of their public API so it may change or be removed at any time. |
+| `openIdRealm?`      | `string`                          | iOS only. The OpenID2 realm of the home web server. This allows Google to include the user's OpenID Identifier in the OpenID Connect ID token.                               |
+| `profileImageSize?` | `number`                          | iOS only. The desired height and width of the profile image. **Default** `120px`                                                                                             |
+| `scopes?`           | `string`[]                        | iOS only. The Google API scopes to request access to. Use `requestAuthorization` to request additional scopes on Android. **Default** `["email", "profile"]`                 |
 | `webClientId`       | `WebClientId`                     | The web client ID obtained from Google Cloud console. In the Universal module only, pass `autoDetect` to automatically determine the value from Firebase config file.        |
 
 ---
 
 ### OneTapCreateAccountParams
 
-> **OneTapCreateAccountParams**: [`OneTapSignInParams`](index.mdx#onetapsigninparams) & \{ `accountName`: `string`; `requestVerifiedPhoneNumber`: `boolean`; \}
+> **OneTapCreateAccountParams** = [`OneTapSignInParams`](#onetapsigninparams) & \{ `accountName?`: `string`; `requestVerifiedPhoneNumber?`: `boolean`; \}
 
 #### Type declaration
 
 | Name                          | Type      | Description                                                                                                                                                                 |
 | ----------------------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `accountName`?                | `string`  | iOS only. An account name present on the device that should be used. **Example** `your_email@gmail.com`                                                                     |
-| `requestVerifiedPhoneNumber`? | `boolean` | Android only. Whether to request for a verified phone number during sign-ups. Requesting it doesn't guarantee that it will be provided in the response. **Default** `false` |
+| `accountName?`                | `string`  | iOS only. An account name present on the device that should be used. **Example** `your_email@gmail.com`                                                                     |
+| `requestVerifiedPhoneNumber?` | `boolean` | Android only. Whether to request for a verified phone number during sign-ups. Requesting it doesn't guarantee that it will be provided in the response. **Default** `false` |
 
 ---
 
 ### OneTapExplicitSignInParams
 
-> **OneTapExplicitSignInParams**: [`OneTapSignInParams`](index.mdx#onetapsigninparams) & \{ `accountName`: `string`; \}
+> **OneTapExplicitSignInParams** = [`OneTapSignInParams`](#onetapsigninparams) & \{ `accountName?`: `string`; \}
 
 #### Type declaration
 
 | Name           | Type     | Description                                                                                             |
 | -------------- | -------- | ------------------------------------------------------------------------------------------------------- |
-| `accountName`? | `string` | iOS only. An account name present on the device that should be used. **Example** `your_email@gmail.com` |
+| `accountName?` | `string` | iOS only. An account name present on the device that should be used. **Example** `your_email@gmail.com` |
 
 ---
 
 ### OneTapExplicitSignInResponse
 
-> **OneTapExplicitSignInResponse**: [`OneTapSuccessResponse`](index.mdx#onetapsuccessresponse) \| [`CancelledResponse`](index.mdx#cancelledresponse)
+> **OneTapExplicitSignInResponse** = [`OneTapSuccessResponse`](#onetapsuccessresponse) \| [`CancelledResponse`](#cancelledresponse)
 
 ---
 
 ### OneTapResponse
 
-> **OneTapResponse**: [`OneTapSuccessResponse`](index.mdx#onetapsuccessresponse) \| [`CancelledResponse`](index.mdx#cancelledresponse) \| [`NoSavedCredentialFound`](index.mdx#nosavedcredentialfound)
+> **OneTapResponse** = [`OneTapSuccessResponse`](#onetapsuccessresponse) \| [`CancelledResponse`](#cancelledresponse) \| [`NoSavedCredentialFound`](#nosavedcredentialfound)
 
 The response object for OneTap's `signIn` and `createAccount`.
 
@@ -105,7 +105,7 @@ The response object for OneTap's `signIn` and `createAccount`.
 
 ### OneTapSignInParams
 
-> **OneTapSignInParams**: \{ `nonce`: `string`; `skipPrompt`: `boolean`; \} & `ReducedWebSignInOptions`
+> **OneTapSignInParams** = \{ `nonce?`: `string`; `skipPrompt?`: `boolean`; \} & `ReducedWebSignInOptions`
 
 Learn more about additional web-only parameters at [Google's reference documentation](https://developers.google.com/identity/gsi/web/reference/js-reference#IdConfiguration).
 
@@ -113,79 +113,79 @@ Learn more about additional web-only parameters at [Google's reference documenta
 
 | Name          | Type      | Description                                                                                                                                                                                                          |
 | ------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `nonce`?      | `string`  | A cryptographically random value used to mitigate replay attacks. Supported on all platforms.                                                                                                                        |
-| `skipPrompt`? | `boolean` | Web only. When calling any of the sign-in methods, a prompt is displayed by default on the top-right of the web page. Set this to true to only allow signing in via the `WebGoogleSigninButton`. **Default** `false` |
+| `nonce?`      | `string`  | A cryptographically random value used to mitigate replay attacks. Supported on all platforms.                                                                                                                        |
+| `skipPrompt?` | `boolean` | Web only. When calling any of the sign-in methods, a prompt is displayed by default on the top-right of the web page. Set this to true to only allow signing in via the `WebGoogleSigninButton`. **Default** `false` |
 
 ---
 
 ### OneTapSuccessResponse
 
-> **OneTapSuccessResponse**: \{ `data`: [`OneTapUser`](index.mdx#onetapuser); `type`: `"success"`; \}
+> **OneTapSuccessResponse** = \{ `data`: [`OneTapUser`](#onetapuser); `type`: `"success"`; \}
 
 The response object when the user successfully signs in.
 
-#### Type declaration
+#### Properties
 
-| Name   | Type                                 |
-| ------ | ------------------------------------ |
-| `data` | [`OneTapUser`](index.mdx#onetapuser) |
-| `type` | `"success"`                          |
+| Property                   | Type                        |
+| -------------------------- | --------------------------- |
+| <a id="data-3"></a> `data` | [`OneTapUser`](#onetapuser) |
+| <a id="type-3"></a> `type` | `"success"`                 |
 
 ---
 
 ### OneTapUser
 
-> **OneTapUser**: \{ `credentialOrigin`: `CredentialResponse`\[`"select_by"`\]; `idToken`: `string`; `serverAuthCode`: `string` \| `null`; `user`: \{ `email`: `string` \| `null`; `familyName`: `string` \| `null`; `givenName`: `string` \| `null`; `id`: `string`; `name`: `string` \| `null`; `phoneNumber`: `string` \| `null`; `photo`: `string` \| `null`; \}; \}
+> **OneTapUser** = \{ `credentialOrigin`: `CredentialResponse`\[`"select_by"`\]; `idToken`: `string`; `serverAuthCode`: `string` \| `null`; `user`: \{ `email`: `string` \| `null`; `familyName`: `string` \| `null`; `givenName`: `string` \| `null`; `id`: `string`; `name`: `string` \| `null`; `phoneNumber`: `string` \| `null`; `photo`: `string` \| `null`; \}; \}
 
-#### Type declaration
+#### Properties
 
-| Name               | Type                                                                                                                                                                                                       | Description                                                                                                                                                         |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `credentialOrigin` | `CredentialResponse`\[`"select_by"`\]                                                                                                                                                                      | The credential origin. This is the method that was used to sign in the user. On native platforms, this is always "user". On the web it's a value from a union type. |
-| `idToken`          | `string`                                                                                                                                                                                                   | -                                                                                                                                                                   |
-| `serverAuthCode`   | `string` \| `null`                                                                                                                                                                                         | iOS only. Not null only if a valid `webClientId` was specified in `configure()`. Call `requestAuthorization()` to obtain it on Android.                             |
-| `user`             | \{`email`: `string` \| `null`;`familyName`: `string` \| `null`;`givenName`: `string` \| `null`;`id`: `string`;`name`: `string` \| `null`;`phoneNumber`: `string` \| `null`;`photo`: `string` \| `null`; \} | -                                                                                                                                                                   |
-| `user.email`       | `string` \| `null`                                                                                                                                                                                         | -                                                                                                                                                                   |
-| `user.familyName`  | `string` \| `null`                                                                                                                                                                                         | -                                                                                                                                                                   |
-| `user.givenName`   | `string` \| `null`                                                                                                                                                                                         | -                                                                                                                                                                   |
-| `user.id`          | `string`                                                                                                                                                                                                   | -                                                                                                                                                                   |
-| `user.name`        | `string` \| `null`                                                                                                                                                                                         | -                                                                                                                                                                   |
-| `user.phoneNumber` | `string` \| `null`                                                                                                                                                                                         | Android only, and only for `createAccount`. Requires setting `requestVerifiedPhoneNumber` to `true`.                                                                |
-| `user.photo`       | `string` \| `null`                                                                                                                                                                                         | -                                                                                                                                                                   |
+| Property                                         | Type                                                                                                                                                                                                              | Description                                                                                                                                                         |
+| ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <a id="credentialorigin"></a> `credentialOrigin` | `CredentialResponse`\[`"select_by"`\]                                                                                                                                                                             | The credential origin. This is the method that was used to sign in the user. On native platforms, this is always "user". On the web it's a value from a union type. |
+| <a id="idtoken-1"></a> `idToken`                 | `string`                                                                                                                                                                                                          | -                                                                                                                                                                   |
+| <a id="serverauthcode"></a> `serverAuthCode`     | `string` \| `null`                                                                                                                                                                                                | iOS only. Not null only if a valid `webClientId` and `offlineAccess: true` was specified in `configure()`. Call `requestAuthorization()` to obtain it on Android.   |
+| <a id="user"></a> `user`                         | \{ `email`: `string` \| `null`; `familyName`: `string` \| `null`; `givenName`: `string` \| `null`; `id`: `string`; `name`: `string` \| `null`; `phoneNumber`: `string` \| `null`; `photo`: `string` \| `null`; \} | -                                                                                                                                                                   |
+| `user.email`                                     | `string` \| `null`                                                                                                                                                                                                | -                                                                                                                                                                   |
+| `user.familyName`                                | `string` \| `null`                                                                                                                                                                                                | -                                                                                                                                                                   |
+| `user.givenName`                                 | `string` \| `null`                                                                                                                                                                                                | -                                                                                                                                                                   |
+| `user.id`                                        | `string`                                                                                                                                                                                                          | An immutable identifier for the user. Unique among all Google accounts and never reused (user's email can change, this value cannot).                               |
+| `user.name`                                      | `string` \| `null`                                                                                                                                                                                                | -                                                                                                                                                                   |
+| `user.phoneNumber`                               | `string` \| `null`                                                                                                                                                                                                | Android only, and only for `createAccount`. Requires setting `requestVerifiedPhoneNumber` to `true`.                                                                |
+| `user.photo`                                     | `string` \| `null`                                                                                                                                                                                                | -                                                                                                                                                                   |
 
 ---
 
 ### PlayServicesInfo
 
-> **PlayServicesInfo**: \{ `installedVersion`: `number`; `minRequiredVersion`: `number`; \}
+> **PlayServicesInfo** = \{ `installedVersion`: `number`; `minRequiredVersion`: `number`; \}
 
 The response object for successful `checkPlayServices` call. It denotes that the necessary prerequisites for calling the module in methods are met.
 
-#### Type declaration
+#### Properties
 
-| Name                 | Type     |
-| -------------------- | -------- |
-| `installedVersion`   | `number` |
-| `minRequiredVersion` | `number` |
+| Property                                             | Type     |
+| ---------------------------------------------------- | -------- |
+| <a id="installedversion"></a> `installedVersion`     | `number` |
+| <a id="minrequiredversion"></a> `minRequiredVersion` | `number` |
 
 ---
 
 ### RequestAuthorizationParams
 
-> **RequestAuthorizationParams**: \{ `accountName`: `string`; `hostedDomain`: `string`; `offlineAccess`: \{ `enabled`: `boolean`; `forceCodeForRefreshToken`: `boolean`; \}; `scopes`: `string`[]; \}
+> **RequestAuthorizationParams** = \{ `accountName?`: `string`; `hostedDomain?`: `string`; `offlineAccess?`: \{ `enabled`: `boolean`; `forceCodeForRefreshToken?`: `boolean`; \}; `scopes`: `string`[]; \}
 
 Learn more in the [guide](/docs/one-tap#requestauthorization).
 
-#### Type declaration
+#### Properties
 
-| Name                                      | Type                                                             | Description                                                                                                                                                                                 |
-| ----------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `accountName`?                            | `string`                                                         | Android only. Specifies an account on the device that should be used.                                                                                                                       |
-| `hostedDomain`?                           | `string`                                                         | Android only. Specifies a hosted domain restriction. By setting this, authorization will be restricted to accounts of the user in the specified domain.                                     |
-| `offlineAccess`?                          | \{`enabled`: `boolean`;`forceCodeForRefreshToken`: `boolean`; \} | -                                                                                                                                                                                           |
-| `offlineAccess.enabled`                   | `boolean`                                                        | Whether to enable offline access. If enabled, `serverAuthCode` will be returned in the response.                                                                                            |
-| `offlineAccess.forceCodeForRefreshToken`? | `boolean`                                                        | Android only. If true, the granted code can be exchanged for an access token and a refresh token. Only use true if your server has suffered some failure and lost the user's refresh token. |
-| `scopes`                                  | `string`[]                                                       | The Google API scopes to request access to. See [scopes docs](/docs/integration-notes#additional-scopes).                                                                                   |
+| Property                                    | Type                                                                | Description                                                                                                                                                                                 |
+| ------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <a id="accountname"></a> `accountName?`     | `string`                                                            | Android only. Specifies an account on the device that should be used.                                                                                                                       |
+| <a id="hosteddomain"></a> `hostedDomain?`   | `string`                                                            | Android only. Specifies a hosted domain restriction. By setting this, authorization will be restricted to accounts of the user in the specified domain.                                     |
+| <a id="offlineaccess"></a> `offlineAccess?` | \{ `enabled`: `boolean`; `forceCodeForRefreshToken?`: `boolean`; \} | -                                                                                                                                                                                           |
+| `offlineAccess.enabled`                     | `boolean`                                                           | Whether to enable offline access. If enabled, `serverAuthCode` will be returned in the response.                                                                                            |
+| `offlineAccess.forceCodeForRefreshToken?`   | `boolean`                                                           | Android only. If true, the granted code can be exchanged for an access token and a refresh token. Only use true if your server has suffered some failure and lost the user's refresh token. |
+| <a id="scopes-1"></a> `scopes`              | `string`[]                                                          | The Google API scopes to request access to. See [scopes docs](/docs/integration-notes#additional-scopes).                                                                                   |
 
 ---
 
@@ -199,98 +199,98 @@ On the web, the signatures of `signIn`, `presentExplicitSignIn`, and `createAcco
 
 #### Type declaration
 
-| Name                    | Type                                                                                                                                                                       |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `configure`             | (`params`: [`OneTapConfigureParams`](index.mdx#onetapconfigureparams)) => `void`                                                                                           |
-| `checkPlayServices`     | (`showErrorResolutionDialog`?: `boolean`) => `Promise`\<[`PlayServicesInfo`](index.mdx#playservicesinfo)\>                                                                 |
-| `enableAppCheck`        | (`params`?: [`EnableAppCheckParams`](index.mdx#enableappcheckparams)) => `Promise`\<`null`\>                                                                               |
-| `signIn`                | (`params?`: [`OneTapSignInParams`](index.mdx#onetapsigninparams)) => `Promise`\<[`OneTapResponse`](index.mdx#onetapresponse)\>                                             |
-| `createAccount`         | (`params?`: [`OneTapCreateAccountParams`](index.mdx#onetapcreateaccountparams)) => `Promise`\<[`OneTapResponse`](index.mdx#onetapresponse)\>                               |
-| `presentExplicitSignIn` | (`params?`: [`OneTapExplicitSignInParams`](index.mdx#onetapexplicitsigninparams)) => `Promise`\<[`OneTapExplicitSignInResponse`](index.mdx#onetapexplicitsigninresponse)\> |
-| `requestAuthorization`  | (`options`: [`RequestAuthorizationParams`](index.mdx#requestauthorizationparams)) => `Promise`\<[`AuthorizationResponse`](index.mdx#authorizationresponse)\>               |
-| `signOut`               | () => `Promise`\<`null`\>                                                                                                                                                  |
-| `revokeAccess`          | (`emailOrUniqueId`: `string`) => `Promise`\<`null`\>                                                                                                                       |
+| Name                    | Type                                                                                                                                                     |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `configure`             | (`params`: [`OneTapConfigureParams`](#onetapconfigureparams)) => `void`                                                                                  |
+| `checkPlayServices`     | (`showErrorResolutionDialog`?: `boolean`) => `Promise`\<[`PlayServicesInfo`](#playservicesinfo)\>                                                        |
+| `enableAppCheck`        | (`params`?: [`EnableAppCheckParams`](#enableappcheckparams)) => `Promise`\<`null`\>                                                                      |
+| `signIn`                | (`params?`: [`OneTapSignInParams`](#onetapsigninparams)) => `Promise`\<[`OneTapResponse`](#onetapresponse)\>                                             |
+| `createAccount`         | (`params?`: [`OneTapCreateAccountParams`](#onetapcreateaccountparams)) => `Promise`\<[`OneTapResponse`](#onetapresponse)\>                               |
+| `presentExplicitSignIn` | (`params?`: [`OneTapExplicitSignInParams`](#onetapexplicitsigninparams)) => `Promise`\<[`OneTapExplicitSignInResponse`](#onetapexplicitsigninresponse)\> |
+| `requestAuthorization`  | (`options`: [`RequestAuthorizationParams`](#requestauthorizationparams)) => `Promise`\<[`AuthorizationResponse`](#authorizationresponse)\>               |
+| `signOut`               | () => `Promise`\<`null`\>                                                                                                                                |
+| `revokeAccess`          | (`emailOrUniqueId`: `string`) => `Promise`\<`null`\>                                                                                                     |
 
 ## Original Google sign in
 
 ### AddScopesParams
 
-> **AddScopesParams**: \{ `scopes`: `string`[]; \}
+> **AddScopesParams** = \{ `scopes`: `string`[]; \}
 
-#### Type declaration
+#### Properties
 
-| Name     | Type       | Description                                                                    |
-| -------- | ---------- | ------------------------------------------------------------------------------ |
-| `scopes` | `string`[] | The Google API scopes to request access to. **Default** `["email", "profile"]` |
+| Property                     | Type       | Description                                                                    |
+| ---------------------------- | ---------- | ------------------------------------------------------------------------------ |
+| <a id="scopes"></a> `scopes` | `string`[] | The Google API scopes to request access to. **Default** `["email", "profile"]` |
 
 ---
 
 ### ConfigureParams
 
-> **ConfigureParams**: [`ClientIdOrPlistPath`](index.mdx#clientidorplistpath) & \{ `accountName`: `string`; `forceCodeForRefreshToken`: `boolean`; `hostedDomain`: `string`; `offlineAccess`: `boolean`; `openIdRealm`: `string`; `profileImageSize`: `number`; `scopes`: `string`[]; `webClientId`: `WebClientId`; \}
+> **ConfigureParams** = [`ClientIdOrPlistPath`](#clientidorplistpath) & \{ `accountName?`: `string`; `forceCodeForRefreshToken?`: `boolean`; `hostedDomain?`: `string`; `offlineAccess?`: `boolean`; `openIdRealm?`: `string`; `profileImageSize?`: `number`; `scopes?`: `string`[]; `webClientId?`: `WebClientId`; \}
 
 #### Type declaration
 
 | Name                        | Type          | Description                                                                                                                                                                                                                                                                                                                                 |
 | --------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `accountName`?              | `string`      | Android only. An account name that should be prioritized.                                                                                                                                                                                                                                                                                   |
-| `forceCodeForRefreshToken`? | `boolean`     | Android only. Only set to `true` if your server has suffered some failure and lost the user's refresh token.                                                                                                                                                                                                                                |
-| `hostedDomain`?             | `string`      | Specifies a hosted domain restriction. By setting this, authorization will be restricted to accounts of the user in the specified domain.                                                                                                                                                                                                   |
-| `offlineAccess`?            | `boolean`     | Must be `true` if you wish to access user APIs on behalf of the user from your own server. When offline access is requested, an authorization code is returned so the server can use the authorization code to exchange for access token and refresh token. The access token allows the server to access Google data on behalf of the user. |
-| `openIdRealm`?              | `string`      | iOS only. The OpenID2 realm of the home web server. This allows Google to include the user's OpenID Identifier in the OpenID Connect ID token.                                                                                                                                                                                              |
-| `profileImageSize`?         | `number`      | iOS only. The desired height and width of the profile image. **Default** `120px`                                                                                                                                                                                                                                                            |
-| `scopes`?                   | `string`[]    | The Google API scopes to request access to. **Default** `["email", "profile"]`                                                                                                                                                                                                                                                              |
-| `webClientId`?              | `WebClientId` | The web client ID obtained from Google Cloud console. Required for offline access.                                                                                                                                                                                                                                                          |
+| `accountName?`              | `string`      | Android only. An account name that should be prioritized.                                                                                                                                                                                                                                                                                   |
+| `forceCodeForRefreshToken?` | `boolean`     | Android only. Only set to `true` if your server has suffered some failure and lost the user's refresh token.                                                                                                                                                                                                                                |
+| `hostedDomain?`             | `string`      | Specifies a hosted domain restriction. By setting this, authorization will be restricted to accounts of the user in the specified domain.                                                                                                                                                                                                   |
+| `offlineAccess?`            | `boolean`     | Must be `true` if you wish to access user APIs on behalf of the user from your own server. When offline access is requested, an authorization code is returned so the server can use the authorization code to exchange for access token and refresh token. The access token allows the server to access Google data on behalf of the user. |
+| `openIdRealm?`              | `string`      | iOS only. The OpenID2 realm of the home web server. This allows Google to include the user's OpenID Identifier in the OpenID Connect ID token.                                                                                                                                                                                              |
+| `profileImageSize?`         | `number`      | iOS only. The desired height and width of the profile image. **Default** `120px`                                                                                                                                                                                                                                                            |
+| `scopes?`                   | `string`[]    | The Google API scopes to request access to. **Default** `["email", "profile"]`                                                                                                                                                                                                                                                              |
+| `webClientId?`              | `WebClientId` | The web client ID obtained from Google Cloud console. Required for offline access.                                                                                                                                                                                                                                                          |
 
 ---
 
 ### GetTokensResponse
 
-> **GetTokensResponse**: \{ `accessToken`: `string`; `idToken`: `string`; \}
+> **GetTokensResponse** = \{ `accessToken`: `string`; `idToken`: `string`; \}
 
-#### Type declaration
+#### Properties
 
-| Name          | Type     |
-| ------------- | -------- |
-| `accessToken` | `string` |
-| `idToken`     | `string` |
+| Property                               | Type     |
+| -------------------------------------- | -------- |
+| <a id="accesstoken"></a> `accessToken` | `string` |
+| <a id="idtoken"></a> `idToken`         | `string` |
 
 ---
 
 ### HasPlayServicesParams
 
-> **HasPlayServicesParams**: \{ `showPlayServicesUpdateDialog`: `boolean`; \}
+> **HasPlayServicesParams** = \{ `showPlayServicesUpdateDialog?`: `boolean`; \}
 
-#### Type declaration
+#### Properties
 
-| Name                            | Type      | Description                                                                                                                           |
-| ------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `showPlayServicesUpdateDialog`? | `boolean` | Whether to show a dialog that prompts the user to install Google Play Services, if they don't have them installed. **Default** `true` |
+| Property                                                                  | Type      | Description                                                                                                                           |
+| ------------------------------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| <a id="showplayservicesupdatedialog"></a> `showPlayServicesUpdateDialog?` | `boolean` | Whether to show a dialog that prompts the user to install Google Play Services, if they don't have them installed. **Default** `true` |
 
 ---
 
 ### SignInParams
 
-> **SignInParams**: \{ `loginHint`: `string`; `nonce`: `string`; \}
+> **SignInParams** = \{ `loginHint?`: `string`; `nonce?`: `string`; \}
 
-#### Type declaration
+#### Properties
 
-| Name         | Type     | Description                                                                                                                                                                                                                                            |
-| ------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `loginHint`? | `string` | iOS only. The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/reference/Classes/GIDSignIn#-signinwithpresentingviewcontroller:hint:completion:). |
-| `nonce`?     | `string` | iOS only. A cryptographically random value used to mitigate replay attacks. Only available in the paid version. For support across all platforms, use the Universal sign in module.                                                                    |
+| Property                            | Type     | Description                                                                                                                                                                                                                                            |
+| ----------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| <a id="loginhint"></a> `loginHint?` | `string` | iOS only. The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/reference/Classes/GIDSignIn#-signinwithpresentingviewcontroller:hint:completion:). |
+| <a id="nonce"></a> `nonce?`         | `string` | iOS only. A cryptographically random value used to mitigate replay attacks. Only available in the paid version. For support across all platforms, use the Universal sign in module.                                                                    |
 
 ---
 
 ### SignInResponse
 
-> **SignInResponse**: [`SignInSuccessResponse`](index.mdx#signinsuccessresponse) \| [`CancelledResponse`](index.mdx#cancelledresponse)
+> **SignInResponse** = [`SignInSuccessResponse`](#signinsuccessresponse) \| [`CancelledResponse`](#cancelledresponse)
 
 ---
 
 ### SignInSilentlyResponse
 
-> **SignInSilentlyResponse**: [`SignInSuccessResponse`](index.mdx#signinsuccessresponse) \| [`NoSavedCredentialFound`](index.mdx#nosavedcredentialfound)
+> **SignInSilentlyResponse** = [`SignInSuccessResponse`](#signinsuccessresponse) \| [`NoSavedCredentialFound`](#nosavedcredentialfound)
 
 The response object for calling `signInSilently`. Either the user details are available (without user interaction) or there was no saved credential found.
 
@@ -298,37 +298,37 @@ The response object for calling `signInSilently`. Either the user details are av
 
 ### SignInSuccessResponse
 
-> **SignInSuccessResponse**: \{`data`: [`User`](index.mdx#user);`type`: `"success"`; \}
+> **SignInSuccessResponse** = \{ `data`: [`User`](#user); `type`: `"success"`; \}
 
 The response object when the user signs in successfully.
 
-#### Type declaration
+#### Properties
 
-| Name   | Type                     | Description       |
-| ------ | ------------------------ | ----------------- |
-| `data` | [`User`](index.mdx#user) | The user details. |
-| `type` | `"success"`              | -                 |
+| Property                   | Type            | Description       |
+| -------------------------- | --------------- | ----------------- |
+| <a id="data-4"></a> `data` | [`User`](#user) | The user details. |
+| <a id="type-4"></a> `type` | `"success"`     | -                 |
 
 ---
 
 ### User
 
-> **User**: \{ `idToken`: `string` \| `null`; `scopes`: `string`[]; `serverAuthCode`: `string` \| `null`; `user`: \{ `email`: `string`; `familyName`: `string` \| `null`; `givenName`: `string` \| `null`; `id`: `string`; `name`: `string` \| `null`; `photo`: `string` \| `null`; \}; \}
+> **User** = \{ `idToken`: `string` \| `null`; `scopes`: `string`[]; `serverAuthCode`: `string` \| `null`; `user`: \{ `email`: `string`; `familyName`: `string` \| `null`; `givenName`: `string` \| `null`; `id`: `string`; `name`: `string` \| `null`; `photo`: `string` \| `null`; \}; \}
 
-#### Type declaration
+#### Properties
 
-| Name              | Type                                                                                                                                                           | Description                                                                                                                                                                                                                                                                                                                                               |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `idToken`         | `string` \| `null`                                                                                                                                             | JWT (JSON Web Token) that serves as a secure credential for your user's identity.                                                                                                                                                                                                                                                                         |
-| `scopes`          | `string`[]                                                                                                                                                     | The Google API scopes that the user granted access to.                                                                                                                                                                                                                                                                                                    |
-| `serverAuthCode`  | `string` \| `null`                                                                                                                                             | Code that you can securely send to your server to exchange for an access and refresh token. Use the access token to call Google APIs on behalf of the user and, optionally, store the refresh token to acquire a new access token when the access token expires. Not null only if a valid `webClientId` and `offlineAccess` was enabled in `configure()`. |
-| `user`            | \{`email`: `string`;`familyName`: `string` \| `null`;`givenName`: `string` \| `null`;`id`: `string`;`name`: `string` \| `null`;`photo`: `string` \| `null`; \} | -                                                                                                                                                                                                                                                                                                                                                         |
-| `user.email`      | `string`                                                                                                                                                       | -                                                                                                                                                                                                                                                                                                                                                         |
-| `user.familyName` | `string` \| `null`                                                                                                                                             | -                                                                                                                                                                                                                                                                                                                                                         |
-| `user.givenName`  | `string` \| `null`                                                                                                                                             | -                                                                                                                                                                                                                                                                                                                                                         |
-| `user.id`         | `string`                                                                                                                                                       | -                                                                                                                                                                                                                                                                                                                                                         |
-| `user.name`       | `string` \| `null`                                                                                                                                             | -                                                                                                                                                                                                                                                                                                                                                         |
-| `user.photo`      | `string` \| `null`                                                                                                                                             | -                                                                                                                                                                                                                                                                                                                                                         |
+| Property                                       | Type                                                                                                                                                                 | Description                                                                                                                                                                                                                                                                                                                                               |
+| ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <a id="idtoken-2"></a> `idToken`               | `string` \| `null`                                                                                                                                                   | JWT (JSON Web Token) that serves as a secure credential for your user's identity.                                                                                                                                                                                                                                                                         |
+| <a id="scopes-2"></a> `scopes`                 | `string`[]                                                                                                                                                           | The Google API scopes that the user granted access to.                                                                                                                                                                                                                                                                                                    |
+| <a id="serverauthcode-1"></a> `serverAuthCode` | `string` \| `null`                                                                                                                                                   | Code that you can securely send to your server to exchange for an access and refresh token. Use the access token to call Google APIs on behalf of the user and, optionally, store the refresh token to acquire a new access token when the access token expires. Not null only if a valid `webClientId` and `offlineAccess` was enabled in `configure()`. |
+| <a id="user-2"></a> `user`                     | \{ `email`: `string`; `familyName`: `string` \| `null`; `givenName`: `string` \| `null`; `id`: `string`; `name`: `string` \| `null`; `photo`: `string` \| `null`; \} | -                                                                                                                                                                                                                                                                                                                                                         |
+| `user.email`                                   | `string`                                                                                                                                                             | -                                                                                                                                                                                                                                                                                                                                                         |
+| `user.familyName`                              | `string` \| `null`                                                                                                                                                   | -                                                                                                                                                                                                                                                                                                                                                         |
+| `user.givenName`                               | `string` \| `null`                                                                                                                                                   | -                                                                                                                                                                                                                                                                                                                                                         |
+| `user.id`                                      | `string`                                                                                                                                                             | -                                                                                                                                                                                                                                                                                                                                                         |
+| `user.name`                                    | `string` \| `null`                                                                                                                                                   | -                                                                                                                                                                                                                                                                                                                                                         |
+| `user.photo`                                   | `string` \| `null`                                                                                                                                                   | -                                                                                                                                                                                                                                                                                                                                                         |
 
 ---
 
@@ -340,20 +340,20 @@ The entry point of the Google Sign In API, exposed as `GoogleSignin`.
 
 #### Type declaration
 
-| Name                     | Type                                                                                                                               |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `addScopes`              | (`options`: [`AddScopesParams`](index.mdx#addscopesparams)) => `Promise`\<[`SignInResponse`](index.mdx#signinresponse) \| `null`\> |
-| `clearCachedAccessToken` | (`tokenString`: `string`) => `Promise`\<`null`\>                                                                                   |
-| `configure`              | (`options`?: [`ConfigureParams`](index.mdx#configureparams)) => `void`                                                             |
-| `enableAppCheck`         | (`params`?: [`EnableAppCheckParams`](index.mdx#enableappcheckparams)) => `Promise`\<`null`\>                                       |
-| `getCurrentUser`         | () => [`User`](index.mdx#user) \| `null`                                                                                           |
-| `getTokens`              | () => `Promise`\<[`GetTokensResponse`](index.mdx#gettokensresponse)\>                                                              |
-| `hasPlayServices`        | (`options`?: [`HasPlayServicesParams`](index.mdx#hasplayservicesparams)) => `Promise`\<`boolean`\>                                 |
-| `hasPreviousSignIn`      | () => `boolean`                                                                                                                    |
-| `revokeAccess`           | () => `Promise`\<`null`\>                                                                                                          |
-| `signIn`                 | (`options`: [`SignInParams`](index.mdx#signinparams)) => `Promise`\<[`SignInResponse`](index.mdx#signinresponse)\>                 |
-| `signInSilently`         | () => `Promise`\<[`SignInSilentlyResponse`](index.mdx#signinsilentlyresponse)\>                                                    |
-| `signOut`                | () => `Promise`\<`null`\>                                                                                                          |
+| Name                                                           | Type                                                                                                             |
+| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| <a id="addscopes"></a> `addScopes()`                           | (`options`: [`AddScopesParams`](#addscopesparams)) => `Promise`\<`null` \| [`SignInResponse`](#signinresponse)\> |
+| <a id="clearcachedaccesstoken"></a> `clearCachedAccessToken()` | (`tokenString`: `string`) => `Promise`\<`null`\>                                                                 |
+| <a id="configure-1"></a> `configure()`                         | (`options?`: [`ConfigureParams`](#configureparams)) => `void`                                                    |
+| <a id="enableappcheck-1"></a> `enableAppCheck()`               | (`params?`: [`EnableAppCheckParams`](#enableappcheckparams)) => `Promise`\<`null`\>                              |
+| <a id="getcurrentuser"></a> `getCurrentUser()`                 | () => `null` \| [`User`](#user)                                                                                  |
+| <a id="gettokens"></a> `getTokens()`                           | () => `Promise`\<[`GetTokensResponse`](#gettokensresponse)\>                                                     |
+| <a id="hasplayservices"></a> `hasPlayServices()`               | (`options?`: [`HasPlayServicesParams`](#hasplayservicesparams)) => `Promise`\<`boolean`\>                        |
+| <a id="hasprevioussignin"></a> `hasPreviousSignIn()`           | () => `boolean`                                                                                                  |
+| <a id="revokeaccess-1"></a> `revokeAccess()`                   | () => `Promise`\<`null`\>                                                                                        |
+| <a id="signin-1"></a> `signIn()`                               | (`options`: [`SignInParams`](#signinparams)) => `Promise`\<[`SignInResponse`](#signinresponse)\>                 |
+| <a id="signinsilently"></a> `signInSilently()`                 | () => `Promise`\<[`SignInSilentlyResponse`](#signinsilentlyresponse)\>                                           |
+| <a id="signout-1"></a> `signOut()`                             | () => `Promise`\<`null`\>                                                                                        |
 
 ## Constants
 
@@ -363,19 +363,11 @@ The entry point of the Google Sign In API, exposed as `GoogleSignin`.
 
 Read more about the meaning of the error codes in the [guide](/docs/errors).
 
-#### Type declaration
-
-| Name                          | Type     |
-| ----------------------------- | -------- |
-| `IN_PROGRESS`                 | `string` |
-| `ONE_TAP_START_FAILED`        | `string` |
-| `PLAY_SERVICES_NOT_AVAILABLE` | `string` |
-
 ## Functions
 
 ### isCancelledResponse()
 
-> **isCancelledResponse**(`response`: [`OneTapResponse`](index.mdx#onetapresponse)): `response is CancelledResponse`
+> **isCancelledResponse**(`response`: [`OneTapResponse`](#onetapresponse)): `response is CancelledResponse`
 
 TypeScript helper to check if a response is a `cancelled` response. This is the same as checking if the `response.type === "cancelled"`.
 
@@ -385,9 +377,9 @@ It supports both One Tap and Original Google Sign In responses.
 
 #### Parameters
 
-| Parameter  | Type                                         |
-| ---------- | -------------------------------------------- |
-| `response` | [`OneTapResponse`](index.mdx#onetapresponse) |
+| Parameter  | Type                                |
+| ---------- | ----------------------------------- |
+| `response` | [`OneTapResponse`](#onetapresponse) |
 
 #### Returns
 
@@ -426,7 +418,7 @@ This is used to avoid `as` casting when you access the `code` property on errors
 
 ### isNoSavedCredentialFoundResponse()
 
-> **isNoSavedCredentialFoundResponse**(`response`: [`OneTapResponse`](index.mdx#onetapresponse)): `response is NoSavedCredentialFound`
+> **isNoSavedCredentialFoundResponse**(`response`: [`OneTapResponse`](#onetapresponse)): `response is NoSavedCredentialFound`
 
 TypeScript helper to check if a response is a `noSavedCredentialFound` response. This is the same as checking if the `response.type === "noSavedCredentialFound"`.
 
@@ -436,9 +428,9 @@ It supports both One Tap and Original Google Sign In responses.
 
 #### Parameters
 
-| Parameter  | Type                                         |
-| ---------- | -------------------------------------------- |
-| `response` | [`OneTapResponse`](index.mdx#onetapresponse) |
+| Parameter  | Type                                |
+| ---------- | ----------------------------------- |
+| `response` | [`OneTapResponse`](#onetapresponse) |
 
 #### Returns
 
@@ -458,7 +450,7 @@ if (isNoSavedCredentialFoundResponse(response)) {
 
 ### isSuccessResponse()
 
-> **isSuccessResponse**(`response`: [`OneTapResponse`](index.mdx#onetapresponse)): `response is OneTapSuccessResponse`
+> **isSuccessResponse**(`response`: [`OneTapResponse`](#onetapresponse)): `response is OneTapSuccessResponse`
 
 TypeScript helper to check if a response is a `cancelled` response. This is the same as checking if the `response.type === "cancelled"`.
 
@@ -468,9 +460,9 @@ It supports both One Tap and Original Google Sign In responses.
 
 #### Parameters
 
-| Parameter  | Type                                         |
-| ---------- | -------------------------------------------- |
-| `response` | [`OneTapResponse`](index.mdx#onetapresponse) |
+| Parameter  | Type                                |
+| ---------- | ----------------------------------- |
+| `response` | [`OneTapResponse`](#onetapresponse) |
 
 #### Returns
 
@@ -490,41 +482,41 @@ if (isSuccessResponse(response)) {
 
 ### GoogleSigninButtonProps
 
-> **GoogleSigninButtonProps**: `ViewProps` & \{ `color`: `"dark"` \| `"light"`; `disabled`: `boolean`; `onPress`: () => `void`; `size`: `number`; \}
+> **GoogleSigninButtonProps** = `ViewProps` & \{ `color?`: `"dark"` \| `"light"`; `disabled?`: `boolean`; `onPress?`: () => `void`; `size?`: `number`; \}
 
 #### Type declaration
 
-| Name        | Type                  |
-| ----------- | --------------------- |
-| `color`?    | `"dark"` \| `"light"` |
-| `disabled`? | `boolean`             |
-| `onPress`?  | () => `void`          |
-| `size`?     | `number`              |
+| Name         | Type                  |
+| ------------ | --------------------- |
+| `color?`     | `"dark"` \| `"light"` |
+| `disabled?`  | `boolean`             |
+| `onPress()?` | () => `void`          |
+| `size?`      | `number`              |
 
 ---
 
 ### WebGoogleSignInButtonProps
 
-> **WebGoogleSignInButtonProps**: `Omit`\<`GsiButtonConfiguration`, `"logo_alignment"`\> & \{ `logoAlignment`: `GsiButtonConfiguration`\[`"logo_alignment"`\]; `onError`: (`error`: `Error`) => `void`; \}
+> **WebGoogleSignInButtonProps** = `Omit`\<`GsiButtonConfiguration`, `"logo_alignment"`\> & \{ `logoAlignment?`: `GsiButtonConfiguration`\[`"logo_alignment"`\]; `onError?`: (`error`: `Error`) => `void`; \}
 
 #### Type declaration
 
 | Name             | Type                                           |
 | ---------------- | ---------------------------------------------- |
-| `logoAlignment`? | `GsiButtonConfiguration`\[`"logo_alignment"`\] |
-| `onError`?       | (`error`: `Error`) => `void`                   |
+| `logoAlignment?` | `GsiButtonConfiguration`\[`"logo_alignment"`\] |
+| `onError()?`     | (`error`: `Error`) => `void`                   |
 
 ---
 
 ### GoogleSigninButton()
 
-> **GoogleSigninButton**(`props`: [`GoogleSigninButtonProps`](index.mdx#googlesigninbuttonprops)): `Element`
+> **GoogleSigninButton**(`props`: [`GoogleSigninButtonProps`](#googlesigninbuttonprops)): `Element`
 
 #### Parameters
 
-| Parameter | Type                                                           |
-| --------- | -------------------------------------------------------------- |
-| `props`   | [`GoogleSigninButtonProps`](index.mdx#googlesigninbuttonprops) |
+| Parameter | Type                                                  |
+| --------- | ----------------------------------------------------- |
+| `props`   | [`GoogleSigninButtonProps`](#googlesigninbuttonprops) |
 
 #### Returns
 
@@ -534,13 +526,13 @@ if (isSuccessResponse(response)) {
 
 ### WebGoogleSigninButton()
 
-> **WebGoogleSigninButton**(`props`: [`WebGoogleSignInButtonProps`](index.mdx#webgooglesigninbuttonprops)): `Element`
+> **WebGoogleSigninButton**(`props`: `WebGoogleSignInButtonProps`): `Element`
 
 #### Parameters
 
-| Parameter | Type                                                                 |
-| --------- | -------------------------------------------------------------------- |
-| `props`   | [`WebGoogleSignInButtonProps`](index.mdx#webgooglesigninbuttonprops) |
+| Parameter | Type                         |
+| --------- | ---------------------------- |
+| `props`   | `WebGoogleSignInButtonProps` |
 
 #### Returns
 
@@ -550,7 +542,7 @@ if (isSuccessResponse(response)) {
 
 ### CancelledResponse
 
-> **CancelledResponse**: \{ `data`: `null`; `type`: `"cancelled"`; \}
+> **CancelledResponse** = \{ `data`: `null`; `type`: `"cancelled"`; \}
 
 The response object when the user cancels the flow for any operation that requires user interaction.
 
@@ -558,18 +550,18 @@ On the web, this is also returned while [cooldown period](https://developers.goo
 Detecting the cooldown period itself is not possible on the web for user privacy reasons.
 On Android, it can be detected via `ONE_TAP_START_FAILED`
 
-#### Type declaration
+#### Properties
 
-| Name   | Type          |
-| ------ | ------------- |
-| `data` | `null`        |
-| `type` | `"cancelled"` |
+| Property                   | Type          |
+| -------------------------- | ------------- |
+| <a id="data-1"></a> `data` | `null`        |
+| <a id="type-1"></a> `type` | `"cancelled"` |
 
 ---
 
 ### ClientIdOrPlistPath
 
-> **ClientIdOrPlistPath**: \{ `iosClientId`: `string`; \} \| \{ `googleServicePlistPath`: `string`; \}
+> **ClientIdOrPlistPath** = \{ `iosClientId?`: `string`; \} \| \{ `googleServicePlistPath?`: `string`; \}
 
 iOS only. Configures the iOS client ID. By default, the iOS client ID is taken from the `GoogleService-Info.plist` Firebase config file (if present).
 
@@ -579,47 +571,47 @@ Alternatively, set the client ID explicitly by providing `iosClientId`.
 
 #### Type declaration
 
-\{ `iosClientId`: `string`; \}
+\{ `iosClientId?`: `string`; \}
 
 | Name           | Type     | Description                                                                                                        |
 | -------------- | -------- | ------------------------------------------------------------------------------------------------------------------ |
-| `iosClientId`? | `string` | If you want to specify the client ID of type iOS. It is taken from the `GoogleService-Info.plist` file by default. |
+| `iosClientId?` | `string` | If you want to specify the client ID of type iOS. It is taken from the `GoogleService-Info.plist` file by default. |
 
-\{ `googleServicePlistPath`: `string`; \}
+\{ `googleServicePlistPath?`: `string`; \}
 
 | Name                      | Type     | Description                                                                                                                                              |
 | ------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `googleServicePlistPath`? | `string` | iOS only. Use this to specify a different bundle path name for the `GoogleService-Info` Firebase config file. **Example** `"GoogleService-Info-Staging"` |
+| `googleServicePlistPath?` | `string` | iOS only. Use this to specify a different bundle path name for the `GoogleService-Info` Firebase config file. **Example** `"GoogleService-Info-Staging"` |
 
 ---
 
 ### NoSavedCredentialFound
 
-> **NoSavedCredentialFound**: \{ `data`: `null`; `type`: `"noSavedCredentialFound"`; \}
+> **NoSavedCredentialFound** = \{ `data`: `null`; `type`: `"noSavedCredentialFound"`; \}
 
 The response to calling One Tap's `signIn` and Original Google Sign In's `signInSilently` when no user was previously signed in, or they have since signed out or revoked access.
 
-#### Type declaration
+#### Properties
 
-| Name   | Type                       |
-| ------ | -------------------------- |
-| `data` | `null`                     |
-| `type` | `"noSavedCredentialFound"` |
+| Property                   | Type                       |
+| -------------------------- | -------------------------- |
+| <a id="data-2"></a> `data` | `null`                     |
+| <a id="type-2"></a> `type` | `"noSavedCredentialFound"` |
 
 ## Web Universal sign in module
 
 ### WebOneTapSignInCallbacks
 
-> **WebOneTapSignInCallbacks**: \{ `momentListener`: `MomentListener`; `onError`: (`error`: `NativeModuleError`) => `void` \| `Promise`\<`void`\>; `onResponse`: (`userInfo`: [`OneTapExplicitSignInResponse`](index.mdx#onetapexplicitsigninresponse)) => `void` \| `Promise`\<`void`\>; \}
+> **WebOneTapSignInCallbacks** = \{ `momentListener?`: `MomentListener`; `onError`: (`error`: `NativeModuleError`) => `void` \| `Promise`\<`void`\>; `onResponse`: (`userInfo`: [`OneTapExplicitSignInResponse`](#onetapexplicitsigninresponse)) => `void` \| `Promise`\<`void`\>; \}
 
 When using Universal sign in on the web, the sign in result is delivered via a callback, not via a promise.
 The shape of data delivered to the callback is the same as the shape of the data in the promise, enabling code reuse.
 Read more in the [guide](/docs/one-tap#web-support).
 
-#### Type declaration
+#### Properties
 
-| Name              | Type                                                                                                                    | Description                                                                                                                                                                                                                                                       |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `momentListener`? | `MomentListener`                                                                                                        | A callback function that is called when important events take place. See [reference](https://developers.google.com/identity/gsi/web/reference/js-reference#PromptMomentNotification).                                                                             |
-| `onError`         | (`error`: `NativeModuleError`) => `void` \| `Promise`\<`void`\>                                                         | Called when an error occurs. You can use the `code` property of the error to determine the reason for the error. The reported errors on the web are in the same format as the errors reported on the native platforms, so you can reuse your error handling code. |
-| `onResponse`      | (`userInfo`: [`OneTapExplicitSignInResponse`](index.mdx#onetapexplicitsigninresponse)) => `void` \| `Promise`\<`void`\> | Called when the user successfully signs in, or cancels the sign in, either using the web One-tap flow or the button flow.                                                                                                                                         |
+| Property                                      | Type                                                                                                           | Description                                                                                                                                                                                                                                                       |
+| --------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <a id="momentlistener"></a> `momentListener?` | `MomentListener`                                                                                               | A callback function that is called when important events take place. See [reference](https://developers.google.com/identity/gsi/web/reference/js-reference#PromptMomentNotification).                                                                             |
+| <a id="onerror"></a> `onError`                | (`error`: `NativeModuleError`) => `void` \| `Promise`\<`void`\>                                                | Called when an error occurs. You can use the `code` property of the error to determine the reason for the error. The reported errors on the web are in the same format as the errors reported on the native platforms, so you can reuse your error handling code. |
+| <a id="onresponse"></a> `onResponse`          | (`userInfo`: [`OneTapExplicitSignInResponse`](#onetapexplicitsigninresponse)) => `void` \| `Promise`\<`void`\> | Called when the user successfully signs in, or cancels the sign in, either using the web One-tap flow or the button flow.                                                                                                                                         |
