@@ -87,7 +87,6 @@ const config: Config = {
           [
             'docusaurus-plugin-typedoc',
             {
-              // @ts-ignore
               entryPoints: ['../src/index.ts'],
               tsconfig: '../tsconfig.json',
               watch: true,
@@ -101,8 +100,10 @@ const config: Config = {
               useCodeBlocks: false, //nicer but no links
               parametersFormat: 'table',
               typeDeclarationFormat: 'table',
+              typeAliasPropertiesFormat: 'table',
               classPropertiesFormat: 'table',
-              // indexFormat: 'table',
+              propertyMembersFormat: 'table',
+              indexFormat: 'table',
               readme: 'none',
               name: 'API reference',
               // categoryOrder: ['Top-level api', 'Type aliases', '*'],

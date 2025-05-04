@@ -14,12 +14,6 @@ However, you can add custom native code to an Expo app by using a [development b
 
 :::
 
-:::info
-
-With Expo SDK 50, minimum iOS version was bumped to 13.4. In case you get an error during pod install step, see [these release notes](https://github.com/react-native-google-signin/google-signin/releases/tag/v11.0.0) to determine the right version of this package to install.
-
-:::
-
 ## Add config plugin
 
 After installing the npm package, add a config plugin (read more details below) to the [`plugins`](https://docs.expo.io/versions/latest/config/app/#plugins) array of your `app.json` or `app.config.js`. There are 2 config plugins available: for projects with Firebase, and without Firebase.
@@ -65,7 +59,7 @@ If you are using Firebase Authentication, obtain the 2 Firebase config files (`g
 
 ## Rebuild the app
 
-Then run the following to generate the native project directories. Run this command every time you add or update any dependency with native code.
+Then run the following to generate the native project directories.
 
 ```sh
 npx expo prebuild --clean
