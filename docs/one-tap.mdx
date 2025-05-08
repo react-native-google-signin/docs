@@ -16,7 +16,7 @@ import Banner from './_sponsorBanner.mdx';
 
 - On Apple (iOS and macOS), it is built on top of the [Google Sign In SDK for iOS and macOS](https://developers.google.com/identity/sign-in/ios/start-integrating).
 
-- On the web, it covers both the [One-tap](https://developers.google.com/identity/gsi/web/guides/offerings#one_tap) flow and the [Google Sign-In button](https://developers.google.com/identity/gsi/web/guides/offerings#sign_in_with_google_button).
+- On the web, it covers both the [One-tap](https://developers.google.com/identity/gsi/web/guides/offerings#one_tap) flow and the [Google Sign-In button](https://developers.google.com/identity/gsi/web/guides/offerings#sign_in_with_google_button). [Learn more](web-support).
 
 ## Usage
 
@@ -334,63 +334,4 @@ The reason `webClientId` is a required parameter is API uniformity across all pl
 
 ## Web support
 
-Providing a unified API across all platforms is a bit more tricky than it may seem. The web experience is different from the mobile one, and so are the underlying APIs.
-
-On the web, the `GoogleOneTapSignIn` sign in functions are not `Promise`-based but callback-based as seen below. That means they return `void` and you need to provide callbacks for success and error handling.
-
-Still, the parameter and result types are the same as for native, allowing to reuse the logic for both success and error handling across all platforms.
-
-:::note
-The implementation has been migrated to [FedCM](https://developers.google.com/identity/gsi/web/guides/fedcm-migration) though you can disable this via `use_fedcm_for_prompt` parameter.
-:::
-
-To implement web support, follow these steps:
-
-1. Call `GoogleOneTapSignIn.signIn` upon page load. This attempts to present the One-tap UI. It also sets up a listener for authentication events and calls the `onSuccess` callback when the user signs in (either with the One-tap flow or the Sign-In button).
-
-If you do not want to present the one-tap UI, pass `skipPrompt: true` in the `OneTapSignInParams` object. This only sets up the listener for authentication events, and then relies on the user signing in via the `WebGoogleSigninButton`.
-
-:::warning
-You should display the One Tap UI on page load or other window events, instead of it being displayed by a user action (e.g. a button press). Otherwise, you may get a broken UX. Users may not see any UI after a user action, due to [globally opt-out](https://developers.google.com/identity/gsi/web/guides/features#globally_opt_out), [cool-down](https://developers.google.com/identity/gsi/web/guides/features#exponential_cooldown), or no Google session.
-:::
-
-```ts showLineNumbers
-useEffect(() => {
-  GoogleOneTapSignIn.configure({
-    webClientId,
-    iosClientId: config.iosClientId,
-  });
-  if (Platform.OS === 'web') {
-    GoogleOneTapSignIn.signIn(
-      {
-        ux_mode: 'popup',
-      },
-      {
-        onResponse: (response) => {
-          if (response.type === 'success') {
-            console.log(response.data);
-          }
-        },
-        onError: (error) => {
-          // handle error
-        },
-        momentListener: (moment) => {
-          console.log('moment', moment);
-        },
-      },
-    );
-  }
-}, []);
-```
-
-Optionally, you can provide a `momentListener` callback function. The callback is called when important events take place. [See reference.](https://developers.google.com/identity/gsi/web/reference/js-reference#PromptMomentNotification)
-
-2. Render the [`WebGoogleSigninButton`](buttons/web) component
-
-One-tap UI may not always be available: This happens if you disable it (`skipPrompt`), when user has [opted out](https://developers.google.com/identity/gsi/web/guides/features#globally_opt_out) or when they cancel the prompt several times in a row, entering the [cooldown period](https://developers.google.com/identity/gsi/web/guides/features#exponential_cooldown).
-
-`WebGoogleSigninButton` serves as a fallback. Tapping it opens the regular Google Sign-In dialog (or redirect, based on `ux_mode` param). When user signs in, the `onResponse` callback is called.
-
-:::info
-The reason the `GoogleOneTapSignIn.signIn` api is callback-based rather than promise-based is that it's possible to get into an "error" state (when one-tap is not available) and later get a successful sign in from the button flow. Because of how the Google Sign In for web SDK is done, modeling this with a promise-based api is not possible.
-:::
+[Learn more](web-support).
