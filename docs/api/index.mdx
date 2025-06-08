@@ -480,6 +480,22 @@ if (isSuccessResponse(response)) {
 
 ## React Components
 
+### GoogleLogoButtonProps
+
+> **GoogleLogoButtonProps** = \{ `label?`: `string`; `shape?`: `"rectangular"` \| `"circular"`; `textStyle?`: `StyleProp`\<`TextStyle`\>; `theme?`: `"light"` \| `"dark"` \| `"neutral"`; `variant?`: `"standard"` \| `"icon"`; \}
+
+#### Properties
+
+| Property                            | Type                                 | Description                                                                     |
+| ----------------------------------- | ------------------------------------ | ------------------------------------------------------------------------------- |
+| <a id="label"></a> `label?`         | `string`                             | -                                                                               |
+| <a id="shape"></a> `shape?`         | `"rectangular"` \| `"circular"`      | -                                                                               |
+| <a id="textstyle"></a> `textStyle?` | `StyleProp`\<`TextStyle`\>           | Style for the button text. Provide the Roboto font family with a weight of 500. |
+| <a id="theme"></a> `theme?`         | `"light"` \| `"dark"` \| `"neutral"` | -                                                                               |
+| <a id="variant"></a> `variant?`     | `"standard"` \| `"icon"`             | -                                                                               |
+
+---
+
 ### GoogleSigninButtonProps
 
 > **GoogleSigninButtonProps** = `ViewProps` & \{ `color?`: `"dark"` \| `"light"`; `disabled?`: `boolean`; `onPress?`: () => `void`; `size?`: `number`; \}
@@ -508,31 +524,31 @@ if (isSuccessResponse(response)) {
 
 ---
 
+### GoogleLogoButton
+
+> `const` **GoogleLogoButton**: `React.FC`\<`PressableProps` & [`GoogleLogoButtonProps`](#googlelogobuttonprops)\>
+
+Sign in button that follows the [Google branding guidelines](https://developers.google.com/identity/branding-guidelines).
+
+---
+
+### WebGoogleSigninButton
+
+> `const` **WebGoogleSigninButton**: `React.FC`\<[`WebGoogleSignInButtonProps`](#webgooglesigninbuttonprops)\>
+
+---
+
 ### GoogleSigninButton()
 
 > **GoogleSigninButton**(`props`: [`GoogleSigninButtonProps`](#googlesigninbuttonprops)): `Element`
+
+Native Google Sign-In button component. Prefer using the [`GoogleLogoButton`](#googlelogobutton) for a more customizable button.
 
 #### Parameters
 
 | Parameter | Type                                                  |
 | --------- | ----------------------------------------------------- |
 | `props`   | [`GoogleSigninButtonProps`](#googlesigninbuttonprops) |
-
-#### Returns
-
-`Element`
-
----
-
-### WebGoogleSigninButton()
-
-> **WebGoogleSigninButton**(`props`: `WebGoogleSignInButtonProps`): `Element`
-
-#### Parameters
-
-| Parameter | Type                         |
-| --------- | ---------------------------- |
-| `props`   | `WebGoogleSignInButtonProps` |
 
 #### Returns
 
