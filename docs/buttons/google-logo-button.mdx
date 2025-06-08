@@ -1,0 +1,55 @@
+---
+sidebar_class_name: sponsor-heart
+---
+
+# GoogleLogoButton
+
+A Google Sign-In button that follows Google's official branding guidelines. Intended for native apps.
+
+import Banner from '../_sponsorBanner.mdx';
+
+<Banner />
+
+## Features
+
+- Available in standard and icon-only variants
+- Customizable shape (rectangular or circular)
+- Supports light, dark, and neutral themes
+- Full customization possible via [Pressable props](https://reactnative.dev/docs/pressable#props)
+
+<img
+  src={'/img/google-logo-buttons.jpg'}
+  width="400"
+  alt="screenshot of buttons"
+/>
+
+## Usage
+
+See [API reference](/docs/api#googlelogobuttonprops) for props.
+
+```tsx
+import { GoogleLogoButton } from '@react-native-google-signin/google-signin';
+
+function SignInScreen() {
+  return (
+    <GoogleLogoButton
+      onPress={() => {
+        // Handle sign in
+      }}
+      label="Sign in with Google"
+      textStyle={{ fontFamily: 'Roboto' }}
+    />
+  );
+}
+```
+
+## Font Requirements
+
+The button should render its label using the [Roboto font](https://fonts.google.com/specimen/Roboto) with weight of 500 to match Google's branding guidelines. Make sure to:
+
+1. Include the Roboto font in your app (see [example for Expo](https://docs.expo.dev/versions/latest/sdk/font/#example-appjson-with-config-plugin)).
+2. Provide the font family in the `textStyle` prop:
+
+```tsx
+<GoogleLogoButton textStyle={{ fontFamily: 'Roboto' }} />
+```
