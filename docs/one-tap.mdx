@@ -22,12 +22,13 @@ import Banner from './_sponsorBanner.mdx';
 
 You can copy-paste this snippet to get a complete sign-in flow quickly. Read more about the methods below.
 
-```ts title="example of going through the sign in flow" showLineNumbers
+```tsx title="example of going through the sign in flow" showLineNumbers
 import {
   GoogleOneTapSignIn,
-  statusCodes,
-  type OneTapUser,
+  GoogleLogoButton,
 } from '@react-native-google-signin/google-signin';
+
+<GoogleLogoButton onPress={startSignInFlow} label="Sign in with Google" />;
 
 const startSignInFlow = async () => {
   try {
