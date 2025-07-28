@@ -6,7 +6,7 @@ sidebar_position: 1
 
 There are two ways to consume the package: [paid](https://universal-sign-in.com) and free. If you are an EAS customer, you may be able to access the paid version for free, [learn more](https://forms.gle/tpP7TfUGW1CwgaEZ8).
 
-Why paid? According to the [State of React Native Survey](https://results.2024.stateofreactnative.com/en-US/opinions/#opinions_pain_points_multiple), unmaintained packages are **the #1 pain point** of the React Native ecosystem. Your purchase enables the module reliability, and contributions to upstream SDKs such as [1](https://github.com/openid/AppAuth-iOS/pull/788), [2](https://github.com/google/GoogleSignIn-iOS/pull/402), [3](https://github.com/googlesamples/google-services/issues/426).
+Why paid? According to the [State of React Native Survey](https://results.2024.stateofreactnative.com/en-US/opinions/#opinions_pain_points_multiple), unmaintained packages are **the #1 pain point** of the React Native ecosystem. Your purchase enables the module to be rock-solid, and contributions to upstream SDKs such as [1](https://github.com/openid/AppAuth-iOS/pull/788), [2](https://github.com/google/GoogleSignIn-iOS/pull/402), [3](https://github.com/googlesamples/google-services/issues/426).
 
 [//]: # '🌟'
 
@@ -21,33 +21,27 @@ Why paid? According to the [State of React Native Survey](https://results.2024.s
   - iOS & macOS: Powered by the [Google Sign-In SDK](https://developers.google.com/identity/sign-in/ios/start)
 
 - **Licensed:** see [pricing](https://universal-sign-in.com/#pricing) and [license](https://universal-sign-in.com/license).
-- **Trusted**: A total of over 200k npm package downloads.
+- **Trusted**: A total of over 250k npm package downloads.
 - **Faster Sign-Ups**: Reduce sign-up and sign-in times on Android by up to 50%, according to [Google](https://developer.android.com/identity/sign-in/legacy-gsi-migration#authentication).
 - **See the UI**: [screenshots](screenshots) of the features.
 
 🛡️ **Advanced [security features](/docs/security)**
 
-🔧 **Easier setup** - Automatic detection of [configuration parameters](one-tap#automatic-config) for faster integration.
+🔧 **Easier setup** — Automatic detection of [configuration parameters](one-tap#automatic-config) for faster integration.
 
 [//]: # '🖥️ **Unified API** - Write code once, deploy everywhere.'
 
-📱 **An example app** - to showcase all features on native and web
+📱 **An example app** — to showcase all features on native and web
 
 ### Public version (free)
 
-Available on the public npm registry under MIT license, this version:
+Available on the public npm registry, this version:
 
-- Uses the functional, but deprecated [legacy Android Google Sign-In](https://web.archive.org/web/20240308064911/https://developers.google.com/identity/sign-in/android/start-integrating) which may be removed from the Google Play Services Auth SDK (`com.google.android.gms:play-services-auth`) later in 2025 ([source](https://developer.android.com/identity/sign-in/legacy-gsi-migration)). The free package will continue to use a version where the deprecated SDK is present.
+- Uses the functional, but deprecated [legacy Android Google Sign-In](https://web.archive.org/web/20240308064911/https://developers.google.com/identity/sign-in/android/start-integrating) which may be removed from the Google Play Services Auth SDK (`com.google.android.gms:play-services-auth`) at some point ([source](https://developer.android.com/identity/sign-in/legacy-gsi-migration)). The free package will continue to use a version where the deprecated but functional SDK is present.
 - Has platform support limited to Android and iOS.
 - Contains none of the extra features listed above.
 
 > If you want to migrate from the public version to the Universal version, follow the [migration guide](migrating#migrating-from-original-to-universal-sign-in).
-
-## Obtaining Universal Sign In {#obtaining-access}
-
-Universal sign in requires [purchasing a license](https://universal-sign-in.com/#pricing), after which you will be able to configure your (or your colleagues') access to the private npm package and to the private repo with the sources and examples.
-
-[//]: # 'Note that this version is distributed under a [custom license](license).'
 
 ## Accessing the private npm package {#package-manager-setup}
 
@@ -108,7 +102,7 @@ If you use another package manager ([such as Bun](https://bun.sh/docs/install/re
 
 </Tabs>
 
-After installing: if you're using the Universal version, open the lockfile (`yarn.lock` / `package-lock.json`...) and verify that the package is fetched from the GitHub registry (the entry must point to `npm.pkg.github.com`, not `registry.npmjs.org`). If it does not, it means that your package manager is not configured correctly - try uninstalling and reinstalling the package.
+After installing: if you're using the Universal version, open the lockfile (`yarn.lock` / `package-lock.json`...) and verify that the package is fetched from the GitHub registry (the entry must point to `npm.pkg.github.com`, not `registry.npmjs.org`). If it does not, it means the package manager is not configured correctly — try uninstalling and reinstalling the package.
 
 There are several guides to follow now:
 
@@ -118,6 +112,8 @@ There are several guides to follow now:
 
 ## Requirements
 
-The packages support the last 3 stable releases of React Native. Older versions of the packages will work if you run older React Native.
+For latest versions of Universal Sign In, `compileSdkVersion` must be {'>='} 35 and `kotlinVersion` must be {'>='} 2.0.21 in your Android project. If you use Expo SDK 53 or newer, these requirements are already met. Use [`expo-build-properties`](https://docs.expo.dev/versions/latest/sdk/build-properties/#example-appjson-with-config-plugin) to specify these values on Expo SDK {'<='} 52.
+
+The latest versions of the packages support the last three stable releases of React Native. Use older versions of the packages if you run older React Native.
 
 [React Native new architecture](https://reactnative.dev/architecture/landing-page) is supported.
