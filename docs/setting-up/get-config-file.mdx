@@ -86,6 +86,21 @@ You will _NOT_ need the created IDs later - the only goal here is for them to be
 
 ![Google Cloud Console - creating Android OAuth ID](/img/android-client-id.png)
 
+
+Let's say you're using an Expo app. You'll end up with an OAuth Client per build. In Expo, you need one for `development` (used when running with, for example, `npx expo run:android`; SHA-1 usually obtained from `keytool -list -v -keystore android/app/debug.keystore -alias androiddebugkey -storepass android -keypass android`) and `production` (what ends up on the Google Play Store for users to download; obtained from `eas credentials` > `choose production`).
+
+![Google Cloud Console - Google Console example with Clients per build](/img/google-console-with-oauth-examples-per-build.png)
+
+:::info
+Your code doesn't need to reference the Android Clients, only the Web Client, like so:
+
+```
+GoogleSignin.configure({
+    webClientId: 608470570303-kgb[redacted]apps.googleusercontent.com,
+})
+```
+:::
+
 </TabItem>
 
 </Tabs>
