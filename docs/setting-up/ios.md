@@ -10,7 +10,7 @@ If you use Expo, follow [this guide](/setting-up/expo.md) instead. This guide ap
 
 ### Link the native module
 
-- run `pod install` in `ios/` directory to install the module
+- run `pod install` in the `ios/` directory to install the module
 
 ### Google project configuration
 
@@ -24,7 +24,7 @@ If you're using Firebase Authentication, download the `GoogleService-Info.plist`
 
 - Configure URL types in the `Info` panel (see screenshot)
   - add your "iOS URL scheme" (also known as `reversed client id`), which can be found in [Google Cloud Console](https://console.cloud.google.com/apis/credentials?project=_) under your iOS client ID.
-- If you need to support Mac Catalyst, you will need to enable the Keychain Sharing capability on each build target. No keychain groups need to be added.
+- If you need to support Mac Catalyst, you need to enable the Keychain Sharing capability on each build target. No keychain groups need to be added.
 
 ![link config](/img/urlTypes.png)
 

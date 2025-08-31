@@ -6,7 +6,7 @@ sidebar_position: 50
 
 ## Setting up the mock
 
-If you want to write JS-level tests that depend on Google Sign In, you need to mock the functionality of the native module - this is because the native code cannot run in Node environment.
+If you want to write JS-level tests that depend on Google Sign In, you need to mock the functionality of the native module - this is because the native code cannot run in Node.js environment.
 
 This library ships with a Jest mock that you can add to the `setupFiles` array in your Jest config.
 

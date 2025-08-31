@@ -5,11 +5,13 @@ sidebar_class_name: sponsor-heart
 
 # Web setup guide
 
-On the web, there is one extra step necessary to use the library: you need to load the Google Client Library and make it available in the browser **before** calling any of the APIs exposed by this package.
+The web implementation doesn't depend on React Native (or React Native Web). That means you can use it even with regular web apps created with NextJS, Vite and etc.
 
 import Banner from '../_sponsorBanner.mdx';
 
 <Banner />
+
+On the web, you need to load the Google Client Library and make it available in the browser **before** calling any of the APIs exposed by this package.
 
 There are different ways to load the client script. Some of them are:
 
@@ -61,7 +63,7 @@ useEffect(() => {
 
 </Tabs>
 
-After the script is loaded, you can call the functions for signing in and render the `WebGoogleSigninButton`.
+After the script is loaded, you can call the functions for signing in and render the [`WebGoogleSigninButton`](/docs/buttons/web).
 
 If you call any of the module functions before the client library is loaded, such calls trigger the [`onError` callback](/docs/api#webonetapsignincallbacks) with the [`PLAY_SERVICES_NOT_AVAILABLE` error code](../errors#status-codes).
 

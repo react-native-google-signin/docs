@@ -3,6 +3,10 @@ import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
+  future: {
+    v4: true,
+    experimental_faster: true,
+  },
   title: 'React Native Google Sign In',
   tagline: 'Google sign in for Expo and React Native apps',
   favicon: 'img/favicon.ico',

@@ -4,7 +4,7 @@ sidebar_label: Universal Google sign in
 sidebar_class_name: sponsor-heart
 ---
 
-# Universal Google sign in
+# Universal sign in
 
 This is Google's recommended way to implement Google Sign In. This API is available on Android, iOS, macOS and web (with a little extra work [described below](#web-support)). It is a replacement for the [Original Google sign in](original). The module APIs are named `GoogleOneTapSignIn` for historical reasons.
 
@@ -71,7 +71,7 @@ signature: (`params`: [`OneTapConfigureParams`](api#onetapconfigureparams)) => `
 
 It is mandatory to call `configure` before attempting to call any of the sign-in methods. This method is synchronous, meaning you can call e.g. `signIn` right after it. Typically, you would call `configure` only once, soon after your app starts.
 
-`webClientId` is a required parameter. Use "autoDetect" for [automatic webClientId detection](#automatic-config).
+`webClientId` is a required parameter. Use `"autoDetect"` for [automatic webClientId detection](#automatic-config).
 
 If you're using neither Expo nor Firebase, you also need to provide the `iosClientId` parameter. All other parameters are optional.
 
@@ -93,9 +93,7 @@ signature: (`params`?: [`OneTapSignInParams`](api#onetapsigninparams)) => `Promi
 | Apple    | Attempts to restore a previous user sign-in without interaction. [Docs](https://developers.google.com/identity/sign-in/ios/reference/Classes/GIDSignIn#-restoreprevioussigninwithcompletion:).                                                                                   |
 | Web      | Attempts to sign in user automatically, without interaction. [Docs](https://developers.google.com/identity/gsi/web/reference/js-reference#auto_select). If none is found, presents a sign-in UI. [Read below](#web-support) for web support.                                     |
 
-Returns a `Promise` that resolves with [`OneTapResponse`](api#onetapresponse) or rejects in case of error.
-
-If there is no user that was previously signed in, the promise resolves with [`NoSavedCredentialFound`](api#nosavedcredentialfound) object. In that case, you can call [`createAccount`](one-tap#createaccount) to start a flow to create a new account. You don't need to call `signIn` as a response to a user action - you can call it when your app starts or when suitable.
+If there is no user that was previously signed in, the returned promise resolves with [`NoSavedCredentialFound`](api#nosavedcredentialfound) object. In that case, you can call [`createAccount`](one-tap#createaccount) to start a flow to create a new account. You don't need to call `signIn` as a response to a user action - you can call it when your app starts or when suitable.
 
 import SignInScreenshots from './screenshots/_signIn.mdx';
 
@@ -170,49 +168,39 @@ You don't need to call `createAccount` as a response to a user action - you can 
 
 Use `createAccount` if `signIn` resolved with [`NoSavedCredentialFound` result](api#nosavedcredentialfound), as indicated in the code snippet above.
 
-Returns a `Promise` that resolves with [`OneTapResponse`](api#onetapresponse) or rejects in case of error.
-
 import CreateAccount from './screenshots/_createAccount.mdx';
 
 <CreateAccount />
 
 ```ts
-await GoogleOneTapSignIn.createAccount({
-  nonce: 'your_nonce', // nonce is supported on all platforms!
-});
+await GoogleOneTapSignIn.createAccount();
 ```
 
 ---
 
 ### `presentExplicitSignIn`
 
-✨since v14.2.0
-
 signature: (`params`?: [`OneTapExplicitSignInParams`](api#onetapexplicitsigninparams)) => `Promise`\<[`OneTapExplicitSignInResponse`](api#onetapexplicitsigninresponse)\>
 
-| Platform | Behavior                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android  | Presents the sign in dialog explicitly. This is useful when the user has hit rate limiting ([`ONE_TAP_START_FAILED`](errors#universal-status-codes)) and the one-tap flow is thus not available, or if both `signIn` and `createAccount` resolve with [`NoSavedCredentialFound`](api#nosavedcredentialfound) object - which happens (in the unlikely case) when no Google account is present on the device. This will prompt the user to add a Google account. |
-| Apple    | Starts an interactive sign-in flow. Same as `createAccount`.                                                                                                                                                                                                                                                                                                                                                                                                   |
-| Web      | Presents a one-tap prompt. Same as `createAccount`.                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Platform | Behavior                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android  | Presents the sign in dialog explicitly. This is useful when the user has hit rate limiting ([`ONE_TAP_START_FAILED`](errors#universal-status-codes)) and the one-tap flow is thus not available, or if both `signIn` and `createAccount` resolve with [`NoSavedCredentialFound`](api#nosavedcredentialfound) object - which happens (in the unlikely case) when no Google account is present on the device. This prompts the user to add a Google account. |
+| Apple    | Starts an interactive sign-in flow. Same as `createAccount`.                                                                                                                                                                                                                                                                                                                                                                                               |
+| Web      | Presents a one-tap prompt. Same as `createAccount`.                                                                                                                                                                                                                                                                                                                                                                                                        |
 
-Preferably, call this method only as a reaction to when user taps a "sign in with Google" button.
+Preferably, call this method only as a reaction to when user taps a [sign in button](buttons/google-logo-button).
 
 import PresentExplicitSignIn from './screenshots/_presentExplicitSignIn.mdx';
 
 <PresentExplicitSignIn />
 
 ```ts
-await GoogleOneTapSignIn.presentExplicitSignIn({
-  nonce: 'your_nonce', // nonce is supported on all platforms!
-});
+await GoogleOneTapSignIn.presentExplicitSignIn();
 ```
 
 ---
 
 ### `checkPlayServices`
-
-✨since v17.3.0
 
 signature: (`showErrorResolutionDialog`?: `boolean`): `Promise`\<[`PlayServicesInfo`](api#playservicesinfo)\>
 
@@ -220,11 +208,11 @@ The behavior of `checkPlayServices` varies across platforms:
 
 - Android: The function resolves if the device has Play Services installed and their version is >= the minimum required version. Otherwise, it rejects with `statusCodes.PLAY_SERVICES_NOT_AVAILABLE` error code, and more information in `userInfo` field (see [below](#example-code-snippet)).
 
-On Android, the presence of up-to-date Google Play Services is required to call any of the provided authentication and authorization methods. It is therefore necessary to call `checkPlayServices` any time prior to calling the authentication / authorization methods and only call those if `checkPlayServices` is successful.
-
 The `showErrorResolutionDialog` parameter (default `true`) controls whether a dialog that helps to resolve an error is shown (only in case the error is user-resolvable).
 
-Some errors are user-resolvable (e.g. when Play Services are outdated, or disabled) while other errors cannot be resolved (e.g. when the phone doesn't ship Play Services at all - which is the case with some device vendors).
+On Android, the presence of up-to-date Google Play Services is required to call any of the provided authentication and authorization methods. It is therefore necessary to call `checkPlayServices` any time prior to calling the authentication / authorization methods and only call those if `checkPlayServices` is successful.
+
+Some errors are user-resolvable (e.g. when Play Services are outdated or disabled) while other errors cannot be resolved (e.g. when the phone doesn't ship Play Services at all - which is the case with some device vendors).
 
 <details>
   <summary>Dialog screenshots</summary>
@@ -234,19 +222,11 @@ Some errors are user-resolvable (e.g. when Play Services are outdated, or disabl
 
 </details>
 
-- Apple: Play Services are an Android-only concept and are not needed on Apple. Hence, the method always resolves with:
+- Apple: Play Services are an Android-only concept and are not needed on Apple. Hence, the method always resolves.
+- Web: resolves when the Google Client Library [is loaded](setting-up/web), rejects otherwise.
 
-```ts
-{
-  minRequiredVersion: -1,
-  installedVersion: -1,
-}
-```
-
-- Web: resolves (with the same value as on Apple) when the Google Client Library [is loaded](setting-up/web), rejects otherwise.
-
-```ts title="Example of showPlayServicesUpdateDialog() method"
-await GoogleOneTapSignIn.showPlayServicesUpdateDialog();
+```ts title="Example of checkPlayServices() method"
+await GoogleOneTapSignIn.checkPlayServices();
 ```
 
 ---
@@ -269,7 +249,7 @@ await GoogleOneTapSignIn.signOut();
 
 signature: (`emailOrUniqueId`: `string`) => `Promise`\<`null`\>
 
-Revokes access given to the current application and signs the user out. Use when user deletes their account in your app. On the web, you need to provide the `id` or email of the user. On Android and Apple, the `emailOrUniqueId` parameter does not have any effect.
+Revokes access given to the current application and signs the user out. Use when a user deletes their account in your app. On the web, you need to provide the `id` or email of the user. On Android and Apple, the `emailOrUniqueId` parameter does not have any effect.
 
 Returns a `Promise` that resolves with `null` or rejects in case of error.
 
@@ -280,8 +260,6 @@ await GoogleOneTapSignIn.revokeAccess(user.id);
 ---
 
 ### `requestAuthorization`
-
-✨since v15.0.0
 
 signature: (`params`: [`RequestAuthorizationParams`](api#requestauthorizationparams)) => `Promise`\<[`AuthorizationResponse`](api#authorizationresponse)\>
 
@@ -295,15 +273,11 @@ This method is used to request extra authorization from the user. Use this on An
 | Apple    | Calls [`addScopes`](./original.mdx#addscopes). The resulting `accessToken` has access to the requested scopes. Use this if you want to read more user metadata than just the basic info.                                                   |
 | Web      | Not implemented at the moment.                                                                                                                                                                                                             |
 
-> There are minor differences between the Android and Apple implementations stemming from the underlying Google SDKs. For example, Apple returns all granted scopes, while Android may only return the scopes that were requested.
-
 import RequestAuthorization from './screenshots/_requestAuthorization.mdx';
 
 <RequestAuthorization />
 
 ## Automatic `webClientId` & `iosClientId` detection {#automatic-config}
-
-✨since v15.2.0 for `webClientId`, 18.2.0 for `iosClientId`
 
 If you use Expo (with the config plugin and prebuild), or if you're using Firebase, you don't need to provide the `iosClientId` parameter to the `configure` method.
 

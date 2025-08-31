@@ -8,9 +8,9 @@ sidebar_position: 1
 
 :::note
 
-This package cannot be used in [Expo Go](https://docs.expo.dev/workflow/overview/#expo-go-an-optional-tool-for-learning) because it requires custom native code. This applies to both the [Original](../original) and [Universal](../one-tap) (one-tap) sign in methods.
+This package cannot be used in [Expo Go](https://docs.expo.dev/workflow/overview/#expo-go-an-optional-tool-for-learning) because it uses native code. This applies to both the [Original](../original) and [Universal](../one-tap) modules.
 
-However, you can add custom native code to an Expo app by using a [development build](https://docs.expo.dev/workflow/overview/#development-builds). Using a development build is the recommended approach for production apps, and is documented in this guide.
+However, you can add custom native code to an Expo app by using a [development build](https://docs.expo.dev/workflow/overview/#development-builds). That is the recommended approach for production apps, and is documented in this guide.
 
 :::
 
@@ -57,15 +57,15 @@ If you are using Firebase Authentication, obtain the 2 Firebase config files (`g
 }
 ```
 
-## Rebuild the app
+## Build the native app
 
-Then run the following to generate the native project directories.
+Run the following to generate the native project directories.
 
 ```sh
 npx expo prebuild --clean
 ```
 
-Next, rebuild your app and you're good to go!
+Rebuild your app and read the [config guide](./get-config-file)!
 
 ```sh
 npx expo run:android && npx expo run:ios
