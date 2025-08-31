@@ -33,8 +33,7 @@ buildscript {
         minSdkVersion = x
         compileSdkVersion = y
         targetSdkVersion = z
-        // highlight-next-line
-        googlePlayServicesAuthVersion = "20.7.0" // <--- use this version or newer
+        googlePlayServicesAuthVersion = "21.3.0" // <--- use this version or newer
     }
 // ...
     dependencies {

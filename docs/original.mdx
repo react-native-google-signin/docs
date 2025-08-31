@@ -37,13 +37,17 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 GoogleSignin.configure();
 ```
 
-An example with all options enumerated:
+An _example_ with all options enumerated:
 
 ```ts
 GoogleSignin.configure({
   webClientId: '<FROM DEVELOPER CONSOLE>', // client ID of type WEB for your server. Required to get the `idToken` on the user object, and for offline access.
-  scopes: ['https://www.googleapis.com/auth/drive.readonly'], // what API you want to access on behalf of the user, default is email and profile
-  offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+  scopes: [
+    /* what APIs you want to access on behalf of the user, default is email and profile
+    this is just an example, most likely you don't need this option at all! */
+    'https://www.googleapis.com/auth/drive.readonly',
+  ],
+  offlineAccess: false, // if you want to access Google API on behalf of the user FROM YOUR SERVER
   hostedDomain: '', // specifies a hosted domain restriction
   forceCodeForRefreshToken: false, // [Android] related to `serverAuthCode`, read the docs link below *.
   accountName: '', // [Android] specifies an account name on the device that should be used
@@ -254,7 +258,7 @@ try {
 }
 ```
 
-`hasPlayServices` accepts one parameter, an object which contains a single key: `showPlayServicesUpdateDialog` (defaults to `true`). When `showPlayServicesUpdateDialog` is set to true the library will prompt the user to take action to solve the issue, as seen in the figure below.
+`hasPlayServices` accepts one parameter, an object which contains a single key: `showPlayServicesUpdateDialog` (defaults to `true`). When `showPlayServicesUpdateDialog` is set to true the library prompts the user to take action to solve the issue, as seen in the figure below.
 
 You may also use this call at any time to find out if Google Play Services are available and react to the result as necessary.
 

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 41
-sidebar_label: Web Support
+sidebar_label: Web support
 sidebar_class_name: sponsor-heart
 ---
 
@@ -18,10 +18,6 @@ On the web, the `signIn` and `createAccount` functions are not `Promise`-based b
 
 :::info
 The reason for callback-based apis rather than promise-based is that it's possible to get into an "error" state (when one-tap is not available) and later get a successful sign in from the button flow. Because of how the Google Sign In for web SDK is done, modeling this with a promise-based api is not possible.
-:::
-
-:::note
-The implementation has been migrated to [FedCM](https://developers.google.com/identity/gsi/web/guides/fedcm-migration) though you can disable this via `use_fedcm_for_prompt` parameter of `configure`.
 :::
 
 ## Usage
