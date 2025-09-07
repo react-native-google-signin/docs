@@ -5,43 +5,61 @@ sidebar_label: Configuration
 
 # Collecting configuration information
 
-Before getting your hands dirty with code, some configuration needs to be taken care of. Be patient, this is the most complex part of the setup.
+Before getting your hands dirty with code, some configuration needs to be taken care of. Configuration information collected in this guide is used in later steps of the setup and in the `configure()` call: [1](/docs/one-tap#configure) or [2](/docs/original#configure).
 
-Configuration information collected in this guide is used in later steps of the setup and in the `configure()` call: [1](/docs/one-tap#configure) or [2](/docs/original#configure).
-
-You **do not** need Firebase to configure Google Sign In. However, if you use it, it's a little easier to set up the sign in experience because Firebase gives you one file to download and put into your project.
+You **do not** need to use Firebase to configure Google Sign In.
 
 ## Android
 
-Follow the 2 steps below to set up Google Sign In for your Android app.
+Follow the two steps below to set up Google Sign In for your Android app.
 
-:::danger
-Completing this guide is crucial for Google Sign-In to work on Android. If not done correctly, you will get the infamous `DEVELOPER_ERROR` error [(how to troubleshoot it)](/docs/troubleshooting#developer_error).
+:::warning
+In case you encounter any of the following issues, revisit this guide - it means the steps below weren't fully completed.
+
+- if you ever get the infamous `DEVELOPER_ERROR` error
+- if you can sign in with debug APK and not in release (or vice versa)
+
 :::
 
-### Step 1: Collect SHA-1 certificate fingerprints
+### Step 1: Collect SHA-1 (not SHA-256) certificate fingerprints
 
-Your Android app probably uses multiple signing configurations. For example, an app might be signed differently when building `debug` and `release` APKs locally or when building on [Expo EAS](https://docs.expo.dev/app-signing/managed-credentials/#inspecting-credentials-configuration). Then there's the [Play App Signing](https://support.google.com/googleplay/android-developer/answer/9842756?hl=en) for store deployments — while the Google Play Store does not (re)build your app, it may _re-sign_ it using one of its own signing configurations.
+Your Android app probably uses multiple signing configurations. For example, an app might be signed differently when building `debug` and `release` APKs locally or when building on [Expo EAS](https://docs.expo.dev/app-signing/managed-credentials/#inspecting-credentials-configuration). Then there's the [Play App Signing](https://support.google.com/googleplay/android-developer/answer/9842756?hl=en) for store deployments — Google Play Store may _re-sign_ your app using one of its own signing configurations.
 
-It's extremely common for an app to have three or more signing configurations, each with its own SHA-1 certificate fingerprint.
+:::important
+If your app is not yet in the Play Store, focus only on the development APK and its SHA-1 certificate fingerprint. You can come back to this guide later when you upload your app to the Play Store.
 
-First, you need to **get the SHA-1 certificate fingerprints for all signing configurations** using the instructions below.
-Then, use _all_ of those SHA-1 fingerprints in [Step 2](#step-2) below.
+However, be advised that in the end, you need to get the SHA-1 certificate fingerprints for _all_ signing configurations and then use _all_ of those SHA-1 fingerprints in [Step 2](#step-2) below.
+:::
+
+#### Collect SHA-1 certificate fingerprints from:
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs>
-  <TabItem value="playStore" label="When releasing via Google Play Store">
+  <TabItem value="config-doctor" label="A device or any APK file" default>
+
+Use the [Configuration Doctor](../config-doctor.md). (Requires an [Universal sign in](/docs/install#sponsor-only-version) license.)
+
+1. Get a device / emulator with the app installed, or get the APK (build it locally or in cloud, download from the Play Console / Play Store...)
+2. Run the tool and follow its instructions:
+
+```bash
+npx @react-native-google-signin/config-doctor
+```
+
+</TabItem>
+
+  <TabItem value="playStore" label="Google Play Store (when downloading from it)">
     Check if "Google Play App Signing" is enabled for your app [in the console](https://play.google.com/console/).
     If it is enabled, you need to take the following steps:
 
     1. In Google Play Console, navigate to: \<Your App\> -> Release section (in the left sidebar) -> Setup -> App Signing.
-    2. Under the "App signing key certificate" _and also_ "Upload key certificate", take note of `SHA-1 certificate fingerprint`. That's a total of two or more fingerprints (Play Store sometimes has more than one "App signing key certificate"!).
+    2. Under the "App signing key certificate", take note of `SHA-1 certificate fingerprint`(s). Play Store sometimes has more than one "App signing key certificate"!
 
   </TabItem>
 
-<TabItem value="eas" label="When using Expo EAS">
+<TabItem value="eas" label="EAS Build">
   If you use [Expo EAS](https://expo.dev/eas), run `eas credentials` to obtain
   the Keystore information, which includes the SHA-1 fingerprint. See [EAS
   credentials
@@ -49,11 +67,14 @@ import TabItem from '@theme/TabItem';
   to learn more.
 </TabItem>
 
-  <TabItem value="local" label="When developing locally">
-    1. From your project root, `cd android && ./gradlew signingReport`.
-    2. Scroll to the top of output, see the fingerprints. Debug fingerprint is used for locally-built debug apk,
-    release fingerprint is used for release APK.
-  </TabItem>
+<TabItem value="local" label="Local build">
+
+1. From your project root, `cd android && ./gradlew signingReport`.
+2. Scroll to the top of output, see the fingerprints. Debug fingerprint is used for
+   locally-built debug APK, release fingerprint is used for release APK.
+
+</TabItem>
+
 </Tabs>
 
 <br />

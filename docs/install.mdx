@@ -20,13 +20,17 @@ Why paid? According to the [State of React Native Survey](https://results.2024.s
   - iOS & macOS: Powered by the [Google Sign-In SDK](https://developers.google.com/identity/sign-in/ios/start)
 
 - **Licensed:** see [pricing](https://universal-sign-in.com/#pricing) and [license](https://universal-sign-in.com/license).
-- **Trusted**: A total of over 250k npm package downloads.
+- **Trusted**: A total of over 400k npm package downloads.
 - **Faster Sign-Ups**: Reduce sign-up and sign-in times on Android by up to 50%, according to [Google](https://developer.android.com/identity/sign-in/legacy-gsi-migration#authentication).
 - **See the UI**: [screenshots](screenshots) of the features.
+- **Widely compatible & stable:** Both old and [new architecture](https://reactnative.dev/architecture/landing-page) of React Native are supported. See version [compatibility table](#requirements) below.
+
+🔧 **Easier setup**:
+
+- Android [Config Doctor](/docs/config-doctor) that might save you from pulling your hair out.
+- Automatic detection of [configuration parameters](one-tap#automatic-config) for faster integration.
 
 🛡️ **Advanced [security features](/docs/security)**
-
-🔧 **Easier setup** — Automatic detection of [configuration parameters](one-tap#automatic-config) for faster integration.
 
 [//]: # '🖥️ **Unified API** - Write code once, deploy everywhere.'
 
@@ -36,7 +40,7 @@ Why paid? According to the [State of React Native Survey](https://results.2024.s
 
 Available on the public npm registry, this version:
 
-- Uses the functional, but deprecated [legacy Android Google Sign-In](https://web.archive.org/web/20240308064911/https://developers.google.com/identity/sign-in/android/start-integrating) which may be removed from the Google Play Services Auth SDK (`com.google.android.gms:play-services-auth`) at some point ([source](https://developer.android.com/identity/sign-in/legacy-gsi-migration)). The free package will continue to use a version where the deprecated but functional SDK is present.
+- Uses the functional, but deprecated [legacy Android Google Sign-In](https://web.archive.org/web/20240308064911/https://developers.google.com/identity/sign-in/android/start-integrating). The free package will continue to use a version where the deprecated but functional SDK is present.
 - Has platform support limited to Android and iOS.
 - Contains none of the extra features listed above.
 
@@ -113,6 +117,11 @@ There are several guides to follow now:
 
 For latest version of Universal Sign In, `compileSdkVersion` must be {'>='} 35 and `kotlinVersion` must be {'>='} 2.0.21 in your Android project. If you use Expo SDK 53 or newer, these requirements are already met. Use [`expo-build-properties`](https://docs.expo.dev/versions/latest/sdk/build-properties/#example-appjson-with-config-plugin) to specify these values on Expo SDK {'<='} 52.
 
-The latest versions of the packages support the last three stable releases of React Native. Use older versions of the packages if you run older React Native.
+The latest version of the Universal Sign In package supports:
 
-[React Native new architecture](https://reactnative.dev/architecture/landing-page) is supported.
+|              | supported range |
+| ------------ | --------------- |
+| expo         | 52.0.40 - 54    |
+| react-native | 0.76.0 - 0.81   |
+
+Use older versions of the package if you run older React Native / Expo.
