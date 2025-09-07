@@ -22,11 +22,11 @@ Migrating from Original to Universal module is mostly about changing the method 
 | `signOut`                | `signOut`                              |                                                                                                                                                                                                                                                  |
 | `revokeAccess`           | `revokeAccess`                         | Universal requires email/id parameter on web.                                                                                                                                                                                                    |
 | `hasPreviousSignIn`      | Use `signIn` response                  | Check for `noSavedCredentialFound` response type.                                                                                                                                                                                                |
-| `clearCachedAccessToken` | Not provided, presumably not needed.   | -                                                                                                                                                                                                                                                |
+| `clearCachedAccessToken` | `clearCachedAccessToken`               | Same functionality.                                                                                                                                                                                                                              |
 
 ---
 
-## Migrating to new JS API
+## Migrating to the new JS API
 
 Version 13 introduced a new JS API, which changes some method response signatures and makes minor changes to error handling (details [here](https://github.com/react-native-google-signin/google-signin/pull/1326)). If you're upgrading from version 12 or earlier, you'll need to make some minor adjustments.
 

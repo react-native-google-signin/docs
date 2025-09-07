@@ -51,7 +51,7 @@ Parameters for enabling [App Check](/docs/security#appcheck). Provide `debugProv
 
 `webClientId` is the most important parameter in the configuration. It is required.
 
-#### Type declaration
+#### Type Declaration
 
 | Name                | Type                              | Description                                                                                                                                                                  |
 | ------------------- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -68,7 +68,7 @@ Parameters for enabling [App Check](/docs/security#appcheck). Provide `debugProv
 
 > **OneTapCreateAccountParams** = [`OneTapSignInParams`](#onetapsigninparams) & \{ `accountName?`: `string`; `requestVerifiedPhoneNumber?`: `boolean`; \}
 
-#### Type declaration
+#### Type Declaration
 
 | Name                          | Type      | Description                                                                                                                                                                 |
 | ----------------------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -81,7 +81,7 @@ Parameters for enabling [App Check](/docs/security#appcheck). Provide `debugProv
 
 > **OneTapExplicitSignInParams** = [`OneTapSignInParams`](#onetapsigninparams) & \{ `accountName?`: `string`; \}
 
-#### Type declaration
+#### Type Declaration
 
 | Name           | Type     | Description                                                                                             |
 | -------------- | -------- | ------------------------------------------------------------------------------------------------------- |
@@ -109,7 +109,7 @@ The response object for OneTap's `signIn` and `createAccount`.
 
 Learn more about additional web-only parameters at [Google's reference documentation](https://developers.google.com/identity/gsi/web/reference/js-reference#IdConfiguration).
 
-#### Type declaration
+#### Type Declaration
 
 | Name          | Type      | Description                                                                                                                                                                                                          |
 | ------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -197,19 +197,20 @@ The entry point of the Universal Sign In API, exposed as `GoogleOneTapSignIn`.
 
 On the web, the signatures of `signIn`, `presentExplicitSignIn`, and `createAccount` are callback-based and on native they are Promise-based. Read more in the [guide](/docs/one-tap#web-support).
 
-#### Type declaration
+#### Type Declaration
 
-| Name                    | Type                                                                                                                                                     |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `configure`             | (`params`: [`OneTapConfigureParams`](#onetapconfigureparams)) => `void`                                                                                  |
-| `checkPlayServices`     | (`showErrorResolutionDialog`?: `boolean`) => `Promise`\<[`PlayServicesInfo`](#playservicesinfo)\>                                                        |
-| `enableAppCheck`        | (`params`?: [`EnableAppCheckParams`](#enableappcheckparams)) => `Promise`\<`null`\>                                                                      |
-| `signIn`                | (`params?`: [`OneTapSignInParams`](#onetapsigninparams)) => `Promise`\<[`OneTapResponse`](#onetapresponse)\>                                             |
-| `createAccount`         | (`params?`: [`OneTapCreateAccountParams`](#onetapcreateaccountparams)) => `Promise`\<[`OneTapResponse`](#onetapresponse)\>                               |
-| `presentExplicitSignIn` | (`params?`: [`OneTapExplicitSignInParams`](#onetapexplicitsigninparams)) => `Promise`\<[`OneTapExplicitSignInResponse`](#onetapexplicitsigninresponse)\> |
-| `requestAuthorization`  | (`options`: [`RequestAuthorizationParams`](#requestauthorizationparams)) => `Promise`\<[`AuthorizationResponse`](#authorizationresponse)\>               |
-| `signOut`               | () => `Promise`\<`null`\>                                                                                                                                |
-| `revokeAccess`          | (`emailOrUniqueId`: `string`) => `Promise`\<`null`\>                                                                                                     |
+| Name                       | Type                                                                                                                                                     |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| `configure`                | (`params`: [`OneTapConfigureParams`](#onetapconfigureparams)) => `void`                                                                                  |
+| `checkPlayServices`        | (`showErrorResolutionDialog`?: `boolean`) => `Promise`\<[`PlayServicesInfo`](#playservicesinfo)\>                                                        |
+| `enableAppCheck`           | (`params`?: [`EnableAppCheckParams`](#enableappcheckparams)) => `Promise`\<`null`\>                                                                      |
+| `signIn`                   | (`params?`: [`OneTapSignInParams`](#onetapsigninparams)) => `Promise`\<[`OneTapResponse`](#onetapresponse)\>                                             |
+| `createAccount`            | (`params?`: [`OneTapCreateAccountParams`](#onetapcreateaccountparams)) => `Promise`\<[`OneTapResponse`](#onetapresponse)\>                               |
+| `clearCachedAccessToken()` | (`tokenString`: `string`) => `Promise`\<`null`\>                                                                                                         | `GoogleSignin.clearCachedAccessToken` |
+| `presentExplicitSignIn`    | (`params?`: [`OneTapExplicitSignInParams`](#onetapexplicitsigninparams)) => `Promise`\<[`OneTapExplicitSignInResponse`](#onetapexplicitsigninresponse)\> |
+| `requestAuthorization`     | (`options`: [`RequestAuthorizationParams`](#requestauthorizationparams)) => `Promise`\<[`AuthorizationResponse`](#authorizationresponse)\>               |
+| `signOut`                  | () => `Promise`\<`null`\>                                                                                                                                |
+| `revokeAccess`             | (`emailOrUniqueId`: `string`) => `Promise`\<`null`\>                                                                                                     |
 
 ## Original Google sign in
 
@@ -229,7 +230,7 @@ On the web, the signatures of `signIn`, `presentExplicitSignIn`, and `createAcco
 
 > **ConfigureParams** = [`ClientIdOrPlistPath`](#clientidorplistpath) & \{ `accountName?`: `string`; `forceCodeForRefreshToken?`: `boolean`; `hostedDomain?`: `string`; `offlineAccess?`: `boolean`; `openIdRealm?`: `string`; `profileImageSize?`: `number`; `scopes?`: `string`[]; `webClientId?`: `WebClientId`; \}
 
-#### Type declaration
+#### Type Declaration
 
 | Name                        | Type          | Description                                                                                                                                                                                                                                                                                                                                 |
 | --------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -338,7 +339,7 @@ The response object when the user signs in successfully.
 
 The entry point of the Google Sign In API, exposed as `GoogleSignin`.
 
-#### Type declaration
+#### Type Declaration
 
 | Name                                                           | Type                                                                                                             |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
@@ -500,7 +501,7 @@ if (isSuccessResponse(response)) {
 
 > **GoogleSigninButtonProps** = `ViewProps` & \{ `color?`: `"dark"` \| `"light"`; `disabled?`: `boolean`; `onPress?`: () => `void`; `size?`: `number`; \}
 
-#### Type declaration
+#### Type Declaration
 
 | Name         | Type                  |
 | ------------ | --------------------- |
@@ -515,7 +516,7 @@ if (isSuccessResponse(response)) {
 
 > **WebGoogleSignInButtonProps** = `Omit`\<`GsiButtonConfiguration`, `"logo_alignment"`\> & \{ `logoAlignment?`: `GsiButtonConfiguration`\[`"logo_alignment"`\]; `onError?`: (`error`: `Error`) => `void`; \}
 
-#### Type declaration
+#### Type Declaration
 
 | Name             | Type                                           |
 | ---------------- | ---------------------------------------------- |
@@ -585,7 +586,7 @@ You can specify a different bundle path for the config file, e.g. "GoogleService
 
 Alternatively, set the client ID explicitly by providing `iosClientId`.
 
-#### Type declaration
+#### Type Declaration
 
 \{ `iosClientId?`: `string`; \}
 

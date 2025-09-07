@@ -277,6 +277,14 @@ import RequestAuthorization from './screenshots/_requestAuthorization.mdx';
 
 <RequestAuthorization />
 
+---
+
+### `clearCachedAccessToken`
+
+signature: (`accessTokenString`: `string`) => `Promise`\<`null`\>
+
+This method is only needed on Android. You may run into a `401 Unauthorized` error when an access token is invalid. Call this method to remove the token from local cache and then call `requestAuthorization()` to get a fresh access token. Calling this method on Apple does nothing and always resolves. This is because on Apple, `requestAuthorization()` always returns valid tokens, refreshing them first if they have expired or are about to expire (see [docs](https://developers.google.com/identity/sign-in/ios/reference/Classes/GIDGoogleUser#-refreshtokensifneededwithcompletion:)).
+
 ## Automatic `webClientId` & `iosClientId` detection {#automatic-config}
 
 If you use Expo (with the config plugin and prebuild), or if you're using Firebase, you don't need to provide the `iosClientId` parameter to the `configure` method.
