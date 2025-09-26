@@ -22,7 +22,7 @@ After installing the npm package, add a config plugin (read more details below) 
 
 If you're _not_ using Firebase, provide the `iosUrlScheme` option to the config plugin.
 
-To obtain `iosUrlScheme`, follow [the guide](./get-config-file?firebase-or-not=cloud-console#ios).
+To obtain `iosUrlScheme`, follow [these instructions](./get-config-file?firebase-or-not=cloud-console#ios).
 
 ```json title="app.json | js"
 {
@@ -41,7 +41,9 @@ To obtain `iosUrlScheme`, follow [the guide](./get-config-file?firebase-or-not=c
 
 ### Expo and Firebase Authentication
 
-If you are using Firebase Authentication, obtain the 2 Firebase config files (`google-services.json` for Android and `GoogleService-Info.plist` for iOS) according to the [guide](./get-config-file?firebase-or-not=firebase#ios) and place them into your project. Then specify the paths to the files:
+If you are using Firebase Authentication, follow [these instructions](./get-config-file?firebase-or-not=firebase#step-2) to get `google-services.json` file for Android and [these instructions](./get-config-file?firebase-or-not=firebase#ios)) to get `GoogleService-Info.plist` for iOS.
+
+Place them into your project and specify the paths to the files:
 
 ```json title="app.json | js"
 {
