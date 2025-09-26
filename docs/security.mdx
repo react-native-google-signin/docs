@@ -90,7 +90,7 @@ export const getNonce = async () => {
   // Supabase makes a hash of `rawNonce` and compares it with the `nonceDigest`
   // which is included in the ID token from RN-google-signin.
   const rawNonce = getUrlSafeNonce();
-  // `nonceDigest` goes to the `nonce` parameter in RN-google-signin APIs
+  // `nonceDigest` (SHA-256 hash, hex-encoded) goes to the `nonce` parameter in RN-google-signin APIs
   const nonceDigest = await digestStringAsync(
     CryptoDigestAlgorithm.SHA256,
     rawNonce,
