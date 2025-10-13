@@ -17,9 +17,11 @@ There are 2 security-related features available:
 
 ## Custom nonce
 
+_Currently available only in version 21.x of the package_.
+
 [Nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) (number used once) is a security measure used to mitigate replay attacks and to associate a Client session with an ID Token.
 
-The authorization APIs in [Universal Sign-In](/docs/one-tap) for Apple, Android and web allow you to specify a nonce.
+The authorization APIs in [Universal Sign-In](/docs/one-tap) for Apple, Android and web allow you to specify nonce.
 
 Example usage:
 
@@ -36,8 +38,8 @@ import TabItem from '@theme/TabItem';
 
 [//]: # 'or use uuid v4 with react-native-get-random-values or expo-crypto'
 
-<Tabs>
-  <TabItem value="expo-crypto" label="expo-crypto">
+<Tabs queryString="expo-or-community">
+  <TabItem value="expo" label="expo-crypto">
 
 ```ts
 import * as Crypto from 'expo-crypto';
@@ -57,7 +59,7 @@ export function getUrlSafeNonce(byteLength = 32) {
 
 </TabItem>
 
-<TabItem value="react-native-get-random-values" label="react-native-get-random-values">
+<TabItem value="community" label="react-native-get-random-values">
 
 ```ts
 import 'react-native-get-random-values';
@@ -82,6 +84,9 @@ export function getUrlSafeNonce(byteLength = 32) {
 
 Auth providers such as [Supabase](https://supabase.com/docs/reference/javascript/auth-signinwithidtoken) require passing SHA-256 hash (digest) of the nonce ([source](https://github.com/supabase/auth-js/blob/dfb40d24188f7e8b0d34e51ded15582086250c51/src/lib/types.ts#L612)). This can be done as follows:
 
+<Tabs queryString="expo-or-community">
+  <TabItem value="expo" label="expo-crypto">
+
 ```ts
 import { digestStringAsync, CryptoDigestAlgorithm } from 'expo-crypto';
 
@@ -98,6 +103,29 @@ export const getNonce = async () => {
   return { rawNonce, nonceDigest };
 };
 ```
+
+  </TabItem>
+
+  <TabItem value="community" label="react-native-quick-crypto">
+
+```ts
+import QuickCrypto from 'react-native-quick-crypto';
+
+const getNonce = () => {
+  // `rawNonce` goes to Supabase's signInWithIdToken().
+  // Supabase makes a hash of `rawNonce` and compares it with the `nonceDigest`
+  // which is included in the ID token from RN-google-signin.
+  const rawNonce = getUrlSafeNonce();
+  // `nonceDigest` (SHA-256 hash, hex-encoded) goes to the `nonce` parameter in RN-google-signin APIs
+  const nonceDigest = QuickCrypto.createHash('sha256')
+    .update(rawNonce)
+    .digest('hex');
+  return { rawNonce, nonceDigest };
+};
+```
+
+  </TabItem>
+</Tabs>
 
 ## App Check for iOS (advanced) {#appcheck}
 
