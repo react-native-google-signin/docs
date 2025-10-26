@@ -52,7 +52,3 @@ This ends the setup for Firebase.
 ## Rebuild the native project
 
 Do not forget to rebuild the native app after the setup is done.
-
-## Choose Dependency versions (optional)
-
-The library depends on `com.google.android.gms:play-services-auth`, as seen in [build.gradle](https://github.com/react-native-community/google-signin/blob/master/android/build.gradle). If needed, you may control their versions by the `ext` closure, as seen in the code snippet above.
