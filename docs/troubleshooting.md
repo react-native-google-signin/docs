@@ -39,10 +39,6 @@ See [`DEVELOPER_ERROR` paragraph](#developer_error).
 
 See [this comment](https://github.com/react-native-community/google-signin/issues/659#issuecomment-513555464). Or [this SO question](https://stackoverflow.com/questions/53816227/google-signin-sdk-is-failing-by-throwing-error-a-non-recoverable-sign-in-failur).
 
-### Changing `play-services-auth` version
-
-See ["Choose Dependency versions"](setting-up/android.md#choose-dependency-versions-optional) above.
-
 ### Package name !== application id
 
 When adding a new oauth client, google asks you to add your package name. In some cases your package name is not equal to your application id. Check if your package name in the `AndroidManifest.xml` is the same as your application/bundle id. Find your application id in the play console or `android/app/build.gradle`. The format looks like `com.yourapp.id`.
