@@ -28,13 +28,6 @@ Update `android/build.gradle` with
 
 ```groovy title="android/build.gradle"
 buildscript {
-    ext {
-        buildToolsVersion = "a.b.c"
-        minSdkVersion = x
-        compileSdkVersion = y
-        targetSdkVersion = z
-        googlePlayServicesAuthVersion = "21.3.0" // <--- use this version or newer
-    }
 // ...
     dependencies {
         // highlight-start
