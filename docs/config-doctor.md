@@ -4,7 +4,7 @@ sidebar_position: 75
 sidebar_class_name: sponsor-heart
 ---
 
-# Configuration Doctor (beta)
+# Configuration Doctor
 
 A command-line tool designed to help with Android signing configuration issues and quickly resolve the infamous `DEVELOPER_ERROR`, or potentially [other errors](#when-to-use) too.
 
