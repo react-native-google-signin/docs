@@ -56,7 +56,7 @@ Next steps:
 
 ## Requirements
 
-- Valid subscription (get access at [universal-sign-in.com](https://universal-sign-in.com))
+- Active license (get access at [universal-sign-in.com](https://universal-sign-in.com))
 - Android device/emulator with your app installed, OR a built APK file
 
 ## Related Documentation

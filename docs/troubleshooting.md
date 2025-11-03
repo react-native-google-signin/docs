@@ -7,6 +7,10 @@ sidebar_position: 70
 
 ## Android
 
+### Sign in result is `cancelled` even though the user did not cancel the flow {#unexpected_cancelled}
+
+You may be hitting an [error in the Android SDK](https://issuetracker.google.com/issues/424210681). This error is usually observed with `presentExplicitSignIn`. Follow the [`DEVELOPER_ERROR paragraph`](#developer_error) to resolve it.
+
 ### Login does not work when downloading from the Play Store.
 
 See [`DEVELOPER_ERROR` paragraph](#developer_error).
@@ -17,15 +21,15 @@ This is always (! _absolutely always_ !) a configuration mismatch between your a
 
 Firstly, if you are using Firebase Auth, verify Google is enabled as a Sign-in method in Firebase Console (Build -> Authentication -> Sign-in method).
 
-Then: if you have the APK that gives this error, we recommend to run the [Configuration Doctor](./config-doctor.md) and follow its instructions:
+Then: if you have the APK (on your phone, or computer) that gives this error, we recommend to run the [Configuration Doctor](./config-doctor.md) and follow its instructions:
 
 ```bash
 npx @react-native-google-signin/config-doctor
 ```
 
-Otherwise, we recommend:
+Otherwise:
 
-- Follow the [setup guide](/docs/setting-up/get-config-file) and perform its steps once again, very carefully.
+- Follow the [setup guide](/docs/setting-up/get-config-file) and perform its steps once again.
 - If you're passing `webClientId` in the configuration object to `GoogleSignin.configure()`, make sure it's correct and that it is of type web (NOT Android!). You can get your `webClientId` from [Google Developer Console](https://console.developers.google.com/apis/credentials). It is listed under "OAuth 2.0 client IDs".
 - [Search the issue tracker](https://github.com/react-native-google-signin/google-signin/issues?q=is%3Aissue+DEVELOPER+ERROR+is%3Aclosed) for old reports of the error.
 
