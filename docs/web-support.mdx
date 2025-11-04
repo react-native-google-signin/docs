@@ -20,6 +20,10 @@ On the web, the `signIn` and `createAccount` functions are not `Promise`-based b
 The reason for callback-based apis rather than promise-based is that it's possible to get into an "error" state (when one-tap is not available) and later get a successful sign in from the button flow. Because of how the Google Sign In for web SDK is done, modeling this with a promise-based api is not possible.
 :::
 
+## Setup
+
+See [here](setting-up/web).
+
 ## Usage
 
 To implement web support, follow these two steps:
