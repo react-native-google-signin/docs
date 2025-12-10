@@ -20,7 +20,7 @@ Why paid? According to the [State of React Native Survey](https://results.2024.s
   - iOS & macOS: Powered by the [Google Sign-In SDK](https://developers.google.com/identity/sign-in/ios/start)
 
 - **Licensed:** see [pricing](https://universal-sign-in.com/#pricing) and [license](https://universal-sign-in.com/license).
-- **Trusted**: A total of over 600k npm package downloads.
+- **Trusted**: A total of over 750k npm package downloads.
 - **Faster Sign-Ups**: Reduce sign-up and sign-in times on Android by up to 50%, according to [Google](https://developer.android.com/identity/sign-in/legacy-gsi-migration#authentication).
 - **See the UI**: [screenshots](screenshots) of the features.
 - **Widely compatible & stable:** Both old and [new architecture](https://reactnative.dev/architecture/landing-page) of React Native are supported. See version [compatibility table](#requirements) below.
@@ -81,6 +81,10 @@ npmScopes:
 ```
 
   </TabItem>
+  <TabItem value="CI" label="CI environments (GH Actions...)">
+    CI environment setup is similar to the local one: you also need a `.npmrc` (or similar) file. Follow [this GitHub Actions example](https://gist.github.com/nandorojo/46b3e46de12177b9ad7e4d454310de21#file-private-npm-in-gh-actions-md) - other CI providers require very similar steps.
+
+  </TabItem>
 
 </Tabs>
 
@@ -117,11 +121,9 @@ There are several guides to follow now:
 
 For latest version of Universal Sign In, `compileSdkVersion` must be {'>='} 35 and `kotlinVersion` must be {'>='} 2.0.21 in your Android project. If you use Expo SDK 53 or newer, these requirements are already met. Use [`expo-build-properties`](https://docs.expo.dev/versions/latest/sdk/build-properties/#example-appjson-with-config-plugin) to specify these values on Expo SDK {'<='} 52.
 
-The latest version of the Universal Sign In package supports:
+The latest version of the Universal Sign In package supports (use older versions of the package if you run older React Native / Expo):
 
 |              | supported range |
 | ------------ | --------------- |
 | expo         | 52.0.40 - 54    |
-| react-native | 0.76.0 - 0.82   |
-
-Use older versions of the package if you run older React Native / Expo.
+| react-native | 0.76.0 - 0.83   |
