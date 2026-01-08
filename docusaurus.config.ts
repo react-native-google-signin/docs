@@ -90,7 +90,7 @@ const config: Config = {
         // Enable both content cleaning options for optimal LLM output
         ignoreFiles: [
           'migrating**',
-          'original**', //not to confuse the two modules
+          //'original**', //not to confuse the two modules
           'screenshots**',
           'license**',
           'integration-notes**',
@@ -98,8 +98,6 @@ const config: Config = {
         ],
         fullContent: true,
         removeDuplicateHeadings: true,
-
-        // Other configuration options...
       },
     ],
     // [
@@ -182,11 +180,11 @@ const config: Config = {
           items: [
             {
               label: 'llms.txt',
-              href: '/llms.txt',
+              href: 'pathname:///llms.txt',
             },
             {
               label: 'llms-full.txt',
-              href: '/llms-full.txt',
+              href: 'pathname:///llms-full.txt',
             },
           ],
         },
