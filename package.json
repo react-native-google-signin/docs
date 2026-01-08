@@ -24,20 +24,21 @@
     "clsx": "^2.1.1",
     "docusaurus-lunr-search": "^3.6.1",
     "prism-react-renderer": "^2.4.1",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
   },
   "devDependencies": {
     "@docusaurus/faster": "^3.9.2",
     "@docusaurus/module-type-aliases": "^3.9.2",
     "@docusaurus/tsconfig": "^3.9.2",
     "@docusaurus/types": "^3.9.2",
-    "@types/react": "^19.2.2",
+    "@types/react": "^19.2.7",
+    "docusaurus-plugin-llms": "^0.2.2",
     "docusaurus-plugin-typedoc": "^1.4.2",
-    "prettier": "^3.6.2",
-    "typedoc": "^0.28.14",
+    "prettier": "^3.7.4",
+    "typedoc": "^0.28.15",
     "typedoc-plugin-markdown": "^4.9.0",
-    "typescript": "~5.9.2"
+    "typescript": "~5.9.3"
   },
   "browserslist": {
     "production": [

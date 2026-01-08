@@ -84,6 +84,24 @@ const config: Config = {
         disableInDev: false,
       },
     ],
+    [
+      'docusaurus-plugin-llms',
+      {
+        // Enable both content cleaning options for optimal LLM output
+        ignoreFiles: [
+          'migrating**',
+          'original**', //not to confuse the two modules
+          'screenshots**',
+          'license**',
+          'integration-notes**',
+          '**/buttons/native**',
+        ],
+        fullContent: true,
+        removeDuplicateHeadings: true,
+
+        // Other configuration options...
+      },
+    ],
     // [
     //   'docusaurus-preset-shiki-twoslash',
     //   {
@@ -157,6 +175,20 @@ const config: Config = {
           to: 'examples',
           label: 'Example native & web app',
           position: 'left',
+        },
+        {
+          label: 'LLMs',
+          position: 'left',
+          items: [
+            {
+              label: 'llms.txt',
+              href: '/llms.txt',
+            },
+            {
+              label: 'llms-full.txt',
+              href: '/llms-full.txt',
+            },
+          ],
         },
         {
           href: '/github-repo',
