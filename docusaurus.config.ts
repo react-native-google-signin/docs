@@ -89,7 +89,6 @@ const config: Config = {
       {
         // Enable both content cleaning options for optimal LLM output
         ignoreFiles: [
-          'migrating**',
           'other-libs**',
           'original**', // not to confuse the two modules?
           'screenshots**',
