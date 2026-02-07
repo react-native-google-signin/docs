@@ -49,9 +49,13 @@ When adding a new oauth client, google asks you to add your package name. In som
 
 ## iOS
 
-### On iOS the app crashes when tapping Sign In button
+### Sign in result is `cancelled` even though the user did not cancel the flow
 
-Along with "Your app is missing support for the following URL schemes" error in console.
+Make sure you're not presenting the sign-in flow while a modal (e.g. with a loading indicator) is already presented.
+
+### The app crashes when tapping the Sign In button
+
+Along with "Your app is missing support for the following URL schemes" error in Xcode console.
 
 Your `Url Schemes` configuration is incorrect.
 
