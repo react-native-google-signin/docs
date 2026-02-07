@@ -1,6 +1,6 @@
 ---
 sidebar_position: 50
-description: "How to mock Google Sign-In in Jest tests for both the Universal and Original modules."
+description: 'How to mock Google Sign-In in Jest tests for both the Universal and Original modules.'
 ---
 
 # Testing

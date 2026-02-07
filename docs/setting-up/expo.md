@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-description: "Expo setup guide. Covers config plugin setup and EAS Build configuration for Google Sign-In."
+description: 'Expo setup guide. Covers config plugin setup and EAS Build configuration for Google Sign-In.'
 ---
 
 # Expo setup

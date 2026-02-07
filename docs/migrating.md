@@ -1,6 +1,6 @@
 ---
 sidebar_position: 43
-description: "Migration guides: from Original to Universal Sign In module, and from the legacy JS API to the new API."
+description: 'Migration guides: from Original to Universal Sign In module, and from the legacy JS API to the new API.'
 ---
 
 # Migration guides

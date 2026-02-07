@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-description: "Android setup guide for vanilla React Native apps (not Expo). Covers Google project configuration, linking, and Credential Manager setup."
+description: 'Android setup guide for vanilla React Native apps (not Expo). Covers Google project configuration, linking, and Credential Manager setup.'
 ---
 
 # Android setup guide
