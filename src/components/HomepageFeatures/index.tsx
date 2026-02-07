@@ -24,7 +24,7 @@ const FeatureList: FeatureItem[] = [
     description: (
       <>
         Thanks to the licensed version, the module is maintained, and comes with
-        detailed documentation.
+        detailed, <a href="/llms-full.txt">AI-friendly</a> docs.
       </>
     ),
   },
@@ -34,8 +34,8 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Supports the New Architecture, and most of the features of the native
-        SDKs. Open an issue if something's missing!
+        Supports the New Architecture and covers the full breadth of the native
+        SDKs.
       </>
     ),
   },

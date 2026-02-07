@@ -1,6 +1,7 @@
 ---
 sidebar_label: Troubleshooting
 sidebar_position: 70
+description: 'Common issues and solutions for Android (DEVELOPER_ERROR, cancelled results) and iOS (missing profile data, URL schemes).'
 ---
 
 # FAQ / Troubleshooting

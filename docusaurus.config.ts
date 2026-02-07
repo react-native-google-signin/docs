@@ -87,17 +87,68 @@ const config: Config = {
     [
       'docusaurus-plugin-llms',
       {
-        // Enable both content cleaning options for optimal LLM output
         ignoreFiles: [
-          'other-libs**',
-          'original**', // not to confuse the two modules?
-          'screenshots**',
-          'license**',
-          'integration-notes**',
-          '**/buttons/native**',
+          'other-libs*',
+          'original*',
+          'screenshots*',
+          'screenshots/**',
+          'license*',
+          'integration-notes*',
+          '**/buttons/native*',
         ],
         fullContent: true,
+        excludeImports: false,
         removeDuplicateHeadings: true,
+        description:
+          'Google Sign-In for React Native and Expo apps (Android, iOS, macOS, web). Package: @react-native-google-signin/google-signin',
+        rootContent: `## Overview
+
+\`@react-native-google-signin/google-signin\` provides Google authentication for React Native and Expo apps.
+
+There are two modules:
+- **Universal Sign In** (recommended, [paid](https://universal-sign-in.com/#pricing)): Cross-platform API using Android Credential Manager and iOS Google Sign-In SDK. Module name: \`GoogleOneTapSignIn\`.
+- **Original Google Sign In** (free): Legacy API for Android and iOS only. Module name: \`GoogleSignin\`.
+
+## Quick start
+
+1. Install the package (see Installation)
+2. Collect configuration (see Configuration guide)
+3. Follow the setup guide for your platform (Expo, Android, iOS, or Web)
+4. Use the Universal Sign In API (see Universal sign in)
+
+## Docs`,
+        fullRootContent: `## Overview
+
+\`@react-native-google-signin/google-signin\` provides Google authentication for React Native and Expo apps on Android, iOS, macOS, and web.
+
+There are two modules:
+- **Universal Sign In** (recommended, [paid](https://universal-sign-in.com/#pricing)): Cross-platform API using Android Credential Manager and iOS Google Sign-In SDK. Module name: \`GoogleOneTapSignIn\`.
+- **Original Google Sign In** (free): Legacy API for Android and iOS only. Module name: \`GoogleSignin\`.
+
+Key concepts:
+- Call \`configure()\` once before any sign-in calls
+- \`webClientId\` is required for configuration (obtain from Google Cloud Console)
+- Use \`signIn()\` for returning users, \`createAccount()\` for new users
+- Use \`requestAuthorization()\` to request additional OAuth scopes
+- Handle errors with \`isErrorWithCode()\` helper`,
+        includeOrder: [
+          'install*',
+          '**/get-config-file*',
+          '**/expo*',
+          '**/setting-up/android*',
+          '**/setting-up/ios*',
+          '**/setting-up/web*',
+          'one-tap*',
+          'web-support*',
+          'security*',
+          '**/buttons/**',
+          'errors*',
+          'testing*',
+          'troubleshooting*',
+          'migrating*',
+          'config-doctor*',
+          'api/**',
+        ],
       },
     ],
     // [
@@ -221,7 +272,7 @@ const config: Config = {
         //   ],
         // },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Vojtech Novak. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} <a href="https://universal-sign-in.com/">universal-sign-in.com</a>`,
     },
     prism: {
       theme: prismThemes.github,
