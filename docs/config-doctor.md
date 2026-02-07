@@ -2,6 +2,7 @@
 sidebar_label: Config doctor
 sidebar_position: 75
 sidebar_class_name: sponsor-heart
+description: "CLI tool to diagnose Android signing configuration issues and resolve DEVELOPER_ERROR."
 ---
 
 # Configuration Doctor

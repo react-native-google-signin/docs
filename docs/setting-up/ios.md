@@ -1,5 +1,6 @@
 ---
 sidebar_position: 4
+description: "iOS setup guide for vanilla React Native apps (not Expo). Covers native module linking, URL schemes, and plist configuration."
 ---
 
 # iOS setup guide

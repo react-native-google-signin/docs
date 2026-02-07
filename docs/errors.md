@@ -1,5 +1,6 @@
 ---
 sidebar_position: 60
+description: "Error handling guide. Covers isErrorWithCode helper, error codes (SIGN_IN_CANCELLED, NO_SAVED_CREDENTIAL_FOUND, PLAY_SERVICES_NOT_AVAILABLE, etc.), and best practices."
 ---
 
 # Error handling
