@@ -22,7 +22,7 @@ This is always (! _absolutely always_ !) a configuration mismatch between your a
 
 Firstly, if you are using Firebase Auth, verify Google is enabled as a Sign-in method in Firebase Console (Build -> Authentication -> Sign-in method).
 
-Then: if you have the APK (on your phone, or computer) that gives this error, we recommend to run the [Configuration Doctor](./config-doctor.md) and follow its instructions:
+Then: if you have the APK (on your phone, or computer) that gives this error, we recommend to run the [Configuration Doctor](./config-doctor) and follow its instructions:
 
 ```bash
 npx @react-native-google-signin/config-doctor
