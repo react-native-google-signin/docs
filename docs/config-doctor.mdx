@@ -7,6 +7,10 @@ description: 'CLI tool to diagnose Android signing configuration issues and reso
 
 # Configuration Doctor
 
+import Banner from './_sponsorBanner.mdx';
+
+<Banner />
+
 A command-line tool designed to help with Android signing configuration issues and quickly resolve the infamous `DEVELOPER_ERROR`, or potentially [other errors](#when-to-use) too.
 
 ## Why
