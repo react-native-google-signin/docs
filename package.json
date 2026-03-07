@@ -7,7 +7,7 @@
     "start": "ENABLE_DOC_GEN=false docusaurus start",
     "build": "docusaurus build && node scripts/clean-llm-files.mjs",
     "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy",
+    "deploy": "yarn build && docusaurus deploy --skip-build",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
