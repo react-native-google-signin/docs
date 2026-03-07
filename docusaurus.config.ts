@@ -1,6 +1,16 @@
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import type { PluginOptions } from '@signalwire/docusaurus-plugin-llms-txt/public';
+
+const llmsExcludeRoutes = [
+  '/docs/category/**',
+  '/docs/other-libs',
+  '/docs/license',
+  '/docs/integration-notes',
+  '/docs/buttons/native',
+  '/docs/screenshots',
+];
 
 const config: Config = {
   future: {
@@ -40,36 +50,74 @@ const config: Config = {
     locales: ['en'],
   },
 
-  presets: [
-    [
-      'classic',
-      {
-        // gtag: {
-        // 	trackingID: "G-LBBHPKN4G6",
-        // },
-        docs: {
-          sidebarPath: './sidebars.ts',
-
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/react-native-google-signin/docs/edit/main/',
-        },
-        blog: false,
-        // blog: {
-        //   showReadingTime: true,
-        //   // Please change this to your repo.
-        //   // Remove this to remove the "edit this page" links.
-        //   editUrl:
-        //     'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        // },
-        theme: {
-          customCss: './src/css/custom.css',
-        },
-      } satisfies Preset.Options,
-    ],
-  ],
+  themes: ['@signalwire/docusaurus-theme-llms-txt'],
   plugins: [
+    [
+      '@signalwire/docusaurus-plugin-llms-txt',
+      {
+        llmsTxt: {
+          enableLlmsFullTxt: true,
+          siteDescription:
+            'Google Sign-In for React Native and Expo apps (Android, iOS, macOS, web). Package: @react-native-google-signin/google-signin',
+          excludeRoutes: llmsExcludeRoutes,
+          sections: [
+            {
+              id: 'setup',
+              name: 'Setup',
+              position: 1,
+              routes: [
+                { route: '/docs/install' },
+                { route: '/docs/setting-up/**' },
+              ],
+            },
+            {
+              id: 'usage',
+              name: 'Usage',
+              position: 2,
+              routes: [
+                { route: '/docs/one-tap' },
+                { route: '/docs/original' },
+                { route: '/docs/api' },
+                { route: '/docs/buttons/**' },
+              ],
+            },
+            {
+              id: 'guides',
+              name: 'Guides',
+              position: 3,
+              routes: [
+                { route: '/docs/errors' },
+                { route: '/docs/security' },
+                { route: '/docs/testing' },
+                { route: '/docs/web-support' },
+                { route: '/docs/migrating' },
+              ],
+            },
+            {
+              id: 'help',
+              name: 'Help',
+              position: 4,
+              routes: [
+                { route: '/docs/troubleshooting' },
+                { route: '/docs/config-doctor' },
+              ],
+            },
+          ],
+        },
+        markdown: {
+          excludeRoutes: llmsExcludeRoutes,
+        },
+        ui: {
+          copyPageContent: {
+            buttonLabel: 'Copy Page',
+            display: {
+              docs: true,
+              excludeRoutes: ['/admin/**'],
+            },
+          },
+        },
+      } satisfies PluginOptions,
+    ],
     [
       require.resolve('docusaurus-lunr-search'),
       {
@@ -84,79 +132,6 @@ const config: Config = {
         disableInDev: false,
       },
     ],
-    [
-      'docusaurus-plugin-llms',
-      {
-        ignoreFiles: [
-          'other-libs*',
-          'original*',
-          'screenshots*',
-          'screenshots/**',
-          'license*',
-          'integration-notes*',
-          '**/buttons/native*',
-        ],
-        fullContent: true,
-        excludeImports: false,
-        removeDuplicateHeadings: true,
-        description:
-          'Google Sign-In for React Native and Expo apps (Android, iOS, macOS, web). Package: @react-native-google-signin/google-signin',
-        rootContent: `## Overview
-
-\`@react-native-google-signin/google-signin\` provides Google authentication for React Native and Expo apps.
-
-There are two modules:
-- **Universal Sign In** (recommended, [paid](https://universal-sign-in.com/#pricing)): Cross-platform API using Android Credential Manager and iOS Google Sign-In SDK. Module name: \`GoogleOneTapSignIn\`.
-- **Original Google Sign In** (free): Legacy API for Android and iOS only. Module name: \`GoogleSignin\`.
-
-## Quick start
-
-1. Install the package (see Installation)
-2. Collect configuration (see Configuration guide)
-3. Follow the setup guide for your platform (Expo, Android, iOS, or Web)
-4. Use the Universal Sign In API (see Universal sign in)
-
-## Docs`,
-        fullRootContent: `## Overview
-
-\`@react-native-google-signin/google-signin\` provides Google authentication for React Native and Expo apps on Android, iOS, macOS, and web.
-
-There are two modules:
-- **Universal Sign In** (recommended, [paid](https://universal-sign-in.com/#pricing)): Cross-platform API using Android Credential Manager and iOS Google Sign-In SDK. Module name: \`GoogleOneTapSignIn\`.
-- **Original Google Sign In** (free): Legacy API for Android and iOS only. Module name: \`GoogleSignin\`.
-
-Key concepts:
-- Call \`configure()\` once before any sign-in calls
-- \`webClientId\` is required for configuration (obtain from Google Cloud Console)
-- Use \`signIn()\` for returning users, \`createAccount()\` for new users
-- Use \`requestAuthorization()\` to request additional OAuth scopes
-- Handle errors with \`isErrorWithCode()\` helper`,
-        includeOrder: [
-          'install*',
-          '**/get-config-file*',
-          '**/expo*',
-          '**/setting-up/android*',
-          '**/setting-up/ios*',
-          '**/setting-up/web*',
-          'one-tap*',
-          'web-support*',
-          'security*',
-          '**/buttons/**',
-          'errors*',
-          'testing*',
-          'troubleshooting*',
-          'migrating*',
-          'config-doctor*',
-          'api/**',
-        ],
-      },
-    ],
-    // [
-    //   'docusaurus-preset-shiki-twoslash',
-    //   {
-    //     themes: ['min-light', 'nord'],
-    //   },
-    // ],
     ...(process.env.ENABLE_DOC_GEN === 'true'
       ? [
           [
@@ -192,6 +167,36 @@ Key concepts:
           ],
         ]
       : []),
+  ],
+
+  presets: [
+    [
+      'classic',
+      {
+        // gtag: {
+        // 	trackingID: "G-LBBHPKN4G6",
+        // },
+        docs: {
+          sidebarPath: './sidebars.ts',
+
+          // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
+          editUrl:
+            'https://github.com/react-native-google-signin/docs/edit/main/',
+        },
+        blog: false,
+        // blog: {
+        //   showReadingTime: true,
+        //   // Please change this to your repo.
+        //   // Remove this to remove the "edit this page" links.
+        //   editUrl:
+        //     'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+        // },
+        theme: {
+          customCss: './src/css/custom.css',
+        },
+      } satisfies Preset.Options,
+    ],
   ],
 
   themeConfig: {

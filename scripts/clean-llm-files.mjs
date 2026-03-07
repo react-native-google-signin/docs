@@ -1,104 +1,82 @@
 /**
  * Post-build cleanup for LLM documentation files.
- * Strips Docusaurus-specific syntax (JSX components, admonitions, etc.)
- * that isn't useful for LLM consumption.
+ * Removes artifacts not useful for LLM consumption
+ * and injects overview content.
  *
  * Usage: node scripts/clean-llm-files.mjs
  */
 
-import { readFileSync, writeFileSync } from "fs";
-import { join } from "path";
+import { readFileSync, writeFileSync } from 'fs';
+import { join } from 'path';
 
-const BUILD_DIR = join(import.meta.dirname, "..", "build");
-const FILES = ["llms.txt", "llms-full.txt"];
+const BUILD_DIR = join(import.meta.dirname, '..', 'build');
+const SITE_URL = 'https://react-native-google-signin.github.io';
 
-/**
- * Cleanups safe to apply everywhere (including inside code blocks).
- */
-function cleanGlobal(content) {
+const OVERVIEW = `## Overview
+
+\`@react-native-google-signin/google-signin\` provides Google authentication for React Native and Expo apps.
+
+There are two modules:
+- **Universal Sign In** (recommended, [paid](https://universal-sign-in.com/#pricing)): Cross-platform API using Android Credential Manager and iOS Google Sign-In SDK. Module name: \`GoogleOneTapSignIn\`.
+- **Original Google Sign In** (free): Legacy API for Android and iOS only. Module name: \`GoogleSignin\`.
+
+## Quick start
+
+1. Install the package (see Installation)
+2. Collect configuration (see Configuration guide)
+3. Follow the setup guide for your platform (Expo, Android, iOS, or Web)
+4. Use the Universal Sign In API (see Universal sign in)
+`;
+
+const OVERVIEW_FULL = `## Overview
+
+\`@react-native-google-signin/google-signin\` provides Google authentication for React Native and Expo apps on Android, iOS, macOS, and web.
+
+There are two modules:
+- **Universal Sign In** (recommended, [paid](https://universal-sign-in.com/#pricing)): Cross-platform API using Android Credential Manager and iOS Google Sign-In SDK. Module name: \`GoogleOneTapSignIn\`.
+- **Original Google Sign In** (free): Legacy API for Android and iOS only. Module name: \`GoogleSignin\`.
+
+Key concepts:
+- Call \`configure()\` once before any sign-in calls
+- \`webClientId\` is required for configuration (obtain from Google Cloud Console)
+- Use \`signIn()\` for returning users, \`createAccount()\` for new users
+- Use \`requestAuthorization()\` to request additional OAuth scopes
+- Handle errors with \`isErrorWithCode()\` helper
+`;
+
+function clean(content) {
   return (
     content
-      // Remove Docusaurus code block attributes (showLineNumbers, title)
-      .replace(
-        /^(```\w*)\s+(?:title="[^"]*"\s*)?(?:showLineNumbers\s*)?$/gm,
-        "$1",
-      )
-      // Collapse 3+ consecutive blank lines to 2
-      .replace(/\n{4,}/g, "\n\n\n")
+      // Remove HTML comments
+      .replace(/<!--.*?-->\n?/gs, '')
+      // TODO Make relative links absolute
+      // .replace(/]\(\//g, `](${SITE_URL}/`)
+      // Collapse 2+ consecutive blank lines to 1
+      .replace(/\n{3,}/g, '\n\n')
   );
 }
 
-/**
- * Cleanups that must ONLY apply outside of fenced code blocks
- * to avoid mangling code examples.
- */
-function cleanProse(text) {
-  return (
-    text
-      // Remove Docusaurus theme imports
-      .replace(/^import .+ from '@theme\/.*';\n?/gm, "")
-      // Convert <TabItem label="..."> to a bold label, remove other Tabs markup
-      .replace(/<\/?Tabs[^>]*>\n?/g, "")
-      .replace(/<TabItem[^>]*label="([^"]*)"[^>]*>\n?/g, "**$1:**\n")
-      .replace(/<TabItem[^>]*>\n?/g, "")
-      .replace(/<\/TabItem>\n?/g, "")
-      // Remove <details>/<summary> (keep inner content)
-      .replace(/<details>\n?/g, "")
-      .replace(/<\/details>\n?/g, "")
-      .replace(/<summary>(.*?)<\/summary>\n?/g, "**$1**\n")
-      // Remove <Banner /> and similar self-closing Docusaurus JSX components
-      .replace(/<Banner\s*\/>\n?/g, "")
-      // Convert admonitions to blockquote labels
-      .replace(
-        /^:::(tip|warning|note|danger|important|info)\n?/gm,
-        (_, type) =>
-          `> **${type.charAt(0).toUpperCase() + type.slice(1)}**: `,
-      )
-      .replace(/^:::\n?/gm, "\n")
-      // Remove highlight markers that appear outside code blocks (e.g. in markdown)
-      .replace(/^\s*\/\/ highlight-(?:start|end|next-line)\n?/gm, "")
-      // Remove markdown comments
-      .replace(/^\[\/\/\]: # '.*?'\n?/gm, "")
-      // Remove image references (local paths, not useful for LLMs)
-      .replace(/^[ \t]*!\[.*?\]\(\/img\/.*?\)\n?/gm, "")
-      // Clean up JSX expressions like {'>='} to just the text
-      .replace(/\{'\s*(.*?)\s*'\}/g, "$1")
-  );
+function injectOverview(content, overview) {
+  // Insert overview after the description blockquote (> ...)
+  return content.replace(/(^# .+\n+> .+\n)/, `$1\n${overview}\n`);
 }
 
-/**
- * Split content into code-fenced and non-code-fenced segments,
- * apply prose cleanup only to non-code segments, then reassemble.
- */
-function cleanContent(content) {
-  // Split on code fences (``` with optional language identifier)
-  const parts = content.split(/^(```\w*.*$)/gm);
-  let insideCodeBlock = false;
-  const cleaned = parts.map((part) => {
-    if (/^```\w*/.test(part)) {
-      insideCodeBlock = !insideCodeBlock;
-      return part;
-    }
-    return insideCodeBlock ? part : cleanProse(part);
-  });
+const FILES = [
+  { name: 'llms.txt', overview: OVERVIEW },
+  { name: 'llms-full.txt', overview: OVERVIEW_FULL },
+];
 
-  return cleanGlobal(cleaned.join(""));
-}
-
-for (const file of FILES) {
-  const filePath = join(BUILD_DIR, file);
+for (const { name, overview } of FILES) {
+  const filePath = join(BUILD_DIR, name);
   try {
-    const content = readFileSync(filePath, "utf-8");
-    const cleaned = cleanContent(content);
+    const content = readFileSync(filePath, 'utf-8');
+    const cleaned = clean(injectOverview(content, overview));
     writeFileSync(filePath, cleaned);
-    const reduction = (
-      ((content.length - cleaned.length) / content.length) *
-      100
-    ).toFixed(1);
+    const diff = cleaned.length - content.length;
     console.log(
-      `Cleaned ${file}: ${content.length} -> ${cleaned.length} bytes (${reduction}% reduction)`,
+      `Processed ${name}: ${content.length} -> ${cleaned.length} bytes (${diff > 0 ? '+' : ''}${diff})`,
     );
   } catch (err) {
-    console.error(`Error processing ${file}:`, err.message);
+    console.error(`Error processing ${name}:`, err.message);
   }
 }
