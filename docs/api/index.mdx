@@ -176,7 +176,7 @@ The response object for successful `checkPlayServices` call. It denotes that the
 
 ### RequestAuthorizationParams
 
-> **RequestAuthorizationParams** = \{ `accountName?`: `string`; `hostedDomain?`: `string`; `offlineAccess?`: \{ `enabled`: `boolean`; `forceCodeForRefreshToken?`: `boolean`; \}; `scopes`: `string`[]; \}
+> **RequestAuthorizationParams** = \{ `accountName?`: `string`; `hostedDomain?`: `string`; `offlineAccess?`: \{ `enabled`: `boolean`; `forceCodeForRefreshToken?`: `boolean`; \}; `prompt?`: [`AuthorizationPrompt`](#authorizationprompt) \| [`AuthorizationPrompt`](#authorizationprompt)[]; `scopes`: `string`[]; \}
 
 Learn more in the [guide](/docs/one-tap#requestauthorization).
 
@@ -560,6 +560,12 @@ Native Google Sign-In button component. Prefer using the [`GoogleLogoButton`](#g
 `Element`
 
 ## Type Aliases
+
+### AuthorizationPrompt
+
+> **AuthorizationPrompt** = `"consent"` \| `"select_account"`
+
+---
 
 ### CancelledResponse
 
