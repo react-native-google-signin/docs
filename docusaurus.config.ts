@@ -15,7 +15,7 @@ const llmsExcludeRoutes = [
 const config: Config = {
   future: {
     v4: true,
-    experimental_faster: true,
+    faster: true,
   },
   title: 'React Native Google Sign In',
   tagline: 'Google sign in for Expo and React Native apps',
