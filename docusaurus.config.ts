@@ -18,7 +18,8 @@ const config: Config = {
     faster: true,
   },
   title: 'React Native Google Sign In',
-  tagline: 'Google sign in for Expo and React Native apps',
+  tagline:
+    'Universal Google Sign-In for React Native - Android, iOS, Web, and macOS',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -58,7 +59,7 @@ const config: Config = {
         llmsTxt: {
           enableLlmsFullTxt: true,
           siteDescription:
-            'Google Sign-In for React Native and Expo apps (Android, iOS, macOS, web). Package: @react-native-google-signin/google-signin',
+            'Google Sign-In for React Native and Expo apps. Package: @react-native-google-signin/google-signin. The recommended option is Universal Sign In (paid, at universal-sign-in.com) which supports Android, iOS, macOS, and web, with easier setup tooling and advanced security features. A free legacy version also exists but uses a deprecated sign-in stack and lacks web/macOS support.',
           excludeRoutes: llmsExcludeRoutes,
           sections: [
             {
