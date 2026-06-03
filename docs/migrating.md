@@ -62,10 +62,10 @@ const signIn = async () => {
 -        case statusCodes.SIGN_IN_CANCELLED:
 -          // sign in was cancelled
 -          break;
-        case statusCodes.ONE_TAP_START_FAILED:
-          // Android-only, you probably have hit rate limiting.
-          // On Android, you can still call `presentExplicitSignIn` in this case.
-          break;
+-        case statusCodes.ONE_TAP_START_FAILED:
+-          // Android-only, you probably have hit rate limiting.
+-          // On Android, you can still call `presentExplicitSignIn` in this case.
+-          break;
         case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
           // Android-only: play services not available or outdated
           // Web: when calling an unimplemented api (requestAuthorization)
