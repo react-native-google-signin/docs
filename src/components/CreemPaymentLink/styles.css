@@ -1,0 +1,43 @@
+.creem-payment {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 2rem 0;
+  padding: 1rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+}
+
+.creem-payment__eyebrow {
+  margin: 0 0 0.25rem;
+  color: var(--ifm-color-primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.creem-payment h2 {
+  max-width: 32rem;
+  margin: 0 0 0.5rem;
+}
+
+.creem-payment p {
+  margin: 0;
+}
+
+.creem-payment__button {
+  flex-shrink: 0;
+}
+
+@media (max-width: 700px) {
+  .creem-payment {
+    flex-direction: column;
+  }
+
+  .creem-payment__button {
+    width: 100%;
+  }
+}
