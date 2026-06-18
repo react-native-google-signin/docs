@@ -5,7 +5,9 @@ type CreemPaymentLinkProps = {
   paymentUrl: string;
 };
 
-export default function CreemPaymentLink({ paymentUrl }: CreemPaymentLinkProps) {
+export default function CreemPaymentLink({
+  paymentUrl,
+}: CreemPaymentLinkProps) {
   return (
     <section className="creem-payment" aria-labelledby="creem-payment-title">
       <div>

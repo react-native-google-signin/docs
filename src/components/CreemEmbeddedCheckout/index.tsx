@@ -28,7 +28,9 @@ export default function CreemEmbeddedCheckout({
   };
 
   useEffect(() => {
-    if (document.querySelector(`link[rel="preconnect"][href="${CREEM_ORIGIN}"]`)) {
+    if (
+      document.querySelector(`link[rel="preconnect"][href="${CREEM_ORIGIN}"]`)
+    ) {
       return;
     }
 
@@ -67,10 +69,7 @@ export default function CreemEmbeddedCheckout({
         return;
       }
 
-      if (
-        event.shiftKey &&
-        document.activeElement === closeButtonRef.current
-      ) {
+      if (event.shiftKey && document.activeElement === closeButtonRef.current) {
         event.preventDefault();
         iframeRef.current?.focus();
         return;
