@@ -1,6 +1,6 @@
 ---
 sidebar_position: 60
-description: 'Error handling guide. Covers `isErrorWithCode` helper, error codes (`SIGN_IN_CANCELLED`, `PLAY_SERVICES_NOT_AVAILABLE`, etc.), and best practices.'
+description: 'Error handling guide. Covers `isErrorWithCode` helper, stable status codes, and best practices.'
 ---
 
 # Error handling
@@ -37,7 +37,7 @@ try {
 import { statusCodes } from '@react-native-google-signin/google-signin';
 ```
 
-Status codes are useful when determining which kind of error has occurred during the sign-in process. Under the hood, these constants are derived from native error codes and are platform-specific. Always compare `error.code` to `statusCodes.*` and do not rely on the raw value of `error.code`.
+Status codes are useful when determining which kind of error has occurred during the sign-in process. These constants are stable canonical values exported by the library, so you can compare `error.code` to `statusCodes.*` with good TypeScript support. Less common native failures may still surface other string values.
 
 See [example usage](one-tap#signin).
 

@@ -182,14 +182,15 @@ Learn more in the [guide](/docs/one-tap#requestauthorization).
 
 #### Properties
 
-| Property                                             | Type                                                                | Description                                                                                                                                                                                 |
-| ---------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <a id="property-accountname"></a> `accountName?`     | `string`                                                            | Android only. Specifies an account on the device that should be used.                                                                                                                       |
-| <a id="property-hosteddomain"></a> `hostedDomain?`   | `string`                                                            | Android only. Specifies a hosted domain restriction. By setting this, authorization will be restricted to accounts of the user in the specified domain.                                     |
-| <a id="property-offlineaccess"></a> `offlineAccess?` | \{ `enabled`: `boolean`; `forceCodeForRefreshToken?`: `boolean`; \} | -                                                                                                                                                                                           |
-| `offlineAccess.enabled`                              | `boolean`                                                           | Whether to enable offline access. If enabled, `serverAuthCode` will be returned in the response.                                                                                            |
-| `offlineAccess.forceCodeForRefreshToken?`            | `boolean`                                                           | Android only. If true, the granted code can be exchanged for an access token and a refresh token. Only use true if your server has suffered some failure and lost the user's refresh token. |
-| <a id="property-scopes-1"></a> `scopes`              | `string`[]                                                          | The Google API scopes to request access to. See [scopes docs](/docs/integration-notes#additional-scopes).                                                                                   |
+| Property                                             | Type                                                                                             | Description                                                                                                                                                                                                                                                                                                                                      |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| <a id="property-accountname"></a> `accountName?`     | `string`                                                                                         | Android only. Specifies an account on the device that should be used.                                                                                                                                                                                                                                                                            |
+| <a id="property-hosteddomain"></a> `hostedDomain?`   | `string`                                                                                         | Android only. Specifies a hosted domain restriction. By setting this, authorization will be restricted to accounts of the user in the specified domain.                                                                                                                                                                                          |
+| <a id="property-offlineaccess"></a> `offlineAccess?` | \{ `enabled`: `boolean`; `forceCodeForRefreshToken?`: `boolean`; \}                              | -                                                                                                                                                                                                                                                                                                                                                |
+| `offlineAccess.enabled`                              | `boolean`                                                                                        | Whether to enable offline access. If enabled, `serverAuthCode` will be returned in the response.                                                                                                                                                                                                                                                 |
+| `offlineAccess.forceCodeForRefreshToken?`            | `boolean`                                                                                        | Android only. If true, the granted code can be exchanged for an access token and a refresh token. Only use true if your server has suffered some failure and lost the user's refresh token. **Deprecated** Use `prompt: 'consent'` instead.                                                                                                      |
+| <a id="property-prompt"></a> `prompt?`               | [`AuthorizationPrompt`](#authorizationprompt) \| [`AuthorizationPrompt`](#authorizationprompt)[] | Android only. Controls the prompt behavior for the authorization request. - `'select_account'`: Forces account selection (overrides `accountName`) modal to show. - `'consent'`: Forces the consent modal to show. Applies only to when `offlineAccess` is enabled. You may pass an array (`['consent', 'select_account']`) to show both modals. |
+| <a id="property-scopes-1"></a> `scopes`              | `string`[]                                                                                       | The Google API scopes to request access to. See [scopes docs](/docs/integration-notes#additional-scopes).                                                                                                                                                                                                                                        |
 
 ---
 
@@ -364,7 +365,7 @@ The entry point of the Google Sign In API, exposed as `GoogleSignin`.
 
 ### statusCodes
 
-> `const` **statusCodes**: `Readonly`\<\{ `IN_PROGRESS`: `string`; `NULL_PRESENTER`: `"NULL_PRESENTER"`; `ONE_TAP_START_FAILED`: `"ONE_TAP_START_FAILED"`; `PLAY_SERVICES_NOT_AVAILABLE`: `string`; \}\>
+> `const` **statusCodes**: `Readonly`\<\{ `IN_PROGRESS`: `"IN_PROGRESS"`; `NULL_PRESENTER`: `"NULL_PRESENTER"`; `PLAY_SERVICES_NOT_AVAILABLE`: `"PLAY_SERVICES_NOT_AVAILABLE"`; \}\>
 
 Read more about the meaning of the error codes in the [guide](/docs/errors).
 
@@ -595,13 +596,19 @@ You can specify a different bundle path for the config file, e.g. "GoogleService
 
 Alternatively, set the client ID explicitly by providing `iosClientId`.
 
-#### Type Declaration
+#### Union Members
+
+##### Type Literal
 
 \{ `iosClientId?`: `string`; \}
 
 | Name           | Type     | Description                                                                                                        |
 | -------------- | -------- | ------------------------------------------------------------------------------------------------------------------ |
 | `iosClientId?` | `string` | If you want to specify the client ID of type iOS. It is taken from the `GoogleService-Info.plist` file by default. |
+
+---
+
+##### Type Literal
 
 \{ `googleServicePlistPath?`: `string`; \}
 
