@@ -64,9 +64,9 @@ useEffect(() => {
 
 </Tabs>
 
-After the script is loaded, you can call the functions for signing in and render the [`WebGoogleSigninButton`](/docs/buttons/web).
+After the script is loaded, you can call `GoogleOneTapSignIn.authenticate` and render the [`WebGoogleSigninButton`](/docs/buttons/web).
 
-If you call any of the module functions before the client library is loaded, such calls trigger the [`onError` callback](/docs/api#webonetapsignincallbacks) with the [`PLAY_SERVICES_NOT_AVAILABLE` error code](../errors#status-codes).
+If you call `authenticate` before the client library is loaded, the [`onResponse` callback](/docs/api#webonetapauthenticatecallbacks) receives an `error` with the [`PLAY_SERVICES_NOT_AVAILABLE` error code](../errors#status-codes). Advanced web authentication methods report the same error through [`onError`](/docs/api#webonetapsignincallbacks).
 
 You can read the official docs for loading the Client Library [here](https://developers.google.com/identity/gsi/web/guides/client-library).
 

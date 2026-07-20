@@ -14,7 +14,7 @@ export default function CreemPaymentLink({
         <p className="creem-payment__eyebrow">Universal Sign In license</p>
         <h2 id="creem-payment-title">Ready to install Universal Sign In?</h2>
         <p>
-          Buy a license, then use the private npm registry setup below to add
+          Buy a license, then follow the private npm registry setup below to add
           the package to your app.
         </p>
       </div>

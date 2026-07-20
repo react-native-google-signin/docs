@@ -9,21 +9,22 @@ There are 2 migrations described here: from Original to Universal Sign In and fr
 
 ## Migrating from Original to Universal Sign In
 
-Migrating from Original to Universal module is mostly about changing the method names: the table summarizes the mapping from Original module's calls to the Universal (OneTap) module's calls:
+For authentication, prefer [`authenticate`](one-tap#authenticate). It checks prerequisites, tries to restore a saved credential, starts account creation if needed, and falls back to explicit sign-in when the user still needs to pick or add an account. It returns `user`, `error`, or `isCancelled`. The table also lists advanced method mappings for apps that need to control each step themselves:
 
-| Original Method          | Universal (OneTap) Method              | Notes                                                                                                                                                                                                                                            |
-| ------------------------ | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `configure`              | `configure`                            | Same functionality.                                                                                                                                                                                                                              |
-| `signInSilently`         | `signIn`                               | Universal's `signIn` attempts sign in without user interaction.                                                                                                                                                                                  |
-| `signIn`                 | `createAccount`                        | Universal's `createAccount` is for first-time sign in (but can be used for existing users too).                                                                                                                                                  |
-| `addScopes`              | `requestAuthorization`                 | Similar functionality, different parameters. On Android, you can call `requestAuthorization` without being signed in!                                                                                                                            |
-| `hasPlayServices`        | `checkPlayServices`                    | Same functionality, different name.                                                                                                                                                                                                              |
-| `getCurrentUser`         | Use `signIn` response                  | Manage the current user state yourself, or through libraries like [Firebase Auth](https://rnfirebase.io/auth/usage#listening-to-authentication-state) or [Supabase Auth](https://supabase.com/docs/reference/javascript/auth-onauthstatechange). |
-| `getTokens`              | Use `signIn` or `requestAuthorization` | Tokens are included in the response object.                                                                                                                                                                                                      |
-| `signOut`                | `signOut`                              |                                                                                                                                                                                                                                                  |
-| `revokeAccess`           | `revokeAccess`                         | Universal requires email/id parameter on web.                                                                                                                                                                                                    |
-| `hasPreviousSignIn`      | Use `signIn` response                  | Check for `noSavedCredentialFound` response type.                                                                                                                                                                                                |
-| `clearCachedAccessToken` | `clearCachedAccessToken`               | Same functionality.                                                                                                                                                                                                                              |
+| Original Method           | Universal (OneTap) Method                    | Notes                                                                                                                                                                                                                                            |
+| ------------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `configure`               | `configure`                                  | Same functionality.                                                                                                                                                                                                                              |
+| `signInSilently`/`signIn` | `authenticate`                               | Recommended for the complete authentication flow.                                                                                                                                                                                                |
+| `signInSilently`          | `signIn`                                     | Advanced method. Universal's `signIn` attempts sign in without user interaction.                                                                                                                                                                 |
+| `signIn`                  | `createAccount`/`presentExplicitSignIn`      | Advanced methods for apps that need to control the interactive steps directly.                                                                                                                                                                   |
+| `addScopes`               | `requestAuthorization`                       | Similar functionality, different parameters. On Android, you can call `requestAuthorization` without being signed in!                                                                                                                            |
+| `hasPlayServices`         | `checkPlayServices`                          | Same functionality, different name.                                                                                                                                                                                                              |
+| `getCurrentUser`          | Use `authenticate` response                  | Manage the current user state yourself, or through libraries like [Firebase Auth](https://rnfirebase.io/auth/usage#listening-to-authentication-state) or [Supabase Auth](https://supabase.com/docs/reference/javascript/auth-onauthstatechange). |
+| `getTokens`               | Use `authenticate` or `requestAuthorization` | Tokens are included in the response object.                                                                                                                                                                                                      |
+| `signOut`                 | `signOut`                                    |                                                                                                                                                                                                                                                  |
+| `revokeAccess`            | `revokeAccess`                               | Universal requires email/id parameter on web.                                                                                                                                                                                                    |
+| `hasPreviousSignIn`       | Usually not needed                           | Use `authenticate` to authenticate. If you specifically need to know whether a saved credential exists, call the advanced `signIn` method and check for `noSavedCredentialFound`.                                                                |
+| `clearCachedAccessToken`  | `clearCachedAccessToken`                     | Same functionality.                                                                                                                                                                                                                              |
 
 ---
 
@@ -35,48 +36,31 @@ Version 13 introduced a new JS API, which changes some method response signature
 
 1. Add the [`configure`](one-tap#configure) method to your code. This method is required to be called to configure the module.
 
-2. Change the `signIn`, `createAccount`, `presentExplicitSignIn`, and `requestAuthorization` methods to use the new apis: That means that the data you previously accessed directly on `userInfo` (see below - for example `userInfo.name`) will now be nested in `userInfo.data` (e.g. `userInfo.data.name`). See [`OneTapResponse` type](/docs/api#onetapresponse):
+2. Prefer `authenticate` for authentication. It returns `user`, `error`, or `isCancelled`:
 
 ```diff
 const signIn = async () => {
-  try {
--    const userInfo = await GoogleOneTapSignIn.signIn({
--      webClientId: `autoDetect`, // works only if you use Firebase
--      iosClientId: config.iosClientId, // only needed if you're not using Firebase
--    });
--    setState({ userInfo }); // use e.g. `userInfo.name`
-+    const response = await GoogleOneTapSignIn.signIn();
+-  const userInfo = await GoogleOneTapSignIn.signIn({
+-    webClientId: `autoDetect`, // works only if you use Firebase
+-    iosClientId: config.iosClientId, // only needed if you're not using Firebase
+-  });
+-  setState({ userInfo }); // use e.g. `userInfo.name`
++  const { user, error, isCancelled } = await GoogleOneTapSignIn.authenticate();
 +
-+    if (response.type === 'success') {
-+      setState({ userInfo: response.data });
-+    } else if (response.type === 'noSavedCredentialFound') {
-+      // Android and Apple only. No saved credential found, call `createAccount`
++  if (user) {
++    setState({ userInfo: user });
++  } else if (isCancelled) {
++    // sign in was cancelled
++  } else if (error) {
++    switch (error.code) {
++      case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
++        // Android-only: play services not available or outdated
++        // Web: the Google Client Library is not loaded yet
++        break;
++      default:
++      // something else happened
 +    }
-
-  } catch (error) {
-    if (isErrorWithCode(error)) {
-      switch (error.code) {
--        case statusCodes.NO_SAVED_CREDENTIAL_FOUND:
--          // Android and Apple only. No saved credential found, call `createAccount`
--          break;
--        case statusCodes.SIGN_IN_CANCELLED:
--          // sign in was cancelled
--          break;
--        case statusCodes.ONE_TAP_START_FAILED:
--          // Android-only, you probably have hit rate limiting.
--          // On Android, you can still call `presentExplicitSignIn` in this case.
--          break;
-        case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
-          // Android-only: play services not available or outdated
-          // Web: when calling an unimplemented api (requestAuthorization)
-          break;
-        default:
-        // something else happened
-      }
-    } else {
-      // an error that's not related to google sign in occurred
-    }
-  }
++  }
 };
 ```
 
