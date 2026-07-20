@@ -22,6 +22,8 @@ One-tap UI may not always be available: This happens if user has [opted out](htt
 
 The Google Sign-In button serves as a fallback. Tapping it opens the regular Google Sign-In dialog.
 
+Call [`GoogleOneTapSignIn.authenticate`](../one-tap#authenticate) when the page loads. A successful button sign-in is delivered to the same `onResponse` callback.
+
 ```tsx
 import { WebGoogleSigninButton } from '@react-native-google-signin/google-signin';
 

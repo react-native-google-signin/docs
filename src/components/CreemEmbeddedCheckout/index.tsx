@@ -117,8 +117,8 @@ export default function CreemEmbeddedCheckout({
           <p className="creem-embed__eyebrow">Universal Sign In license</p>
           <h2 id="creem-embed-title">Ready to install Universal Sign In?</h2>
           <p>
-            Buy a license, then use the private npm registry setup below to add
-            the package to your app.
+            Buy a license, then follow the private npm registry setup below to
+            add the package to your app.
           </p>
         </div>
         <button

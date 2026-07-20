@@ -25,10 +25,10 @@ By default, the mock behaves as if the calls were successful and returns mock us
 
 You can use [`@testing-library/react-native`](https://callstack.github.io/react-native-testing-library/) to write tests for React components that use React Native Google Sign In. Minimal example (make sure to [set up the mock](#setting-up-the-mock) first):
 
-```jsx title="App.test.js"
+```tsx title="App.test.tsx"
 import {
   GoogleOneTapSignIn,
-  OneTapResponse,
+  OneTapAuthenticateResponse,
 } from '@react-native-google-signin/google-signin';
 import * as React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react-native';
@@ -36,7 +36,9 @@ import { Button, Text } from 'react-native';
 import { useState } from 'react';
 
 function GoogleSignInComponent() {
-  const [userInfo, setUserInfo] = useState<OneTapResponse | undefined>();
+  const [response, setResponse] = useState<
+    OneTapAuthenticateResponse | undefined
+  >();
 
   return (
     <>
@@ -46,11 +48,11 @@ function GoogleSignInComponent() {
           GoogleOneTapSignIn.configure({
             webClientId: 'autoDetect',
           });
-          const userInfo = await GoogleOneTapSignIn.signIn();
-          setUserInfo(userInfo);
+          const signInResponse = await GoogleOneTapSignIn.authenticate();
+          setResponse(signInResponse);
         }}
       />
-      {userInfo && <Text>{userInfo.data?.user.name}</Text>}
+      {response?.user && <Text>{response.user.user.name}</Text>}
     </>
   );
 }
