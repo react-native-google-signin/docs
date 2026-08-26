@@ -13,6 +13,21 @@ If you use Expo, follow [this guide](/setting-up/expo.md) instead. This guide ap
 
 - run `pod install` in the `ios/` directory to install the module
 
+#### CocoaPods modular headers
+
+Some dependency combinations may require modular headers. If `pod install` reports that the Swift pod `AppCheckCore` depends on `GoogleUtilities` or `RecaptchaInterop`, which do not define modules, add both pods to your existing application target in the `Podfile`:
+
+```ruby title="ios/Podfile"
+target 'YourApp' do
+  pod 'GoogleUtilities', :modular_headers => true
+  pod 'RecaptchaInterop', :modular_headers => true
+
+  # The rest of your existing target configuration
+end
+```
+
+Do not add version constraints to these declarations. CocoaPods will select versions compatible with Google Sign-In, and your other dependencies. Projects that already use `use_modular_headers!` or `use_frameworks!` do not need these additional declarations.
+
 ### Google project configuration
 
 - Follow [this](./get-config-file) guide to get the configuration information which you need for the next steps.
