@@ -34,7 +34,7 @@
     "@docusaurus/types": "3.10.2",
     "@signalwire/docusaurus-plugin-llms-txt": "2.0.0-alpha.7",
     "@signalwire/docusaurus-theme-llms-txt": "1.0.0-alpha.9",
-    "@types/react": "19.2.17",
+    "@types/react": "19.2.18",
     "docusaurus-plugin-typedoc": "1.4.2",
     "prettier": "3.9.4",
     "typedoc": "0.28.19",
