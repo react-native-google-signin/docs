@@ -11,6 +11,8 @@ If you use Expo, follow [this guide](/setting-up/expo.md) instead. This guide ap
 
 ### Link the native module
 
+#### CocoaPods
+
 - run `pod install` in the `ios/` directory to install the module
 
 #### CocoaPods modular headers
@@ -27,6 +29,30 @@ end
 ```
 
 Do not add version constraints to these declarations. CocoaPods will select versions compatible with Google Sign-In, and your other dependencies. Projects that already use `use_modular_headers!` or `use_frameworks!` do not need these additional declarations.
+
+#### Swift Package Manager (beta)
+
+Universal Sign In (premium) supports Swift Package Manager (SPM) on iOS in beta. Install the npm package as usual.
+
+**SPM dependencies through CocoaPods:** CocoaPods remains the default. When RNFirebase 26.x is autolinked on iOS and Firebase SPM is enabled, the package automatically uses SPM for its SDK dependencies. RNFirebase 27+ or failed detection requires an explicit override.
+
+To choose SPM explicitly, add the following before the target blocks in your `ios/Podfile`, then run `pod install`:
+
+```ruby title="ios/Podfile"
+$RNGoogleSigninDependencyManager = 'spm'
+use_frameworks! :linkage => :dynamic
+```
+
+This integration requires React Native 0.75+ and dynamic frameworks. Remove any forced static linkage for `RNGoogleSignin` or `ReactCodegen`. If you use Firebase, keep both SDKs on the same dependency manager. To switch back to CocoaPods, set `$RNGoogleSigninDependencyManager = 'cocoapods'` and also set `$RNFirebaseDisableSPM = true` if you use RNFirebase.
+
+**Full SwiftPM preview:** For bare React Native apps using the experimental SwiftPM workflow (tested with React Native 0.87), run:
+
+```sh
+cd ios
+npx react-native spm --deintegrate
+```
+
+Build the app's `.xcodeproj`. On fresh checkouts or CI, run `npx react-native spm` from the `ios/` directory. Other native dependencies must also support SwiftPM. Continue with the URL scheme and AppDelegate configuration below.
 
 ### Google project configuration
 

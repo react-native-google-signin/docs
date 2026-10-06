@@ -60,6 +60,42 @@ Place them into your project and specify the paths to the files:
 }
 ```
 
+### Swift Package Manager (beta)
+
+Universal Sign In (premium) supports using Swift Package Manager (SPM) for iOS SDK dependencies through CocoaPods. CocoaPods remains the default; SPM is selected automatically when RNFirebase 26.x is autolinked on iOS and Firebase SPM is enabled. RNFirebase 27+ or failed detection requires an explicit override.
+
+To choose SPM explicitly, add `iosDependencyManager` to your existing Google Sign-In config plugin options and enable dynamic frameworks with `expo-build-properties`:
+
+```json title="app.json | js"
+{
+  "expo": {
+    "plugins": [
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps._some_id_here_",
+          "iosDependencyManager": "spm"
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "dynamic"
+          }
+        }
+      ]
+    ]
+  }
+}
+```
+
+Install `expo-build-properties` with `npx expo install expo-build-properties` if it is not already installed, then rerun prebuild. For Firebase projects, keep the `googleServicesFile` configuration above; `iosUrlScheme` is only required for projects without Firebase.
+
+The `iosDependencyManager` option accepts `"auto"` (default), `"cocoapods"`, or `"spm"`. If you use Firebase, keep both SDKs on the same dependency manager. To switch back to CocoaPods, set `iosDependencyManager` to `"cocoapods"` and set `ios.disableSPM` to `true` in the `@react-native-firebase/app` config plugin options. A `$RNGoogleSigninDependencyManager` assignment in `ios/Podfile` takes precedence over the Expo setting.
+
+Full Expo SwiftPM currently requires upstream packaging fixes. See the [iOS guide](./ios#swift-package-manager-beta) for the full SwiftPM preview for bare React Native apps.
+
 ## Build the native app
 
 Run the following to generate the native project directories.
