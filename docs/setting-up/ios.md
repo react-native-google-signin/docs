@@ -32,27 +32,27 @@ Do not add version constraints to these declarations. CocoaPods will select vers
 
 #### Swift Package Manager (beta)
 
-Universal Sign In (premium) supports Swift Package Manager (SPM) on iOS in beta. Install the npm package as usual.
+Universal Sign In uses CocoaPods by default. It automatically selects SPM for iOS SDK dependencies when RNFirebase 26+ is autolinked on iOS with Firebase SPM enabled.
 
-**SPM dependencies through CocoaPods:** CocoaPods remains the default. When RNFirebase 26.x is autolinked on iOS and Firebase SPM is enabled, the package automatically uses SPM for its SDK dependencies. RNFirebase 27+ or failed detection requires an explicit override.
-
-To choose SPM explicitly, add the following before the target blocks in your `ios/Podfile`, then run `pod install`:
+To select SPM explicitly, add this before your Podfile's target blocks:
 
 ```ruby title="ios/Podfile"
 $RNGoogleSigninDependencyManager = 'spm'
 use_frameworks! :linkage => :dynamic
 ```
 
-This integration requires React Native 0.75+ and dynamic frameworks. Remove any forced static linkage for `RNGoogleSignin` or `ReactCodegen`. If you use Firebase, keep both SDKs on the same dependency manager. To switch back to CocoaPods, set `$RNGoogleSigninDependencyManager = 'cocoapods'` and also set `$RNFirebaseDisableSPM = true` if you use RNFirebase.
+SPM requires dynamic frameworks.
 
-**Full SwiftPM preview:** For bare React Native apps using the experimental SwiftPM workflow (tested with React Native 0.87), run:
+Firebase and Google Sign-In must use the same dependency manager. RNFirebase 27+ requires SPM. With RNFirebase 26, switching to CocoaPods requires `$RNGoogleSigninDependencyManager = 'cocoapods'` and `$RNFirebaseDisableSPM = true`.
+
+**Full SwiftPM preview:** React Native's experimental CocoaPods-free workflow is tested with RN 0.88. All native dependencies must support SwiftPM.
 
 ```sh
 cd ios
 npx react-native spm --deintegrate
 ```
 
-Build the app's `.xcodeproj`. On fresh checkouts or CI, run `npx react-native spm` from the `ios/` directory. Other native dependencies must also support SwiftPM. Continue with the URL scheme and AppDelegate configuration below.
+Build the app's `.xcodeproj`. On fresh checkouts or CI, run `npx react-native spm` from `ios/` first.
 
 ### Google project configuration
 
