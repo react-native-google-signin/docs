@@ -62,9 +62,9 @@ Place them into your project and specify the paths to the files:
 
 ### Swift Package Manager (beta)
 
-Universal Sign In (premium) supports using Swift Package Manager (SPM) for iOS SDK dependencies through CocoaPods. CocoaPods remains the default; SPM is selected automatically when RNFirebase 26.x is autolinked on iOS and Firebase SPM is enabled. RNFirebase 27+ or failed detection requires an explicit override.
+Universal Sign In uses CocoaPods by default. It automatically selects SPM for iOS SDK dependencies when RNFirebase 26+ is autolinked on iOS with Firebase SPM enabled.
 
-To choose SPM explicitly, add `iosDependencyManager` to your existing Google Sign-In config plugin options and enable dynamic frameworks with `expo-build-properties`:
+SPM requires dynamic frameworks. To select it explicitly:
 
 ```json title="app.json | js"
 {
@@ -90,9 +90,9 @@ To choose SPM explicitly, add `iosDependencyManager` to your existing Google Sig
 }
 ```
 
-Install `expo-build-properties` with `npx expo install expo-build-properties` if it is not already installed, then rerun prebuild. For Firebase projects, keep the `googleServicesFile` configuration above; `iosUrlScheme` is only required for projects without Firebase.
+`iosDependencyManager` accepts `"auto"` (default), `"cocoapods"`, or `"spm"`.
 
-The `iosDependencyManager` option accepts `"auto"` (default), `"cocoapods"`, or `"spm"`. If you use Firebase, keep both SDKs on the same dependency manager. To switch back to CocoaPods, set `iosDependencyManager` to `"cocoapods"` and set `ios.disableSPM` to `true` in the `@react-native-firebase/app` config plugin options. A `$RNGoogleSigninDependencyManager` assignment in `ios/Podfile` takes precedence over the Expo setting.
+Firebase and Google Sign-In must use the same dependency manager. RNFirebase 27+ requires SPM. With RNFirebase 26, set `iosDependencyManager: "cocoapods"` for Google Sign-In and `ios.disableSPM: true` for `@react-native-firebase/app` to use CocoaPods.
 
 Full Expo SwiftPM currently requires upstream packaging fixes. See the [iOS guide](./ios#swift-package-manager-beta) for the full SwiftPM preview for bare React Native apps.
 
