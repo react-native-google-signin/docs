@@ -6933,7 +6933,7 @@ __metadata:
     react: "npm:^19.2.7"
     react-dom: "npm:^19.2.7"
     typedoc: "npm:0.28.19"
-    typedoc-plugin-markdown: "npm:4.12.0"
+    typedoc-plugin-markdown: "npm:4.14.1"
     typescript: "npm:6.0.3"
   languageName: unknown
   linkType: soft
@@ -14035,12 +14035,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-markdown@npm:4.12.0":
-  version: 4.12.0
-  resolution: "typedoc-plugin-markdown@npm:4.12.0"
+"typedoc-plugin-markdown@npm:4.14.1":
+  version: 4.14.1
+  resolution: "typedoc-plugin-markdown@npm:4.14.1"
   peerDependencies:
     typedoc: 0.28.x
-  checksum: 10c0/2977f5c3d98f778e02952ab2e6d47d0ec5245a84f459dc6727d34698e78d1837211a01ce568529671681d4f67117476a45caba33097de5f88d2feeb0d443507d
+  checksum: 10c0/6dd537d5a384661bd09d7b540ad4c8df097bafa0b0b72773f113592b49c0b40d96a6970fa82da784c5f7f41ae941e131d01d304c084b60d6752cb6fa7357a489
   languageName: node
   linkType: hard
 
