@@ -6927,7 +6927,7 @@ __metadata:
     "@types/react": "npm:19.2.17"
     clsx: "npm:^2.1.1"
     docusaurus-lunr-search: "npm:^3.6.1"
-    docusaurus-plugin-typedoc: "npm:1.4.2"
+    docusaurus-plugin-typedoc: "npm:1.4.3"
     prettier: "npm:3.9.8"
     prism-react-renderer: "npm:^2.4.1"
     react: "npm:^19.2.7"
@@ -6964,14 +6964,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"docusaurus-plugin-typedoc@npm:1.4.2":
-  version: 1.4.2
-  resolution: "docusaurus-plugin-typedoc@npm:1.4.2"
+"docusaurus-plugin-typedoc@npm:1.4.3":
+  version: 1.4.3
+  resolution: "docusaurus-plugin-typedoc@npm:1.4.3"
   dependencies:
-    typedoc-docusaurus-theme: "npm:^1.4.0"
+    typedoc-docusaurus-theme: "npm:^1.4.3"
   peerDependencies:
-    typedoc-plugin-markdown: ">=4.8.0"
-  checksum: 10c0/d0e43c2c22bce69cac0ea3ed7e358c0ea66ce02137f89362f5cc122ad58308ac7436547cff60e26bf0dd8fd408787e738dd380f1cd3f0950c1f1c059b11fef45
+    typedoc: 0.28.x
+    typedoc-plugin-markdown: ">=4.11.0"
+  checksum: 10c0/e41e41c908e6a77fec3c0bf245da6e3cbe05e606d25ac80a370eec3d27239c96612c7fae8d5c26930636d6cb7d0fdfee2e2022ba6f5bf44e432c9a45e68a7607
   languageName: node
   linkType: hard
 
@@ -14026,12 +14027,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-docusaurus-theme@npm:^1.4.0":
-  version: 1.4.2
-  resolution: "typedoc-docusaurus-theme@npm:1.4.2"
+"typedoc-docusaurus-theme@npm:^1.4.3":
+  version: 1.4.3
+  resolution: "typedoc-docusaurus-theme@npm:1.4.3"
   peerDependencies:
-    typedoc-plugin-markdown: ">=4.8.0"
-  checksum: 10c0/eb853ae181684492632d6240ec3f604503cb8f7f30ef945935b3220cfb5ca717bde3a61c96a8b50ede091e8ca66b4afc8c165b4ecd5270e3b69a784aef64dbef
+    typedoc: 0.28.x
+    typedoc-plugin-markdown: ">=4.11.0"
+  checksum: 10c0/1b2890484072589f43d13dd6114ae0c1884f330ca05821951d8d4a975e4f8f4251a9acf56a7f1276701f3b09e719ac4fda43140c553d7435a6d4bf44449d129c
   languageName: node
   linkType: hard
 
